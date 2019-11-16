@@ -1,6 +1,7 @@
 package com.fpt.controller;
 
 import com.fpt.entity.Author;
+import com.fpt.entity.Book;
 import com.fpt.service.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @Controller
 public class AuthorController {
@@ -23,9 +25,18 @@ public class AuthorController {
         return "authors/showList";
     }
 
-    @GetMapping(value = "/{id}")
-    public String getDetail(@PathVariable long id, Model model) {
-        model.addAttribute("author", authorService.getById(id));
+//    @GetMapping(value = "/{id}")
+//    public String getDetail(@PathVariable long id, Model model) {
+//        model.addAttribute("author", authorService.getById(id));
+//        return "authors/detail";
+//    }
+
+    @GetMapping(value = "/author/books/{id}")
+    public String showBooksByAuthor(@PathVariable long author_id, Model model) {
+        Author author = authorService.getById(author_id);
+        Set<Book> books = author.getBooks();
+        model.addAttribute("author", author);
+        model.addAttribute("books", books);
         return "authors/detail";
     }
 
@@ -45,12 +56,12 @@ public class AuthorController {
     }
 
     @GetMapping(value = "/search")
-    public String search(@RequestParam(value = "term", required = false) String term, Model model) {
-        if (StringUtils.isEmpty(term)) {
+    public String search(@RequestParam(value = "name", required = false) String name, Model model) {
+        if (StringUtils.isEmpty(name)) {
             return "redirect:/index";
         }
 
-        model.addAttribute("authors", authorService.search((term)));
+        model.addAttribute("authors", authorService.search((name)));
         return "admin/authors/list";
     }
 

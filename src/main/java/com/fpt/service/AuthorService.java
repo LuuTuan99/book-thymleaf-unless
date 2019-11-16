@@ -7,7 +7,7 @@ import java.util.List;
 public interface AuthorService {
     List<Author> findAll();
 
-    List<Author> search(String term);
+    List<Author> search(String name);
 
     Author getById(long id);
 

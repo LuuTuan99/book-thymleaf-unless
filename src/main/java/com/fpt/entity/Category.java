@@ -1,20 +1,16 @@
 package com.fpt.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Author {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotEmpty
     private String name;
-    @NotEmpty
-    private String avatar;
-    @NotEmpty
+    private String thumbnail;
     @Column(columnDefinition="text")
     private String description;
     private long createdAtMLS;
@@ -22,8 +18,8 @@ public class Author {
     private long deletedAtMLS;
     private int status;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private Set<Book> books = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "categories")
+//    private Set<Book> books = new HashSet<>();
 
     public enum Status {
         ACTIVE(1), DEACTIVE(0),DELETED(-1);
@@ -59,12 +55,12 @@ public class Author {
         this.name = name;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getDescription() {
@@ -107,11 +103,11 @@ public class Author {
         this.status = status;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
+//    public Set<Book> getBooks() {
+//        return books;
+//    }
+//
+//    public void setBooks(Set<Book> books) {
+//        this.books = books;
+//    }
 }

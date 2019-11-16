@@ -20,8 +20,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> search(String term) {
-        return authorRepository.findByName(term);
+    public List<Author> search(String name) {
+        return authorRepository.findByName(name);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Author save(Author author) {
         author.setCreatedAtMLS(Calendar.getInstance().getTimeInMillis());
         author.setUpdatedAtMLS(Calendar.getInstance().getTimeInMillis());
-        author.setStatus(1);
+        author.setStatus(Author.Status.ACTIVE.getValue());
         return authorRepository.save(author);
     }
 
