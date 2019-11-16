@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- Head BEGIN -->
+<title>Home | Book Store</title>
+<th:block th:include="fragments/client/head"></th:block>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body class="ecommerce">
+<!-- BEGIN HEADER -->
+<th:block th:include="fragments/client/header"></th:block>
+<!-- END HEADER -->
+
+<div class="main">
+  <div class="container">
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40 ">
+      <!-- BEGIN SIDEBAR -->
+      <div class="sidebar col-md-3 col-sm-4">
+        <ul class="list-group margin-bottom-25 sidebar-menu">
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo2}"><i class="fa fa-angle-right"></i> Sách
+            bán chạy</a></li>
+          <li class="list-group-item clearfix dropdown">
+            <a th:href="@{/authors/demo2}">
+              <i class="fa fa-angle-right"></i>Sách mới phát hành
+            </a>
+            <ul class="dropdown-menu">
+              <li class="active"><a th:href="@{/authors/demo}">Home Default</a></li>
+              <li><a th:href="@{/authors/demo2}">Product List</a></li>
+              <li><a href="#shop-search-result.html">Search Result</a></li>
+              <li><a href="#shop-item.html">Product Page</a></li>
+              <li><a href="#shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
+              <li><a href="#shop-shopping-cart.html">Shopping Cart</a></li>
+              <li><a href="#shop-contacts.html">Contacts</a></li>
+              <li><a href="#shop-account.html">My account</a></li>
+              <li><a href="#shop-standart-forms.html">Standart Forms</a></li>
+            </ul>
+          </li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            sắp phát hành</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            văn học</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            ngoại văn</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            kinh tế</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            giáo khoa</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            tạp chí</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+            thiếu nhi</a></li>
+        </ul>
+      </div>
+      <!-- END SIDEBAR -->
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-9 col-sm-8">
+        <h4>Xu hướng tìm kiếm: lịch sử, đam mĩ, cho mẹ, nhà giả, tiếng việt, giáo trình ngữ, hán, toán, vật lý, học
+          nhật</h4>
+        <!-- BEGIN PROMO -->
+        <div class="shop-index-carousel">
+          <div class="content-slider">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img src="/assets-client/pages/img/shop-slider/slide1/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
+                </div>
+                <div class="item">
+                  <img src="/assets-client/pages/img/shop-slider/slide2/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
+                </div>
+                <div class="item">
+                  <img src="/assets-client/pages/img/shop-slider/slide3/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END PROMO -->
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END SIDEBAR & CONTENT -->
+
+    <!-- BEGIN SALE PRODUCT  -->
+    <div class="row margin-bottom-40">
+      <!-- BEGIN SALE PRODUCT -->
+      <div class="col-md-12 sale-product">
+        <h2>Sách mới phát hành trong tuần</h2>
+        <div class="owl-carousel owl-carousel5">
+          <div>
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <div>
+                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
+              </div>
+              <h3><a href="shop-item.html">Mắt biếc</a></h3>
+              <div class="pi-price">$29.00</div>
+              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <div class="sticker sticker-sale"></div>
+            </div>
+          </div>
+          <div>
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="/assets-client/pages/img/products/book2.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <div>
+                  <a href="/assets-client/pages/img/products/book2.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
+              </div>
+              <h3><a href="shop-item.html">Mắt biếc</a></h3>
+              <div class="pi-price">$29.00</div>
+              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+            </div>
+          </div>
+          <div>
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="/assets-client/pages/img/products/book3.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <div>
+                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
+              </div>
+              <h3><a href="shop-item.html">Mắt biếc</a></h3>
+              <div class="pi-price">$29.00</div>
+              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+            </div>
+          </div>
+          <div>
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <div>
+                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
+              </div>
+              <h3><a href="javascript:;">Mắt biếc</a></h3>
+              <div class="pi-price">$29.00</div>
+              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <div class="sticker sticker-new"></div>
+            </div>
+          </div>
+          <div>
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="/assets-client/pages/img/products/book5.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <div>
+                  <a href="/assets-client/pages/img/products/book5.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
+              </div>
+              <h3><a href="shop-item.html">Mắt biếc</a></h3>
+              <div class="pi-price">$29.00</div>
+              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END SALE PRODUCT -->
+    </div>
+    <!-- END SALE PRODUCT -->
+    <!-- BEGIN Book new & Book Coming soon -->
+    <div class="row margin-bottom-40 ">
+      <!-- BEGIN Book new -->
+      <div class="col-md-9 col-sm-8">
+        <h4>Sách sắp phát hành</h4>
+        <div class="row-fluid" style="width: 100%;">
+          <div class="book-best-sale background_dark_green"
+               style="padding: 38px; display: flex; background-color: #0a6f3c;">
+            <div class="img-thumb" style="width: 30%; padding-right: 30px;">
+              <img
+                      src="https://www.vinabook.com/images/thumbnails/product/210x/351000_combo-ma-dao-to-su-tap-3-4.jpg" />
+            </div>
+            <div class="text-content-best-sale" style="width: 70%;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Book new -->
+
+      <!-- BEGIN Book Coming soon -->
+      <div class="col-md-3 col-sm-4">
+        <h4>Sách bán chạy</h4>
+        <div class="row">
+          <div class="pic-thumb col-md-3">
+            <img
+                    src="https://www.vinabook.com/images/thumbnails/product/50x/350774_ung-thu-khong-phai-la-benh-ma-la-co-che-chua-lanh.jpg" />
+          </div>
+          <div class="info-book-r col-md-9">
+            <div class="title-book-r">
+              <a href="#" title="Ung Thư Không Phải Là Bệnh, Mà Là Cơ Chế Chữa Lành">Ung Thư Không Phải Là Bệnh, Mà Là
+                Cơ Chế...</a>
+            </div>
+            <div class="tac-gia">
+              <span>Andreas Moritz</span>
+            </div>
+            <div class="all-preice">
+              <span>250.000 đ</span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="pic-thumb col-md-3">
+            <img
+                    src="https://www.vinabook.com/images/thumbnails/product/50x/350748_phai-dep-elle-so-109-thang-112019.jpg" />
+          </div>
+          <div class="info-book-r col-md-9">
+            <div class="title-book-r">
+              <a href="#" title="Phái Đẹp - Elle - Số 109 (Tháng 11/2019)">Phái Đẹp - Elle - Số 109 (Tháng 11/2019)</a>
+            </div>
+            <div class="all-preice">
+              <span>44.000 đ</span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="pic-thumb col-md-3">
+            <img
+                    src="https://www.vinabook.com/images/thumbnails/product/50x/350748_phai-dep-elle-so-109-thang-112019.jpg" />
+          </div>
+          <div class="info-book-r col-md-9">
+            <div class="title-book-r">
+              <a href="#" title="Phái Đẹp - Elle - Số 109 (Tháng 11/2019)">Phái Đẹp - Elle - Số 109 (Tháng 11/2019)</a>
+            </div>
+            <div class="all-preice">
+              <span>44.000 đ</span>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="pic-thumb col-md-3">
+            <img src="https://www.vinabook.com/images/thumbnails/product/50x/351000_combo-ma-dao-to-su-tap-3-4.jpg" />
+          </div>
+          <div class="info-book-r col-md-9">
+            <div class="title-book-r">
+              <a href="#" title="Combo Ma Đạo Tổ Sư (Tập 3 + 4)">Combo Ma Đạo Tổ Sư (Tập 3 + 4)</a>
+            </div>
+            <div class="tac-gia">
+              <span>Mặc Hương Đồng Khứu</span>
+            </div>
+            <div class="all-preice">
+              <span>238.000 đ</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END Book Coming soon -->
+    </div>
+    <!-- END BEGIN Book new & Book Coming soon -->
+
+  </div>
+</div>
+<!-- BEGIN STEPS -->
+<div class="steps-block steps-block-red">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 steps-block-col">
+        <i class="fa fa-truck"></i>
+        <div>
+          <h2>Free shipping</h2>
+          <em>Express delivery withing 3 days</em>
+        </div>
+        <span>&nbsp;</span>
+      </div>
+      <div class="col-md-4 steps-block-col">
+        <i class="fa fa-gift"></i>
+        <div>
+          <h2>Daily Gifts</h2>
+          <em>3 Gifts daily for lucky customers</em>
+        </div>
+        <span>&nbsp;</span>
+      </div>
+      <div class="col-md-4 steps-block-col">
+        <i class="fa fa-phone"></i>
+        <div>
+          <h2>477 505 8877</h2>
+          <em>24/7 customer care available</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END STEPS -->
+
+<!-- BEGIN FOOTER -->
+<th:block th:include="fragments/client/footer"></th:block>
+<!-- END FOOTER -->
+
+<!-- BEGIN fast view of a product -->
+<div id="product-pop-up" style="display: none; width: 700px;">
+  <div class="product-page product-pop-up">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-3">
+        <div class="product-main-image">
+          <img th:src="@{/assets-client/pages/img/products/book1.jpg}" alt="Cool green dress with red bell" class="img-responsive">
+        </div>
+        <div class="product-other-images">
+          <a href="javascript:;" class="active">
+            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/model3.jpg}">
+          </a>
+          <a href="javascript:;">
+            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/model4.jpg}">
+          </a>
+          <a href="javascript:;">
+            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/model5.jpg}">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-9">
+        <h2>Cool green dress with red bell</h2>
+        <div class="price-availability-block clearfix">
+          <div class="price">
+            <strong><span>$</span>47.00</strong>
+            <em>$<span>62.00</span></em>
+          </div>
+          <div class="availability">
+            Availability: <strong>In Stock</strong>
+          </div>
+        </div>
+        <div class="description">
+          <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna
+            aliquarm erat volutpat Nostrud duis molestie at dolore.</p>
+        </div>
+        <div class="product-page-cart">
+          <div class="product-quantity">
+            <input id="product-quantity" type="text" value="1" readonly name="product-quantity"
+                   class="form-control input-sm">
+          </div>
+          <button class="btn btn-primary" type="submit">Add to cart</button>
+          <a href="shop-item.html" class="btn btn-default">More details</a>
+        </div>
+      </div>
+
+      <div class="sticker sticker-sale"></div>
+    </div>
+  </div>
+</div>
+<!-- END fast view of a product -->
+<th:block th:include="fragments/client/scripts"></th:block>
+</body>
+<!-- END BODY -->
+</html>
