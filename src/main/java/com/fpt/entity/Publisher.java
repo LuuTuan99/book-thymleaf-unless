@@ -18,8 +18,8 @@ public class Publisher {
     private long deletedAt;
     private int status;
 
-//    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
-//    private Set<Book> books = new HashSet<>();
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    private Set<Book> books = new HashSet<>();
 
 
     public enum Status {
@@ -104,11 +104,11 @@ public class Publisher {
         this.status = status;
     }
 
-//    public Set<Book> getBooks() {
-//        return books;
-//    }
-//
-//    public void setBooks(Set<Book> books) {
-//        this.books = books;
-//    }
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
 }

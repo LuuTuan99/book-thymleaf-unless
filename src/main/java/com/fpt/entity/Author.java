@@ -13,6 +13,7 @@ public class Author {
     @NotEmpty
     private String name;
     @NotEmpty
+    @Lob
     private String avatar;
     @NotEmpty
     @Column(columnDefinition="text")
@@ -114,4 +115,5 @@ public class Author {
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
+
 }

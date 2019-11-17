@@ -23,16 +23,16 @@ public class Book {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
-//
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "publisher_id")
-//    private Publisher publisher;
-//
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "book-category",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "category_id"))
-//    private Set<Category> categories = new HashSet<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "book-category",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
 
     public enum Status {
@@ -140,20 +140,20 @@ public class Book {
     public void setAuthor(Author author) {
         this.author = author;
     }
-//
-//    public Publisher getPublisher() {
-//        return publisher;
-//    }
-//
-//    public void setPublisher(Publisher publisher) {
-//        this.publisher = publisher;
-//    }
-//
-//    public Set<Category> getCategories() {
-//        return categories;
-//    }
-//
-//    public void setCategories(Set<Category> categories) {
-//        this.categories = categories;
-//    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 }

@@ -18,8 +18,8 @@ public class Category {
     private long deletedAtMLS;
     private int status;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "categories")
-//    private Set<Book> books = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "categories")
+    private Set<Book> books = new HashSet<>();
 
     public enum Status {
         ACTIVE(1), DEACTIVE(0),DELETED(-1);
@@ -103,11 +103,11 @@ public class Category {
         this.status = status;
     }
 
-//    public Set<Book> getBooks() {
-//        return books;
-//    }
-//
-//    public void setBooks(Set<Book> books) {
-//        this.books = books;
-//    }
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
 }

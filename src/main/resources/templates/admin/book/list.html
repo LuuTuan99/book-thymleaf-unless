@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>
+    List author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+<body class="">
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Author Table</h4>
+                            <a class="btn btn-info" th:href="@{/books/create}">New author</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th><input type="checkbox" id="select_all"></th>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Photos</th>
+                                    <th>Author</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="book : ${books}">
+                                        <td><input type="checkbox" name="select[]"></td>
+                                        <td th:text="${book.id}"></td>
+                                        <td th:text="${book.name}"></td>
+                                        <td><img th:src="@{${book.photos}}"></td>
+                                        <td th:text="${book.author.name}"></td>
+                                        <td th:text="${book.publisher.name}"></td>
+                                        <td>
+                                            <th:block th:each="category : ${book.categories}">
+                                                <span th:text="${category.name} + ' '">Item description here...</span>
+                                            </th:block>
+                                        </td>
+
+
+                                        <td th:text="${book.price}"></td>
+                                        <td th:text="${book.quantity}"></td>
+                                        <td th:text="${book.description}"></td>
+
+                                        <td>
+                                            <a th:href="@{'/books/show_single/' + ${book.id}}">Detail |</a>
+                                            <a th:href="@{'/books/update/' + ${book.id}}">Edit |</a>
+                                            <a th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#select_all").click(function(){
+                var checked_status = this.checked;
+                $("input[name='select[]']").each(function(){
+                    this.checked = checked_status;
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>

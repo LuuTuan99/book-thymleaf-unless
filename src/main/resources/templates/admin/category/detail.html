@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>
+    Detail author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+
+<body>
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Detail book</h4>
+                        </div>
+                        <div class="card-body ">
+                            <!-- Begin Page Content -->
+                            Name: <h5 th:text="${category.name}" class="card-title"></h5>
+                            <p class="category">Details</p>
+                            <div class="content">
+                                <td><img th:src="@{${category.photos}}"></td>
+                            </div>
+
+                            <td>
+                                <th:block th:each="book : ${category.books}">
+                                    <span th:text="${book.name} + ' '">Item description here...</span>
+                                </th:block>
+                            </td>
+                            Description: <p th:text="${category.description}"></p>
+                            <!-- /.content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+
+    <script>
+        $(document).ready(function() {
+            demo.initGoogleMaps();
+        });
+    </script>
+</div>
+</body>
+
+</html>
