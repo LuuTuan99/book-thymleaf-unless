@@ -28,10 +28,10 @@ public class Book {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "book-category",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "book_category",
+            joinColumns = {@JoinColumn(name = "book_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private Set<Category> categories = new HashSet<>();
 
 

@@ -48,6 +48,28 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="publisher">Publisher</label>
+                                        <select id="publisher" class="form-control" th:field="*{publisher}" multiple="multiple">
+                                            <option th:each="publisher : ${publishers}"
+                                                    th:text="${publisher.name}"
+                                                    th:value="${publisher.id}"
+                                            ></option>
+                                            <!--th:selected="${book.author.contains(author)}"-->
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="category">Category</label>
+                                        <select id="category" class="form-control" th:field="*{categories}" multiple="multiple">
+                                            <option th:each="category : ${categories}"
+                                                    th:text="${category.name}"
+                                                    th:value="${category.id}"
+                                            ></option>
+                                            <!--th:selected="${book.author.contains(author)}"-->
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="price">Price</label>
                                         <input type="text" class="form-control" id="price" aria-describedby="price" th:field="*{price}" playeholder="Joanne K. Rowling"/>
                                     </div>

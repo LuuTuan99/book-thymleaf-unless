@@ -24,9 +24,15 @@
                             Name: <h5 th:text="${book.name}" class="card-title"></h5>
                             <p class="category">Details</p>
                             <div class="content">
-                                <td><img th:src="@{${book.photos}}"></td>
+                                <img th:src="@{${book.photos}}">
                             </div>
                             Author: <p th:text="${book.author.name}"></p>
+                            Publisher: <p th:text="${book.publisher.name}"></p>
+
+                            Category: <th:block th:each="category : ${book.categories}">
+                                        <p th:text="${category.name}"></p>
+                                      </th:block>
+
                             Price: <p th:text="${book.price}"></p>
                             Quantity: <p th:text="${book.quantity}"></p>
                             Description: <p th:text="${book.description}"></p>

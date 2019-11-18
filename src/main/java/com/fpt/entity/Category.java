@@ -1,7 +1,6 @@
 package com.fpt.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,8 +17,8 @@ public class Category {
     private long deletedAtMLS;
     private int status;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "categories")
-    private Set<Book> books = new HashSet<>();
+    @ManyToMany(mappedBy = "categories")
+    private Set<Book> books;
 
     public enum Status {
         ACTIVE(1), DEACTIVE(0),DELETED(-1);
