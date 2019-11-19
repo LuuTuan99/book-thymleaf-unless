@@ -1,0 +1,49 @@
+<div class="sidebar" data-color="white" data-active-color="danger">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+  -->
+    <div class="logo">
+        <a href="#" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                <img src="../assets-admin/img/logo-small.png">
+            </div>
+        </a>
+        <a href="#" class="simple-text logo-normal">
+            Dashboard
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li>
+                <a href="#">
+                    <i class="nc-icon nc-bank"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/authors/list}">
+                    <i class="nc-icon nc-single-02"></i>
+                    <p>Author List</p>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/books/list}">
+                    <i class="nc-icon nc-book-bookmark"></i>
+                    <p>Book List</p>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/publishers/list}">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Publisher List</p>
+                </a>
+            </li>
+            <li class="active">
+                <a th:href="@{/categories/list}">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>Category List</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
