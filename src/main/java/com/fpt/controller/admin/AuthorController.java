@@ -40,6 +40,17 @@ public class AuthorController {
         return "client/login-register/page-login";
     }
 
+    //demo page client2
+    @GetMapping(value = "/demo3")
+    public String demo3(){
+        return "client2/product";
+    }
+    //demo page client2
+    @GetMapping(value = "/demo4")
+    public String demo4(){
+        return "client2/cart";
+    }
+
     @GetMapping(value = "/list")
     public String list(Model model) {
         model.addAttribute("authors", authorService.findAll());
