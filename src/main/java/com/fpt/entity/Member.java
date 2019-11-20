@@ -16,14 +16,18 @@ public class Member {
     @Email(message = "Email không đúng định dạng.")
     @Size(min = 7, max = 30, message = "Tối thiểu 7 ký tự, tối đa 30 ký tự.")
     private String email;
+    @NotEmpty
     private String hashPassword;
     @NotEmpty
     private String username;
+    @NotEmpty
     private String avatar;
+    @NotEmpty
     private String phone;
+    @NotEmpty
     private String address;
     private int gender;
-    private int role;
+    private String role;
 
     private long createdAt;
     private long updatedAt;
@@ -48,19 +52,19 @@ public class Member {
         }
     }
     public enum Role {
-        CUSTOMER(1), ADMIN(99);
+        CUSTOMER("customer"), ADMIN("admin");
 
-        private int value;
+        private String value;
 
-        Role(int value) {
+        Role(String value) {
             this.value = value;
         }
 
-        public int getValue() {
+        public String getValue() {
             return value;
         }
 
-        public void setValue(int value) {
+        public void setValue(String value) {
             this.value = value;
         }
     }
@@ -147,11 +151,11 @@ public class Member {
         this.gender = gender;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

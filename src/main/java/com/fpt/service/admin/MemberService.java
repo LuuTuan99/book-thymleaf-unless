@@ -16,9 +16,11 @@ public interface MemberService {
     Member register(Member member);
 
     // Update thông tin tài khoản theo email.
-    Member update(long id, Member member);
+    Member update(long id, Member updateMember);
 
     Member getByEmail(String email);
+
+    Member getByName(String name);
 
     boolean delete(long id);
 }

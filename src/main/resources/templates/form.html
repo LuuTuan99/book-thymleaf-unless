@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Account form</h1>
+<form th:action="@{/members/create}" method="post" th:object="${member}">
+    <div>
+        UserName <input type="text" th:field="*{username}">
+        <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name
+            Error</span>
+    </div>
+    <br>
+    <div>
+        Email <input type="text" th:field="*{email}">
+        <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
+            Error</span>
+    </div>
+
+    <div>
+        Password <input type="password" th:field="*{hashPassword}">
+        <span class="error" th:if="${#fields.hasErrors('hashPassword')}" th:errors="*{hashPassword}">password
+            Error</span>
+    </div>
+
+    <div>
+        Avatar <input type="text" th:field="*{avatar}">
+        <span class="error" th:if="${#fields.hasErrors('avatar')}" th:errors="*{avatar}">Name
+            Error</span>
+    </div>
+
+    <div>
+        Phone <input type="text" th:field="*{phone}">
+        <span class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Name
+            Error</span>
+    </div>
+
+    <div>
+        Address <input type="text" th:field="*{address}">
+        <span class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Name
+            Error</span>
+    </div>
+
+    <input type="submit" value="Submit"/>
+    <input type="reset" value="Reset"/>
+</form>
+</body>
+</html>

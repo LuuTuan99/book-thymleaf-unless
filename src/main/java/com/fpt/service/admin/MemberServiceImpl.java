@@ -5,6 +5,7 @@ import com.fpt.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +14,9 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService {
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public Page<Member> getList(int page, int limit) {
@@ -26,8 +30,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member login(String email, String password) {
+        // Tìm tài khoản có email trùng xem tồn tại không.
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if (optionalMember.isPresent()) {
+            // So sánh password xem trùng không (trong trường hợp pwd đã mã hoá thì phải mã hoá pwd truyền vào theo muối)
             Member member = optionalMember.get();
             if (member.getHashPassword().equals(password)) {
                 return member;
@@ -38,18 +44,37 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member register(Member member) {
-        member.setEmail(member.getEmail());
-        return null;
+        member.setHashPassword(passwordEncoder.encode(member.getHashPassword()));
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setRole(Member.Role.ADMIN.getValue());
+        member.setCreatedAt(member.getCreatedAt());
+        member.setUpdatedAt(member.getUpdatedAt());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        return memberRepository.save(member);
     }
 
     @Override
-    public Member update(long id, Member member) {
-        return null;
+    public Member update(long id, Member updateMember) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+
+        if (optionalMember.isPresent()) {
+            Member existMember = optionalMember.get();
+            existMember.setUsername(updateMember.getUsername());
+            existMember.setAddress(updateMember.getAddress());
+            existMember.setPhone(updateMember.getPhone());
+            existMember.setUpdatedAt(updateMember.getUpdatedAt());
+        }
+        return memberRepository.save(updateMember);
     }
 
     @Override
     public Member getByEmail(String email) {
-        return null;
+        return memberRepository.findByEmail(email).orElse(null);
+    }
+
+    @Override
+    public Member getByName(String name) {
+        return memberRepository.findByUsername(name).orElse(null);
     }
 
     @Override

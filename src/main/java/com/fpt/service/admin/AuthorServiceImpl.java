@@ -2,7 +2,6 @@ package com.fpt.service.admin;
 
 import com.fpt.entity.Author;
 import com.fpt.repository.AuthorRepository;
-import com.fpt.service.admin.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
