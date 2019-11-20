@@ -26,7 +26,7 @@ public class MemberController {
 
     @GetMapping(value = "/login")
     public String login() {
-        return "login";
+        return "client/login-register/page-login";
     }
 
     @GetMapping(value = "/create")
