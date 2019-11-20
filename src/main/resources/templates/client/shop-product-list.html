@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!-- Head BEGIN -->
-<title>List book | Book store</title>
+<title>Home | Book Store</title>
 <th:block th:include="fragments/client/head"></th:block>
 <!-- Head END -->
 
 <!-- Body BEGIN -->
+
 <body class="ecommerce">
 <!-- BEGIN HEADER -->
 <th:block th:include="fragments/client/header"></th:block>
 <!-- END HEADER -->
 
+<div class="title-wrapper">
+  <div class="container">
+    <div class="container-inner">
+      <h1><span>Books</span> & nature</h1>
+      <em>belong to the eyes that see them.</em>
+      <!-- <p>Ralph Waldo Emerson</p>    -->
+    </div>
+  </div>
+</div>
+
 <div class="main">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a href="index.html">Home</a></li>
+      <li><a th:href="@{/index}">Home</a></li>
       <li><a href="">Store</a></li>
       <li class="active">Book category</li>
     </ul>
@@ -23,11 +34,11 @@
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar col-md-3 col-sm-5">
         <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             bán chạy</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             mới phát hành</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             sắp phát hành</a></li>
           <li class="list-group-item clearfix dropdown active">
             <a href="javascript:void(0);" class="collapsed">
@@ -35,17 +46,17 @@
               Sách văn học
             </a>
             <ul class="dropdown-menu" style="display:block;">
-              <li><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách văn học nước ngoài</a></li>
-              <li><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách văn học trong nước</a></li>
+              <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học nước ngoài</a></li>
+              <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học trong nước</a></li>
             </ul>
           </li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             kinh tế</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             giáo khoa</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             tạp chí</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             thiếu nhi</a></li>
         </ul>
 
@@ -68,21 +79,21 @@
         <div class="sidebar-products clearfix">
           <h2>Bestsellers</h2>
           <div class="item">
-            <a href="shop-item.html"><img th:src=@"{/assets-client/pages/img/products/k1.jpg}"
+            <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k1.jpg"
                                           alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
+            <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
             <div class="price">$31.00</div>
           </div>
           <div class="item">
-            <a href="shop-item.html"><img th:src=@"{/assets-client/pages/img/products/k4.jpg}"
+            <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k4.jpg"
                                           alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
+            <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
             <div class="price">$23.00</div>
           </div>
           <div class="item">
-            <a href="shop-item.html"><img th:src=@"{/assets-client/pages/img/products/k3.jpg}"
+            <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k3.jpg"
                                           alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
+            <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
             <div class="price">$86.00</div>
           </div>
         </div>
@@ -128,13 +139,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book1.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book1.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -144,13 +155,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book1.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book1.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -160,13 +171,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book2.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book2.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book3.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -176,13 +187,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book3.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book3.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book3.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress 2</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress 2</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -194,13 +205,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book4.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book4.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -210,13 +221,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book4.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book4.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -226,13 +237,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book5.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book5.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book5.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book5.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-new"></div>
@@ -243,13 +254,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book3.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book3.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book3.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -261,13 +272,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book4.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book4.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -277,13 +288,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book4.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book4.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -293,13 +304,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book1.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book1.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
@@ -309,13 +320,13 @@
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img th:src=@"{/assets-client/pages/img/products/book5.jpg}" class="img-responsive" alt="Berry Lace Dress">
+                <img src="/assets-client/pages/img/products/book5.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a th:href=@"{/assets-client/pages/img/products/book5.jpg}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book5.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
               <div class="pi-price">$29.00</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-sale"></div>
@@ -389,18 +400,13 @@
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-3">
         <div class="product-main-image">
-          <img th:src=@"{/assets-client/pages/img/products/book1.jpg}" alt="Cool green dress with red bell" class="img-responsive">
+          <img src="/assets-client/pages/img/products/book1.jpg" alt="Cool green dress with red bell" class="img-responsive">
         </div>
         <div class="product-other-images">
-          <a href="javascript:;" class="active">
-            <img alt="Berry Lace Dress"th:src=@"{/assets-client/pages/img/products/book1.jpg}">
-          </a>
-          <a href="javascript:;">
-            <img alt="Berry Lace Dress" th:src=@"{/assets-client/pages/img/products/book2.jpg}">
-          </a>
-          <a href="javascript:;">
-            <img alt="Berry Lace Dress" th:src=@"{/assets-client/pages/img/products/book3.jpg}">
-          </a>
+          <a href="javascript:;" class="active"><img alt="Berry Lace Dress"
+                                                     src="/assets-client/pages/img/products/book1.jpg"></a>
+          <a href="javascript:;"><img alt="Berry Lace Dress" src="/assets-client/pages/img/products/book2.jpg"></a>
+          <a href="javascript:;"><img alt="Berry Lace Dress" src="/assets-client/pages/img/products/book3.jpg"></a>
         </div>
       </div>
       <div class="col-md-6 col-sm-6 col-xs-9">
@@ -425,7 +431,7 @@
                    class="form-control input-sm">
           </div>
           <button class="btn btn-primary" type="submit">Add to cart</button>
-          <a href="shop-item.html" class="btn btn-default">More details</a>
+          <a th:href="@{/shop-item}" class="btn btn-default">More details</a>
         </div>
       </div>
 
@@ -437,4 +443,5 @@
 <th:block th:include="fragments/client/scripts"></th:block>
 </body>
 <!-- END BODY -->
+
 </html>

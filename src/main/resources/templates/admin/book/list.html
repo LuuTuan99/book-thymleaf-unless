@@ -6,7 +6,7 @@
 <th:block th:include="fragments/admin/head"></th:block>
 <body class="">
 <div class="wrapper ">
-    <th:block th:include="fragments/admin/sidebar"></th:block>
+    <th:block th:include="fragments/admin/sidebar_book"></th:block>
     <div class="main-panel">
         <!-- Navbar -->
         <th:block th:include="fragments/admin/navbar"></th:block>
@@ -17,7 +17,23 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Author Table</h4>
-                            <a class="btn btn-info" th:href="@{/books/create}">New author</a>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <a class="btn btn-success" th:href="@{/books/create}">New author</a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <form>
+                                        <div class="input-group no-border">
+                                            <input type="text" value="" class="form-control" placeholder="Search...">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="nc-icon nc-zoom-split"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

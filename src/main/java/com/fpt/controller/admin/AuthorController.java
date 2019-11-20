@@ -19,37 +19,6 @@ import java.util.Set;
 public class AuthorController {
     @Autowired
     AuthorServiceImpl authorService;
-    //demo shop index
-    @GetMapping(value = "/demo")
-    public String demo(){
-        return "client/shop-index";
-    }
-    //demo shop list item
-    @GetMapping(value = "/demo1")
-    public String demo1(){
-        return "client/shop-product-list";
-    }
-    //demo shop item
-    @GetMapping(value = "/demo2")
-    public String demo2(){
-        return "client/shop-item";
-    }
-    //demo page login
-    @GetMapping(value = "/login")
-    public String login(){
-        return "client/login-register/page-login";
-    }
-
-    //demo page client2
-    @GetMapping(value = "/demo3")
-    public String demo3(){
-        return "client2/product";
-    }
-    //demo page client2
-    @GetMapping(value = "/demo4")
-    public String demo4(){
-        return "client2/cart";
-    }
 
     @GetMapping(value = "/list")
     public String list(Model model) {
