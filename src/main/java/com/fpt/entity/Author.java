@@ -2,6 +2,7 @@ package com.fpt.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +43,12 @@ public class Author {
         public void setValue(int value) {
             this.value = value;
         }
+    }
+
+    public Author() {
+        this.createdAtMLS = Calendar.getInstance().getTimeInMillis();
+        this.updatedAtMLS = Calendar.getInstance().getTimeInMillis();
+        this.status = Status.ACTIVE.getValue();
     }
 
     public long getId() {
@@ -116,4 +123,82 @@ public class Author {
         this.books = books;
     }
 
+
+    public static final class Builder {
+        private long id;
+        private String name;
+        private String avatar;
+        private String description;
+        private long createdAtMLS;
+        private long updatedAtMLS;
+        private long deletedAtMLS;
+        private int status;
+        private Set<Book> books = new HashSet<>();
+
+        private Builder() {
+        }
+
+        public static Builder anAuthor() {
+            return new Builder();
+        }
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withAvatar(String avatar) {
+            this.avatar = avatar;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withCreatedAtMLS(long createdAtMLS) {
+            this.createdAtMLS = createdAtMLS;
+            return this;
+        }
+
+        public Builder withUpdatedAtMLS(long updatedAtMLS) {
+            this.updatedAtMLS = updatedAtMLS;
+            return this;
+        }
+
+        public Builder withDeletedAtMLS(long deletedAtMLS) {
+            this.deletedAtMLS = deletedAtMLS;
+            return this;
+        }
+
+        public Builder withStatus(int status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withBooks(Set<Book> books) {
+            this.books = books;
+            return this;
+        }
+
+        public Author build() {
+            Author author = new Author();
+            author.setId(id);
+            author.setName(name);
+            author.setAvatar(avatar);
+            author.setDescription(description);
+            author.setCreatedAtMLS(createdAtMLS);
+            author.setUpdatedAtMLS(updatedAtMLS);
+            author.setDeletedAtMLS(deletedAtMLS);
+            author.setStatus(status);
+            author.setBooks(books);
+            return author;
+        }
+    }
 }

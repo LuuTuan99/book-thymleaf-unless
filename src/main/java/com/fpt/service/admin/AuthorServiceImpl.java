@@ -3,6 +3,8 @@ package com.fpt.service.admin;
 import com.fpt.entity.Author;
 import com.fpt.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
+
     @Autowired
     AuthorRepository authorRepository;
 
@@ -17,6 +20,10 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public List<Author> findAll() {
         return authorRepository.findAll();
+    }
+
+    public Page<Author> findAll(Pageable pageable) {
+        return authorRepository.findAll(pageable);
     }
 
     @Override

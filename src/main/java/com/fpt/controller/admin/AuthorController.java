@@ -1,9 +1,12 @@
 package com.fpt.controller.admin;
 
+import com.fpt.config.ProjectConfig;
 import com.fpt.entity.Author;
 import com.fpt.entity.Book;
 import com.fpt.service.admin.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,67 +18,74 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @Controller
-@RequestMapping(value = "/authors")
+@RequestMapping(value = ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS)
 public class AuthorController {
+
     @Autowired
     AuthorServiceImpl authorService;
 
-    @GetMapping(value = "/list")
-    public String list(Model model) {
-        model.addAttribute("authors", authorService.findAll());
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "10") int limit,
+            Model model) {
+        Page<Author> authorPage = authorService.findAll(PageRequest.of(page - 1, limit));
+        model.addAttribute("authors", authorPage.getContent());
+        model.addAttribute("currentPage", authorPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", authorPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", authorPage.getTotalPages());
         return "admin/author/list";
     }
 
-
-    @GetMapping(value = "/by_books/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable long id, Model model) {
         Author author = authorService.getById(id);
-        Set<Book> books = author.getBooks();
+        if (author == null) {
+            return "404";
+        }
         model.addAttribute("author", author);
-        model.addAttribute("books", books);
         return "admin/author/detail";
     }
 
-    @GetMapping(value = "/create")
+    @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
         model.addAttribute("author", new Author());
         return "admin/author/create";
     }
 
-    @PostMapping(value = "/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
     public String store(@Valid Author author, BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                return "/admin/author/create";
-            }
-            authorService.save(author);
-            return "redirect:/authors/list";
+        if (bindingResult.hasErrors()) {
+            return "/admin/author/create";
         }
+        authorService.save(author);
+        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
+    }
 
-    @GetMapping(value = "/search")
-    public String search(@RequestParam(value = "name", required = false) String name, Model model) {
-        if (StringUtils.isEmpty(name)) {
-            return "redirect:/authors/list";
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
+    public String search(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        if (StringUtils.isEmpty(keyword)) {
+            return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
         }
-
-        model.addAttribute("authors", authorService.search((name)));
+        model.addAttribute("authors", authorService.search((keyword)));
         return "admin/author/list";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/delete/{id}")
     public String delete(@PathVariable(value = "id", required = false) long id, RedirectAttributes redirectAttributes) {
         authorService.delete(id);
         redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
         return "redirect:/authors/list";
     }
 
-    @GetMapping(value = "/update/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
     public String updateAuthor(@PathVariable long id, Model model) {
         Author author = authorService.getById(id);
         model.addAttribute("author", author);
         return "admin/author/edit";
     }
 
-    @PostMapping(value = "/update/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/update/{id}")
     public String update(@PathVariable long id, Author author) {
         authorService.update(id, author);
         return "redirect:/authors/list";
