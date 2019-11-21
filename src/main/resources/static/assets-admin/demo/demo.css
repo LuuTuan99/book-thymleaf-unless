@@ -187,3 +187,8 @@
   outline: none;
   display: none;
 }
+
+.img-thumbnail {
+  max-width: 100px;
+  max-height: 100px;
+}

@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Account form</h1>
-<form th:action="@{/members/create}" method="post" th:object="${member}">
+<form th:action="@{/members/register}" method="post" th:object="${member}">
     <div>
         UserName <input type="text" th:field="*{username}">
         <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name

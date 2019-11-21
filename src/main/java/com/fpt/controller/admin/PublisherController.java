@@ -1,5 +1,6 @@
 package com.fpt.controller.admin;
 
+import com.fpt.config.ProjectConfig;
 import com.fpt.entity.Book;
 import com.fpt.entity.Publisher;
 import com.fpt.service.admin.PublisherServiceImpl;
@@ -15,13 +16,17 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @Controller
-@RequestMapping(value = "/publishers")
+@RequestMapping(value = ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_PUBLISHERS)
 public class PublisherController {
     @Autowired
     PublisherServiceImpl publisherService;
 
-    @GetMapping(value = "/list")
-    public String list(Model model) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            Model model
+    ) {
         model.addAttribute("publishers", publisherService.findAll());
         return "admin/publisher/list";
     }
