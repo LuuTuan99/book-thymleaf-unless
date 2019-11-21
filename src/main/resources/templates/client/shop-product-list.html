@@ -136,204 +136,24 @@
         <!-- BEGIN PRODUCT LIST -->
         <div class="row product-list">
           <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-12" th:each = "book: ${productBook}">
             <div class="product-item">
               <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <img  th:src="@{${book.photos}}" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
+              <h3 th:text="${book.name}"><a th:href="@{/shop-item}"></a></h3>
+              <div th:text="${book.price}" class="pi-price"></div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
             </div>
           </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress 2</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
+
           <!-- PRODUCT ITEM END -->
         </div>
-        <div class="row product-list">
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book5.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book5.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-new"></div>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-        </div>
-        <div class="row product-list">
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-          <!-- PRODUCT ITEM START -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book5.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="/assets-client/pages/img/products/book5.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a th:href="@{/shop-item}">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-sale"></div>
-            </div>
-          </div>
-          <!-- PRODUCT ITEM END -->
-        </div>
+
         <!-- END PRODUCT LIST -->
         <!-- BEGIN PAGINATOR -->
         <div class="row">
