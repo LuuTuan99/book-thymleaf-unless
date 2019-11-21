@@ -23,7 +23,7 @@
                         <div class="card-body ">
                             <!-- Begin Page Content -->
                             <div class="content">
-                                <form th:object="${category}" th:action="@{/categories/update/{id}(id=${category.id})}" th:method="post">
+                                <form th:object="${category}" th:action="@{'/categories/update/' + (id=${author.id})}" th:method="post">
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" th:field="*{id}"/>
                                     </div>

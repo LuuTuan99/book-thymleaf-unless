@@ -15,7 +15,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Set;
 
 @Controller
 @RequestMapping(value = ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS)
@@ -27,7 +26,7 @@ public class AuthorController {
     @RequestMapping(method = RequestMethod.GET)
     public String list(
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "10") int limit,
+            @RequestParam(name = "limit", defaultValue = "5") int limit,
             Model model) {
         Page<Author> authorPage = authorService.findAll(PageRequest.of(page - 1, limit));
         model.addAttribute("authors", authorPage.getContent());
@@ -75,11 +74,12 @@ public class AuthorController {
     public String delete(@PathVariable(value = "id", required = false) long id, RedirectAttributes redirectAttributes) {
         authorService.delete(id);
         redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
-        return "redirect:/authors/list";
+        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
     public String updateAuthor(@PathVariable long id, Model model) {
+        System.out.println(id);
         Author author = authorService.getById(id);
         model.addAttribute("author", author);
         return "admin/author/edit";
@@ -88,6 +88,6 @@ public class AuthorController {
     @RequestMapping(method = RequestMethod.POST, value = "/update/{id}")
     public String update(@PathVariable long id, Author author) {
         authorService.update(id, author);
-        return "redirect:/authors/list";
+        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
     }
 }

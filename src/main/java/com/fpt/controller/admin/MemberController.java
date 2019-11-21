@@ -29,13 +29,13 @@ public class MemberController {
         return "client/login-register/page-login";
     }
 
-    @GetMapping(value = "/create")
+    @GetMapping(value = "/register")
     public String create(Model model) {
         model.addAttribute("member", new Member());
         return "form";
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/register")
     public String stores(@Valid Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "form";

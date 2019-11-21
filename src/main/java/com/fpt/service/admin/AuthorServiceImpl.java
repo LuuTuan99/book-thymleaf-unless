@@ -1,6 +1,7 @@
 package com.fpt.service.admin;
 
 import com.fpt.entity.Author;
+import com.fpt.pagination.PageModel;
 import com.fpt.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,8 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     AuthorRepository authorRepository;
 
+    @Autowired
+    PageModel pageModel;
 
     @Override
     public List<Author> findAll() {

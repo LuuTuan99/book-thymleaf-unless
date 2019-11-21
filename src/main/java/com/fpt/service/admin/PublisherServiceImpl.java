@@ -1,8 +1,11 @@
 package com.fpt.service.admin;
 
+import com.fpt.entity.Author;
 import com.fpt.entity.Publisher;
 import com.fpt.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -16,6 +19,10 @@ public class PublisherServiceImpl implements PublisherService {
     @Override
     public List<Publisher> findAll() {
         return publisherRepository.findAll();
+    }
+
+    public Page<Publisher> findAll(Pageable pageable) {
+        return publisherRepository.findAll(pageable);
     }
 
     @Override

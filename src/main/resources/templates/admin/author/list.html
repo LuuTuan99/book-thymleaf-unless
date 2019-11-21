@@ -52,9 +52,9 @@
                                         <td th:text="${author.name}"></td>
                                         <td><img class="img-thumbnail rounded" th:src="@{${author.avatar}}"></td>
                                         <td>
-                                            <a th:href="@{'/authors/by_books/' + ${author.id}}"> Detail</a>
-                                            <a th:href="@{'/authors/update/' + ${author.id}}"> Edit</a>
-                                            <a th:href="@{'/authors/delete/' + ${author.id}}">Delete</a>
+                                            <a th:href="@{'/admin/authors/' + ${author.id}}"> Detail</a>
+                                            <a th:href="@{'/admin/authors/update/' + ${author.id}}"> Edit</a>
+                                            <a th:href="@{'/admin/authors/delete/' + ${author.id}}">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
