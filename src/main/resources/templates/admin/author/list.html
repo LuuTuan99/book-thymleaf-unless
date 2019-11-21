@@ -53,10 +53,9 @@
                                         <td th:text="${author.name}"></td>
                                         <td><img th:src="@{${author.avatar}}"></td>
                                         <td th:text="${author.description}"></td>
-
                                         <td>
-                                            <a th:href="@{'/authors/by_books/' + ${author.id}}">Detail |</a>
-                                            <a th:href="@{'/authors/update/' + ${author.id}}">Edit |</a>
+                                            <a th:href="@{'/authors/by_books/' + ${author.id}}"> Detail</a>
+                                            <a th:href="@{'/authors/update/' + ${author.id}}"> Edit</a>
                                             <a th:href="@{'/authors/delete/' + ${author.id}}">Delete</a>
                                         </td>
                                     </tr>

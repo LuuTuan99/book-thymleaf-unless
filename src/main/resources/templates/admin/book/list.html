@@ -43,12 +43,12 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Photos</th>
-                                    <th>Author</th>
-                                    <th>Publisher</th>
+<!--                                    <th>Author</th>-->
+<!--                                    <th>Publisher</th>-->
                                     <th>Category</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th>Description</th>
+<!--                                    <th>Description</th>-->
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -57,19 +57,16 @@
                                         <td th:text="${book.id}"></td>
                                         <td th:text="${book.name}"></td>
                                         <td><img th:src="@{${book.photos}}"></td>
-                                        <td th:text="${book.author.name}"></td>
-                                        <td th:text="${book.publisher.name}"></td>
+<!--                                        <td th:text="${book.author.name}"></td>-->
+<!--                                        <td th:text="${book.publisher.name}"></td>-->
                                         <td>
                                             <th:block th:each="category : ${book.categories}">
                                                 <span th:text="${category.name} + ' '">Item description here...</span>
                                             </th:block>
                                         </td>
-
-
                                         <td th:text="${book.price}"></td>
                                         <td th:text="${book.quantity}"></td>
-                                        <td th:text="${book.description}"></td>
-
+<!--                                        <td th:text="${book.description}"></td>-->
                                         <td>
                                             <a th:href="@{'/books/show_single/' + ${book.id}}">Detail |</a>
                                             <a th:href="@{'/books/update/' + ${book.id}}">Edit |</a>
