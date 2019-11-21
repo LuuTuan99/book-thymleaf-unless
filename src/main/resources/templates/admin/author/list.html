@@ -61,6 +61,36 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                                <nav aria-label="Pagination" th:if="${authors.totalPages gt 0}">
+                                    <ul class="pagination justify-content-center font-weight-medium">
+                                        <li class="page-item" th:classappend="${authors.number eq 0} ? 'disabled'">
+                                            <a class="page-link svg-icon"
+                                               th:href="@{/authors/list?page={id}(id=${authors.number lt 2 ? 1 : authors.number})}"
+                                               aria-label="Previous"
+                                               title="Previous Page" rel="tooltip">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:classappend="${i eq authors.number + 1} ? 'active'"
+                                            th:each="i : ${#numbers.sequence( authors.number + 1, authors.totalPages > 3 + authors.number ? authors.number + 3 : authors.totalPages, 1)}">
+                                            <a class="page-link" th:href="@{/authors/list?page={id}(id=${i})}" th:text="${i}"
+                                               th:title="${'Page '+ i}"
+                                               rel="tooltip"></a>
+                                        </li>
+                                        <li class="page-item disabled" th:if="${authors.number + 3 < authors.totalPages}">
+                                            <a class="page-link svg-icon" href="#">
+                                                <span aria-hidden="true">&middot;&middot;&middot;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:classappend="${authors.number + 1 eq authors.totalPages} ? 'disabled'">
+                                            <a class="page-link svg-icon" th:href="@{/authors/list?page={id}(id=${authors.number + 2})}"
+                                               aria-label="Next"
+                                               title="Next Page" rel="tooltip">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>

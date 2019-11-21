@@ -1,8 +1,11 @@
 package com.fpt.service.admin;
 
 import com.fpt.entity.Author;
+import com.fpt.pagination.PageModel;
 import com.fpt.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -13,10 +16,19 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     AuthorRepository authorRepository;
 
+    @Autowired
+    PageModel pageModel;
 
     @Override
     public List<Author> findAll() {
         return authorRepository.findAll();
+    }
+
+    @Override
+    public Page<Author> getAll() {
+        pageModel.setSIZE(1);
+        pageModel.initPageAndSize();
+        return authorRepository.findAll(PageRequest.of(pageModel.getPAGE(),pageModel.getSIZE()));
     }
 
     @Override

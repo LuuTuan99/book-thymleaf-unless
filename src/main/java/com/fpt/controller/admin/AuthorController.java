@@ -22,9 +22,11 @@ public class AuthorController {
 
     @GetMapping(value = "/list")
     public String list(Model model) {
-        model.addAttribute("authors", authorService.findAll());
+        model.addAttribute("authors", authorService.getAll());
         return "admin/author/list";
     }
+
+
 
 
     @GetMapping(value = "/by_books/{id}")
