@@ -25,11 +25,9 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.findAll();
     }
 
-
     public Page<Author> findAll(Pageable pageable) {
         return authorRepository.findAll(pageable);
     }
-
 
     @Override
     public List<Author> search(String name) {
