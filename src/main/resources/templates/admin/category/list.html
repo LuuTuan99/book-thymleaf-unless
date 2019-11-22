@@ -51,7 +51,6 @@
                                         <td th:text="${category.id}"></td>
                                         <td th:text="${category.name}"></td>
                                         <td><img th:src="@{${category.thumbnail}}" class="img-thumbnail rounded"></td>
-                                        <td th:text="${category.description}"></td>
 
                                         <td>
                                             <a th:href="@{'/admin/categories/' + ${category.id}}">Detail |</a>

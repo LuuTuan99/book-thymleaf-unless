@@ -49,6 +49,12 @@ public class HomeController {
     public String shop_item() {
         return "client/shop-item";
     }
+
+    //demo shop account
+    @GetMapping(value = "/shop-account")
+        public String shop_account(){
+        return "client/shop-account";
+        }
 }
 
 
