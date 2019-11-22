@@ -32,15 +32,14 @@ public class MemberController {
     @GetMapping(value = "/register")
     public String create(Model model) {
         model.addAttribute("member", new Member());
-        return "form";
+        return "client/login-register/page-register";
     }
 
     @PostMapping(value = "/register")
     public String stores(@Valid Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "form";
+            return "client/login-register/page-register";
         }
-
         memberService.register(member);
         return "success";
     }

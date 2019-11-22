@@ -18,7 +18,6 @@
                     <div class="card ">
                         <div class="card-header ">
                             <h4 class="card-title">Edit Book</h4>
-                            <p class="category">fill out & click save</p>
                         </div>
                         <div class="card-body ">
                             <!-- Begin Page Content -->
@@ -27,59 +26,61 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" th:field="*{id}"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" th:field="*{name}">
+                                    <div class="row form-group">
+                                        <div class="col-8">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" th:field="*{name}">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="category">Category</label>
+                                            <select id="category" class="form-control" th:field="*{categories}">
+                                                <option th:each="category : ${categories}"
+                                                        th:text="${category.name}"
+                                                        th:value="${category.id}"
+                                                ></option>
+                                                <!--th:selected="${book.author.contains(author)}"-->
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="photos">Avatar</label>
-                                        <input type="text" class="form-control" id="photos" th:field="*{photos}"/>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="author">Author</label>
+                                            <select id="author" class="form-control" th:field="*{author}">
+                                                <option th:each="author : ${authors}"
+                                                        th:text="${author.name}"
+                                                        th:value="${author.id}">
+                                                </option>
+                                                <!--th:selected="${book.author.contains(author)}"-->
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="publisher">Publisher</label>
+                                            <select id="publisher" class="form-control" th:field="*{publisher}">
+                                                <option th:each="publisher : ${publishers}"
+                                                        th:text="${publisher.name}"
+                                                        th:value="${publisher.id}">
+                                                </option>
+                                                <!--th:selected="${book.author.contains(author)}"-->
+                                            </select>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="author">Author</label>
-                                        <select id="author" class="form-control" th:field="*{author}" multiple="multiple">
-                                            <option th:each="author : ${authors}"
-                                                    th:text="${author.name}"
-                                                    th:value="${author.id}"
-                                                   ></option>
-                                            <!--th:selected="${book.author.contains(author)}"-->
-                                        </select>
+                                    <div class="row form-group">
+                                        <div class="col-4">
+                                            <label for="price">Price</label>
+                                            <input type="text" class="form-control" id="price" th:field="*{price}"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="text" class="form-control" id="quantity" th:field="*{quantity}"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="photos">Avatar</label>
+                                            <input type="text" class="form-control" id="photos" th:field="*{photos}"/>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="publisher">Publisher</label>
-                                        <select id="publisher" class="form-control" th:field="*{publisher}" multiple="multiple">
-                                            <option th:each="publisher : ${publishers}"
-                                                    th:text="${publisher.name}"
-                                                    th:value="${publisher.id}"
-                                            ></option>
-                                            <!--th:selected="${book.author.contains(author)}"-->
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="category">Category</label>
-                                        <select id="category" class="form-control" th:field="*{categories}" multiple="multiple">
-                                            <option th:each="category : ${categories}"
-                                                    th:text="${category.name}"
-                                                    th:value="${category.id}"
-                                            ></option>
-                                            <!--th:selected="${book.author.contains(author)}"-->
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="price">Price</label>
-                                        <input type="text" class="form-control" id="price" aria-describedby="price" th:field="*{price}" playeholder="Joanne K. Rowling"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="quantity">Quantity</label>
-                                        <input type="text" class="form-control" id="quantity" aria-describedby="quantity" th:field="*{quantity}" playeholder="Joanne K. Rowling"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea rows="4" type="textarea" class="form-control" id="description" th:field="*{description}"/></textarea>
+                                    <div class="form-group row">
+                                        <label for="description" class="col-12">Description</label>
+                                        <textarea rows="6" type="textarea" class="form-control col-8 ml-3" id="description" th:field="*{description}"/></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                     <a th:href="@{'/books/list'}" class="btn btn-default">Cancel</a>
