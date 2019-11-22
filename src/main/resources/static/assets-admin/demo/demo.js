@@ -416,6 +416,8 @@ $(document).ready(function () {
         if (!error && result && result.event === "success") {
           $("#preview").attr("src", result.info.secure_url);
           $("input[name='avatar']").val(result.info.secure_url);
+          $("input[name='thumbnail']").val(result.info.secure_url);
+          $("input[name='photos']").val(result.info.secure_url);
         }
       }
   )

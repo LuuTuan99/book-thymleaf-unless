@@ -5,6 +5,8 @@ import com.fpt.entity.Book;
 import com.fpt.entity.Publisher;
 import com.fpt.service.admin.PublisherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -25,63 +27,70 @@ public class PublisherController {
     public String list(
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "5") int limit,
-            Model model
-    ) {
-        model.addAttribute("publishers", publisherService.findAll());
+            Model model) {
+        Page<Publisher> publisherPage = publisherService.findAll(PageRequest.of(page - 1, limit));
+        model.addAttribute("publishers", publisherPage.getContent());
+        model.addAttribute("currentPage", publisherPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", publisherPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", publisherPage.getTotalPages());
         return "admin/publisher/list";
     }
 
-    @GetMapping(value = "/by_books/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable long id, Model model) {
         Publisher publisher = publisherService.getById(id);
+
+        if (publisher == null) {
+            return "404";
+        }
         Set<Book> books = publisher.getBooks();
         model.addAttribute("publisher", publisher);
         model.addAttribute("books", books);
         return "admin/publisher/detail";
     }
 
-    @GetMapping(value = "/create")
+    @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
         model.addAttribute("publisher", new Publisher());
         return "admin/publisher/create";
     }
 
-    @PostMapping(value = "/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
     public String store(@Valid Publisher publisher, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "admin/publisher/create";
         }
         publisherService.save(publisher);
-        return "redirect:/publishers/list";
+        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_PUBLISHERS;
     }
 
-    @GetMapping(value = "/search")
-    public String search(@RequestParam(value = "name", required = false) String name, Model model) {
-        if (StringUtils.isEmpty(name)) {
-            return "redirect:/publishers/list";
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
+    public String search(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        if (StringUtils.isEmpty(keyword)) {
+            return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_PUBLISHERS;
         }
 
-        model.addAttribute("publishers", publisherService.search((name)));
+        model.addAttribute("publishers", publisherService.search((keyword)));
         return "admin/publisher/list";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/delete/{id}")
     public String delete(@PathVariable(value = "id", required = false) long id, RedirectAttributes redirectAttributes) {
         publisherService.delete(id);
         redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
-        return "redirect:/publishers/list";
+        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_PUBLISHERS;
     }
 
-    @GetMapping(value = "/update/{id}")
-    public String updateAuthor(@PathVariable long id, Model model) {
+    @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
+    public String updatePublisher(@PathVariable long id, Model model) {
         Publisher publisher = publisherService.getById(id);
         model.addAttribute("publisher", publisher);
         return "admin/publisher/edit";
     }
 
-    @PostMapping(value = "/update/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/update/{id}")
     public String update(@PathVariable long id, Publisher publisher) {
         publisherService.update(id, publisher);
-        return "redirect:/publishers/list";
+        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_PUBLISHERS;
     }
 }

@@ -19,7 +19,7 @@
                             <h4 class="card-title">Publisher Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{/publishers/create}">New Publisher</a>
+                                    <a class="btn btn-success" th:href="@{/admin/publishers/create}">New Publisher</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <form>
@@ -43,7 +43,6 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Avatar</th>
-                                    <th>Description</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -51,13 +50,11 @@
                                         <td><input type="checkbox" name="select[]"></td>
                                         <td th:text="${publisher.id}"></td>
                                         <td th:text="${publisher.name}"></td>
-                                        <td><img th:src="@{${publisher.avatar}}"></td>
-                                        <td th:text="${publisher.description}"></td>
-
+                                        <td><img class="img-thumbnail rounded" th:src="@{${publisher.avatar}}"></td>
                                         <td>
-                                            <a th:href="@{'/publishers/by_books/' + ${publisher.id}}">Detail |</a>
-                                            <a th:href="@{'/publishers/update/' + ${publisher.id}}">Edit |</a>
-                                            <a th:href="@{'/publishers/delete/' + ${publisher.id}}">Delete</a>
+                                            <a th:href="@{'/admin/publishers/' + ${publisher.id}}">Detail |</a>
+                                            <a th:href="@{'/admin/publishers/update/' + ${publisher.id}}">Edit |</a>
+                                            <a th:href="@{'/admin/publishers/delete/' + ${publisher.id}}">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>

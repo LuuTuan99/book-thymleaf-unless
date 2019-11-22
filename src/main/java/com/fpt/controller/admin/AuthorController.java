@@ -79,7 +79,6 @@ public class AuthorController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
     public String updateAuthor(@PathVariable long id, Model model) {
-        System.out.println(id);
         Author author = authorService.getById(id);
         model.addAttribute("author", author);
         return "admin/author/edit";

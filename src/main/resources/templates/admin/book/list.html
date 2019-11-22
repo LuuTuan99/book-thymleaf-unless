@@ -19,7 +19,7 @@
                             <h4 class="card-title">Author Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{/books/create}">New author</a>
+                                    <a class="btn btn-success" th:href="@{/admin/books/create}">New author</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <form>
@@ -56,20 +56,20 @@
                                         <td><input type="checkbox" name="select[]"></td>
                                         <td th:text="${book.id}"></td>
                                         <td th:text="${book.name}"></td>
-                                        <td><img th:src="@{${book.photos}}"></td>
+                                        <td><img class="img-thumbnail rounded" th:src="@{${book.photos}}"></td>
 <!--                                        <td th:text="${book.author.name}"></td>-->
 <!--                                        <td th:text="${book.publisher.name}"></td>-->
                                         <td>
                                             <th:block th:each="category : ${book.categories}">
-                                                <span th:text="${category.name} + ' '">Item description here...</span>
+                                                <span th:text="${category.name} + ' '"></span>
                                             </th:block>
                                         </td>
                                         <td th:text="${book.price}"></td>
                                         <td th:text="${book.quantity}"></td>
 <!--                                        <td th:text="${book.description}"></td>-->
                                         <td>
-                                            <a th:href="@{'/books/show_single/' + ${book.id}}">Detail |</a>
-                                            <a th:href="@{'/books/update/' + ${book.id}}">Edit |</a>
+                                            <a th:href="@{'/admin/books/' + ${book.id}}">Detail |</a>
+                                            <a th:href="@{'/admin/books/update/' + ${book.id}}">Edit |</a>
                                             <a th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
                                         </td>
                                     </tr>
