@@ -19,7 +19,6 @@
                             <h4 class="card-title">Category Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{}">New category</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <form>
@@ -54,8 +53,8 @@
                                         <th th:text="${member.email}"></th>
                                         <th th:text="${member.phone}"></th>
                                         <td>
-                                            <a th:href="@{'/' + ${member.id}}">Detail |</a>
-                                            <a th:href="@{'/' + ${member.id}}">Delete</a>
+                                            <a th:href="@{'/members/' + ${member.id}}">Detail |</a>
+                                            <a th:href="@{'/members/' + ${member.id}}">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
