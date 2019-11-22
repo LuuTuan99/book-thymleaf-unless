@@ -19,7 +19,7 @@
                             <h4 class="card-title">Book Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{/admin/books/create}">New author</a>
+                                    <a class="btn btn-success" th:href="@{/admin/books/create}">New book</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <form>
@@ -52,7 +52,7 @@
                                         <td><input type="checkbox" name="select[]"></td>
                                         <td th:text="${book.id}"></td>
                                         <td th:text="${book.name}"></td>
-                                        <td><img th:src="@{${book.photos}}"></td>
+                                        <td><img class="img-thumbnail rounded" th:src="@{${book.photos}}"></td>
                                         <td th:text="${book.price}"></td>
                                         <td th:text="${book.quantity}"></td>
                                         <td>

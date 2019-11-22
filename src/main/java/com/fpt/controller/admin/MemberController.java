@@ -29,6 +29,7 @@ public class MemberController {
         model.addAttribute("limit", memberPage.getPageable().getPageSize());
         model.addAttribute("totalPage", memberPage.getTotalPages());
         return "/admin/member/list";
+
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

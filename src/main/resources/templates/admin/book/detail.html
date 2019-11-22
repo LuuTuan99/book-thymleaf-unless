@@ -19,23 +19,31 @@
                         <div class="card-header ">
                             <h4 class="card-title">Detail Book</h4>
                         </div>
-                        <div class="card-body ">
+                        <div class="card-body row">
                             <!-- Begin Page Content -->
-                            Name: <h5 th:text="${book.name}" class="card-title"></h5>
-                            <p class="category">Details</p>
-                            <div class="content">
-                                <img th:src="@{${book.photos}}">
+                            <div class="col-sm-4">
+                                <div class="content">
+                                    <img th:src="@{${book.photos}}">
+                                </div>
                             </div>
-                            Author: <p th:text="${book.author.name}"></p>
-                            Publisher: <p th:text="${book.publisher.name}"></p>
-
-                            Category: <th:block th:each="category : ${book.categories}">
-                                        <p th:text="${category.name}"></p>
-                                      </th:block>
-
-                            Price: <p th:text="${book.price}"></p>
-                            Quantity: <p th:text="${book.quantity}"></p>
-                            Description: <p th:text="${book.description}"></p>
+                            <div class="col-sm-8">
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <h5 th:text="${'Book name: ' + book.name}" class="card-title"></h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <p th:text="${'Author: ' + book.author.name}">
+                                        <p th:text="${'Publisher: ' + book.publisher.name}"></p>
+                                        <p th:text="${'Description: ' + book.description}"></p>
+                                    </div>
+                                    <div class="col-6">
+                                        Category: <th:block th:each="category : ${book.categories}">
+                                        <p th:text="${' + ' + category.name}"></p></th:block>
+                                        <p th:text="${'Price: ' + book.price}"></p>
+                                        <p th:text="${'Quantity: ' + book.quantity}"></p>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- /.content -->
                         </div>
                     </div>

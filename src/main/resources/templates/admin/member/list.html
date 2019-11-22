@@ -6,7 +6,7 @@
 <th:block th:include="fragments/admin/head"></th:block>
 <body class="">
 <div class="wrapper ">
-    <th:block th:include="fragments/admin/sidebar_category"></th:block>
+    <th:block th:include="fragments/admin/sidebar_member"></th:block>
     <div class="main-panel">
         <!-- Navbar -->
         <th:block th:include="fragments/admin/navbar"></th:block>
@@ -19,7 +19,7 @@
                             <h4 class="card-title">Category Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{/admin/categories/create}">New category</a>
+                                    <a class="btn btn-success" th:href="@{}">New category</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <form>
@@ -41,22 +41,21 @@
                                     <thead class=" text-primary">
                                     <th><input type="checkbox" id="select_all"></th>
                                     <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Thumbnail</th>
+                                    <th>UserName</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="category : ${categories}">
+                                    <tr th:each="member : ${members}">
                                         <td><input type="checkbox" name="select[]"></td>
-                                        <td th:text="${category.id}"></td>
-                                        <td th:text="${category.name}"></td>
-                                        <td><img th:src="@{${category.thumbnail}}" class="img-thumbnail rounded"></td>
-                                        <td th:text="${category.description}"></td>
-
+                                        <td th:text="${member.id}"></td>
+                                        <td th:text="${member.username}"></td>
+                                        <th th:text="${member.email}"></th>
+                                        <th th:text="${member.phone}"></th>
                                         <td>
-                                            <a th:href="@{'/admin/categories/' + ${category.id}}">Detail |</a>
-                                            <a th:href="@{'/admin/categories/update/' + ${category.id}}">Edit |</a>
-                                            <a th:href="@{'/admin/categories/delete/' + ${category.id}}">Delete</a>
+                                            <a th:href="@{'/' + ${member.id}}">Detail |</a>
+                                            <a th:href="@{'/' + ${member.id}}">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
