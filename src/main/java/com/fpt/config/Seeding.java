@@ -1,7 +1,9 @@
 package com.fpt.config;
 
 import com.fpt.entity.Author;
+import com.fpt.entity.Member;
 import com.fpt.repository.AuthorRepository;
+import com.fpt.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -23,7 +25,6 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         LOGGER.log(Level.INFO, String.format("Seeding author"));
         seedingAuthor();
     }
-
     void seedingAuthor() {
         authorRepository.deleteAll();
 

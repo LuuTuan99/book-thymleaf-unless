@@ -14,12 +14,12 @@
         <div class="col-md-4">
             <div class="card">
                 <article class="card-body">
-                    <a th:href="@{members/register}" class="float-right btn btn-outline-primary">Sign up</a>
+                    <a th:href="@{/members/register}" class="float-right btn btn-outline-primary">Sign up</a>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
                     <form th:action="@{/members/login}" method="post">
                         <div class="form-group">
-                            <label>Your email</label>
-                            <input name="username" class="form-control" placeholder="Email" type="email">
+                            <label>Your user</label>
+                            <input name="username" class="form-control" placeholder="UserName" type="text">
                         </div> <!-- form-group// -->
                         <div class="form-group">
 <!--                            <a class="float-right" href="#">Forgot?</a>-->

@@ -13,14 +13,13 @@ public class MyUserDetailService implements UserDetailsService {
     MemberServiceImpl memberService;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Member member = memberService.getByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Member member = memberService.getByName(username);
         if (member == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        System.out.println(member.getHashPassword());
         return User.builder()
-                .username(member.getEmail())
+                .username(member.getUsername())
                 .password(member.getHashPassword())
                 .roles(member.getRole())
                 .build();

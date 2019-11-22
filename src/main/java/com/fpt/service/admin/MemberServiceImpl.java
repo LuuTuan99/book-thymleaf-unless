@@ -1,13 +1,14 @@
 package com.fpt.service.admin;
-
 import com.fpt.entity.Member;
 import com.fpt.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Optional;
 
 @Service
@@ -23,15 +24,19 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findAll(PageRequest.of(page - 1, limit));
     }
 
+    public Page<Member> findAll(Pageable pageable) {
+        return memberRepository.findAll(pageable);
+    }
+
     @Override
     public Member getById(long id) {
         return memberRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Member login(String email, String password) {
+    public Member login(String username, String password) {
         // Tìm tài khoản có email trùng xem tồn tại không.
-        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        Optional<Member> optionalMember = memberRepository.findByUsername(username);
         if (optionalMember.isPresent()) {
             // So sánh password xem trùng không (trong trường hợp pwd đã mã hoá thì phải mã hoá pwd truyền vào theo muối)
             Member member = optionalMember.get();
@@ -46,9 +51,9 @@ public class MemberServiceImpl implements MemberService {
     public Member register(Member member) {
         member.setHashPassword(passwordEncoder.encode(member.getHashPassword()));
         member.setGender(Member.Gender.MALE.getValue());
-        member.setRole(Member.Role.ADMIN.getValue());
-        member.setCreatedAt(member.getCreatedAt());
-        member.setUpdatedAt(member.getUpdatedAt());
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+        member.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         member.setStatus(Member.Status.ACTIVE.getValue());
         return memberRepository.save(member);
     }
@@ -79,6 +84,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean delete(long id) {
-        return false;
+        Member existMember = memberRepository.findById(id).orElse(null);
+        if (existMember == null) {
+            return false;
+        }
+        memberRepository.delete(existMember);
+        return true;
     }
 }
