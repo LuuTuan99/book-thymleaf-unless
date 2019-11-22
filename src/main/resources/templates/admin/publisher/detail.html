@@ -19,15 +19,18 @@
                         <div class="card-header ">
                             <h4 class="card-title">Detail Publisher</h4>
                         </div>
-                        <div class="card-body ">
+                        <div class="row card-body ">
                             <!-- Begin Page Content -->
-                            Name: <h5 th:text="${publisher.name}" class="card-title"></h5>
-                            <p class="category">Details</p>
-                            <div class="content">
-                                <td><img th:src="@{${publisher.avatar}}"></td>
+                            <div class="col-sm-4">
+                                <div class="content">
+                                    <td><img th:src="@{${publisher.avatar}}"></td>
+                                </div>
                             </div>
-                            <p th:text="${publisher.description}"></p>
-                            <!-- /.content -->
+                            <div class="col-sm-8">
+                                <h5 th:text="${publisher.name}" class="card-title"></h5>
+                                <p th:text="${publisher.description}"></p>
+                            </th:block>
+                            </div>
                         </div>
                     </div>
                 </div>

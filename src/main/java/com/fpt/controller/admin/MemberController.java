@@ -21,7 +21,7 @@ public class MemberController {
     @GetMapping(value = "/list")
     public String list(Model model) {
         model.addAttribute("members", memberService.getList(1, 3));
-        return "list";
+        return "admin/member/list";
     }
 
     @GetMapping(value = "/login")
