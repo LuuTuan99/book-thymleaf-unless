@@ -18,7 +18,7 @@ public class Member {
     private String email;
     @NotEmpty
     private String hashPassword;
-    @NotEmpty
+    @NotEmpty(message = "UserName khong duoc de trong.")
     private String username;
     @NotEmpty
     private String avatar;

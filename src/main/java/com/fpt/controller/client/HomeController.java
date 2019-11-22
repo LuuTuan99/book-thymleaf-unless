@@ -1,4 +1,4 @@
-package com.fpt.controller.admin;
+package com.fpt.controller.client;
 
 import com.fpt.service.admin.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

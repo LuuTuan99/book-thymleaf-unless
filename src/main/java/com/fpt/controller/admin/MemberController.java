@@ -3,12 +3,12 @@ package com.fpt.controller.admin;
 import com.fpt.entity.Member;
 import com.fpt.service.admin.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -18,24 +18,42 @@ public class MemberController {
     @Autowired
     MemberServiceImpl memberService;
 
-    @GetMapping(value = "/list")
-    public String list(Model model) {
-        model.addAttribute("members", memberService.getList(1, 3));
-        return "admin/member/list";
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            Model model) {
+        Page<Member> memberPage = memberService.findAll(PageRequest.of(page - 1, limit));
+        model.addAttribute("members", memberPage.getContent());
+        model.addAttribute("currentPage", memberPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", memberPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", memberPage.getTotalPages());
+        return "/admin/member/list";
+
     }
 
-    @GetMapping(value = "/login")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public String detail(@PathVariable long id, Model model) {
+        Member member = memberService.getById(id);
+        if (member == null) {
+            return "404";
+        }
+        model.addAttribute("member", member);
+        return "/admin/member/detail";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String login() {
         return "client/login-register/page-login";
     }
 
-    @GetMapping(value = "/register")
+    @RequestMapping(method = RequestMethod.GET, value = "/register")
     public String create(Model model) {
         model.addAttribute("member", new Member());
         return "client/login-register/page-register";
     }
 
-    @PostMapping(value = "/register")
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
     public String stores(@Valid Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "client/login-register/page-register";
@@ -43,4 +61,8 @@ public class MemberController {
         memberService.register(member);
         return "success";
     }
+
+
+
+
 }
