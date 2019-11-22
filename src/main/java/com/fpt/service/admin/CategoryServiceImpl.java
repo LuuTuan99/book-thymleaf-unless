@@ -1,9 +1,12 @@
 package com.fpt.service.admin;
 
+import com.fpt.entity.Author;
 import com.fpt.entity.Category;
 import com.fpt.repository.CategoryRepository;
 import com.fpt.service.admin.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -17,6 +20,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    public Page<Category> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable);
     }
 
     @Override

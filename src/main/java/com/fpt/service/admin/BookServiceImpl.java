@@ -1,9 +1,12 @@
 package com.fpt.service.admin;
 
+import com.fpt.entity.Author;
 import com.fpt.entity.Book;
 import com.fpt.repository.BookRepository;
 import com.fpt.service.admin.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -17,6 +20,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
+    }
+
+    public Page<Book> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     @Override

@@ -19,7 +19,7 @@
                             <h4 class="card-title">Category Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{/categories/create}">New author</a>
+                                    <a class="btn btn-success" th:href="@{/admin/categories/create}">New author</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <form>
@@ -43,7 +43,6 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Thumbnail</th>
-                                    <th>Description</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -55,9 +54,9 @@
                                         <td th:text="${category.description}"></td>
 
                                         <td>
-                                            <a th:href="@{'/categories/by_books/' + ${category.id}}">Detail |</a>
-                                            <a th:href="@{'/categories/update/' + ${category.id}}">Edit |</a>
-                                            <a th:href="@{'/categories/delete/' + ${category.id}}">Delete</a>
+                                            <a th:href="@{'/admin/categories/' + ${category.id}}">Detail |</a>
+                                            <a th:href="@{'/admin/categories/update/' + ${category.id}}">Edit |</a>
+                                            <a th:href="@{'/admin/categories/delete/' + ${category.id}}">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
