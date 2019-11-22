@@ -16,57 +16,61 @@
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header ">
-                            Add new author
+                            <h4 class="card-title">Add New Book</h4>
                         </div>
                         <div class="card-body ">
                             <div class="content">
-                                <form th:object="${book}" th:action="@{/admin/books/create}" th:method="post">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}" playeholder="Harry Potter and the Deathly Hollows">
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="photos" class="col-12">Photos</label>
-                                        <div class="col-3">
-                                            <input type="hidden" name="photos" id="photos" aria-describedby="photos" th:field="*{photos}"/>
-                                            <img class="mb-2" src="" alt="" id="preview">
-                                            <input type="button" id="upload_widget" class="cloudinary-button" value="Upload files">
+                                <form th:object="${book}" th:action="@{/books/create}" th:method="post">
+                                    <div class="row form-group">
+                                        <div class="col-8">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}">
                                         </div>
-
+                                        <div class="col-4">
+                                            <label for="category">Category</label>
+                                            <select id="category" class="form-control" th:field="*{categories}">
+                                                <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="author">Author</label>
-                                        <select id="author" class="form-control" th:field="*{author}" multiple="multiple">
-                                            <option th:each="author : ${authors}" th:text="${author.name}" th:value="${author.id}"></option>
-                                        </select>
+                                    <div class="row form-group">
+                                        <div class="col-6 ">
+                                            <label for="author">Author</label>
+                                            <select id="author" class="form-control" th:field="*{author}" >
+                                                <option th:each="author : ${authors}" th:text="${author.name}" th:value="${author.id}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <label for="publisher">Publisher</label>
+                                            <select id="publisher" class="form-control" th:field="*{publisher}">
+                                                <option th:each="publisher : ${publishers}" th:text="${publisher.name}" th:value="${publisher.id}"></option>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="publisher">Author</label>
-                                        <select id="publisher" class="form-control" th:field="*{publisher}" multiple="multiple">
-                                            <option th:each="publisher : ${publishers}" th:text="${publisher.name}" th:value="${publisher.id}"></option>
-                                        </select>
+                                    <div class="row form-group">
+                                        <div class="col-4">
+                                            <label for="price">Price</label>
+                                            <input type="number" min="0" class="form-control" id="price" th:field="*{price}"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number" min="1" class="form-control" id="quantity" th:field="*{quantity}"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="photos">Avatar</label>
+                                            <div class="col-3">
+                                                <input type="button" id="upload_widget" class="btn btn-info" value="Upload files"></input>
+                                                <input type="hidden" name="photos" id="photos" th:field="*{photos}"/>
+                                                <img class="mb-2" src="" alt="" id="preview">
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="category">Author</label>
-                                        <select id="category" class="form-control" th:field="*{categories}" multiple="multiple">
-                                            <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="price">Price</label>
-                                        <input type="text" class="form-control" id="price" aria-describedby="price" th:field="*{price}" playeholder="Joanne K. Rowling"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="quantity">Quantity</label>
-                                        <input type="text" class="form-control" id="quantity" aria-describedby="quantity" th:field="*{quantity}" playeholder="Joanne K. Rowling"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea rows="4" type="textarea" class="form-control" id="description" th:field="*{description}" playeholder="type here ..."/></textarea>
+                                    <div class="form-group row">
+                                            <label for="description" class="col-12">Description</label>
+                                            <textarea class="form-control col-8 ml-3" rows="8" id="description" th:field="*{description}"/></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                     <button type="reset" class="btn btn-danger">Reset</button>

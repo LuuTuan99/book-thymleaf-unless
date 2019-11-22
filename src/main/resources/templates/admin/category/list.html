@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Author Table</h4>
+                            <h4 class="card-title">Category Table</h4>
                             <div class="row">
                                 <div class="col-sm-9">
                                     <a class="btn btn-success" th:href="@{/admin/categories/create}">New author</a>
@@ -50,7 +50,8 @@
                                         <td><input type="checkbox" name="select[]"></td>
                                         <td th:text="${category.id}"></td>
                                         <td th:text="${category.name}"></td>
-                                        <td><img class="img-thumbnail rounded" th:src="@{${category.thumbnail}}"></td>
+                                        <td><img th:src="@{${category.thumbnail}}" class="img-thumbnail rounded"></td>
+                                        <td th:text="${category.description}"></td>
 
                                         <td>
                                             <a th:href="@{'/admin/categories/' + ${category.id}}">Detail |</a>

@@ -13,7 +13,7 @@ public class HomeController {
     @Autowired
     BookServiceImpl bookService;
     //demo shop index
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/")
     public String shop_product(Model model) {
         model.addAttribute("books", bookService.findAll());
         return "client/shop-index";
