@@ -39,11 +39,10 @@ public class AuthorController {
         Specification specification = Specification.where(null);
         if (keyword != null && keyword.length() > 0) {
             specification = specification
-                    .and(new AuthorSpecification(new SearchCriteria("name", ":", keyword)))
-                    .or(new AuthorSpecification(new SearchCriteria("description", ":", keyword)));
+                    .and(new AuthorSpecification(new SearchCriteria("name", "=", keyword)))
+                    .or(new AuthorSpecification(new SearchCriteria("description", "=", keyword)));
         }
-
-        Page<Author> authorPage = authorService.findAll(specification, PageRequest.of(page - 1, limit));
+        Page<Author> authorPage = authorService.findAllActive(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("keyword", keyword);
         model.addAttribute("authors", authorPage.getContent());
         model.addAttribute("currentPage", authorPage.getPageable().getPageNumber() + 1);

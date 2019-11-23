@@ -3,6 +3,8 @@ package com.fpt.service.admin;
 import com.fpt.entity.Author;
 import com.fpt.pagination.PageModel;
 import com.fpt.repository.AuthorRepository;
+import com.fpt.specification.AuthorSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,10 +25,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<Author> findAll() {
-        return authorRepository.findAll();
+        return authorRepository.findAllByStatusIsNot(Author.Status.DELETED.getValue());
     }
 
-    public Page<Author> findAll(Specification specification,Pageable pageable) {
+    public Page<Author> findAll(Specification specification, Pageable pageable) {
+        return authorRepository.findAll(specification, pageable);
+    }
+
+    public Page<Author> findAllActive(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new AuthorSpecification(new SearchCriteria("status", "!=", Author.Status.DELETED.getValue())));
         return authorRepository.findAll(specification, pageable);
     }
 
@@ -64,7 +72,9 @@ public class AuthorServiceImpl implements AuthorService {
         if (existAuthor == null) {
             return false;
         }
-        authorRepository.delete(existAuthor);
+        existAuthor.setDeletedAtMLS(Calendar.getInstance().getTimeInMillis());
+        existAuthor.setStatus(Author.Status.DELETED.getValue());
+        authorRepository.save(existAuthor);
         return true;
     }
 

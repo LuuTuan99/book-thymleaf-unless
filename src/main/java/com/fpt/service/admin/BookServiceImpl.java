@@ -4,9 +4,13 @@ import com.fpt.entity.Author;
 import com.fpt.entity.Book;
 import com.fpt.repository.BookRepository;
 import com.fpt.service.admin.BookService;
+import com.fpt.specification.AuthorSpecification;
+import com.fpt.specification.BookSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -24,6 +28,12 @@ public class BookServiceImpl implements BookService {
 
     public Page<Book> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable);
+    }
+
+    public Page<Book> findAllActive(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new BookSpecification(new SearchCriteria("status", "!=", Book.Status.DELETED.getValue())));
+        return bookRepository.findAll(specification, pageable);
     }
 
     @Override

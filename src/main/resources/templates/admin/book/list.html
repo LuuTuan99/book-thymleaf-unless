@@ -17,23 +17,25 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Book Table</h4>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <a class="btn btn-success" th:href="@{/admin/books/create}">New book</a>
-                                </div>
-                                <div class="col-sm-3">
-                                    <form>
+                            <form th:action="@{/admin/books}" method="get">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <a class="btn btn-success" th:href="@{/admin/books/create}">New Book</a>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <div class="input-group no-border">
-                                            <input type="text" value="" class="form-control" placeholder="Search...">
+                                            <input type="text" th:value="${keyword}" name="keyword" class="form-control" placeholder="Search...">
+                                            <input type="hidden" th:value="${limit}" name="limit">
+                                            <input type="hidden" th:value="${currentPage}" name="currentPage">
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <i class="nc-icon nc-zoom-split"></i>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

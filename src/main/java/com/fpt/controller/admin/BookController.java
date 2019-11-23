@@ -9,9 +9,13 @@ import com.fpt.service.admin.AuthorServiceImpl;
 import com.fpt.service.admin.BookServiceImpl;
 import com.fpt.service.admin.CategoryServiceImpl;
 import com.fpt.service.admin.PublisherServiceImpl;
+import com.fpt.specification.AuthorSpecification;
+import com.fpt.specification.BookSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -26,6 +30,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_BOOKS)
 public class BookController {
+
     @Autowired
     BookServiceImpl bookService;
 
@@ -40,15 +45,23 @@ public class BookController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
+            @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "5") int limit,
             Model model) {
-        Page<Book> bookPage = bookService.findAll(PageRequest.of(page - 1, limit));
+        Specification specification = Specification.where(null);
+        if (keyword != null && keyword.length() > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("name", "=", keyword)))
+                    .or(new BookSpecification(new SearchCriteria("description", "=", keyword)))
+                    .or(new BookSpecification(new SearchCriteria("keyword", "join", keyword)));
+        }
+        Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit));
+        model.addAttribute("keyword", keyword);
         model.addAttribute("books", bookPage.getContent());
         model.addAttribute("authors", authorService.findAll());
         model.addAttribute("publishers", publisherService.findAll());
         model.addAttribute("categories", categoryService.findAll());
-
         model.addAttribute("currentPage", bookPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", bookPage.getPageable().getPageSize());
         model.addAttribute("totalPage", bookPage.getTotalPages());

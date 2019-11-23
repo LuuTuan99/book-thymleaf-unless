@@ -22,7 +22,9 @@ public class AuthorSpecification implements Specification<Author> {
             return builder.greaterThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
         } else if (criteria.getOperation().equalsIgnoreCase("<=")) {
             return builder.lessThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
-        } else if (criteria.getOperation().equalsIgnoreCase(":")) {
+        }else if (criteria.getOperation().equalsIgnoreCase("!=")) {
+            return builder.notEqual(root.get(criteria.getKey()), criteria.getValue().toString());
+        } else if (criteria.getOperation().equalsIgnoreCase("=")) {
             if (root.get(criteria.getKey()).getJavaType() == String.class) {
                 return builder.like(
                         root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
