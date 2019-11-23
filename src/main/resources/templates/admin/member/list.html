@@ -43,6 +43,7 @@
                                     <th>UserName</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Role</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -52,6 +53,7 @@
                                         <td th:text="${member.username}"></td>
                                         <th th:text="${member.email}"></th>
                                         <th th:text="${member.phone}"></th>
+                                        <th th:text="${member.role}"></th>
                                         <td>
                                             <a th:href="@{'/members/' + ${member.id}}">Detail |</a>
                                             <a th:href="@{'/members/' + ${member.id}}">Delete</a>

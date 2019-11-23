@@ -28,21 +28,7 @@ $(document).ready(function () {
         }
         drawCheckout();
     });
-    $('.fancybox-fast-view').on('click', function () {
-        var bId = $(this).attr('bookId');
-        var bName = $('.book-'+bId).children().children
-        ('#bookName').text();
-        var imgUrl = $('.book-'+bId).find('img').attr('src');
-        var bPrice = $('.book-'+bId).find('#price').text();
-        var obj = {
-            id: bId,
-            bookName: bName,
-            imageUrl: imgUrl,
-            price: bPrice
-        };
-        debugger;
-        viewUnit();
-    });
+
 });
 function drawCheckout() {
     $('tbody').empty();
@@ -109,57 +95,13 @@ function changeUnitQuantity(e, id){
         removeUnit(id);
     }
 }
-function viewUnit() {
-    $('.product-pop-up').empty();
-    var vkUnit = "";
-    vkUnit += `
-<!--<div id="product-pop-up" style="display: none; width: 700px;">-->
-  <div class="product-page product-pop-up">
-        <div class="row">
-      <div class="col-md-6 col-sm-6 col-xs-3">
-        <div class="product-main-image">
-          <img src="https://www.vinabook.com/images/thumbnails/product/240x/351680_p90386mnguoithay.jpg" alt="" class="img-responsive">
-        </div>
-        <div class="product-other-images">
-          <a href="javascript:;" class="active">
-            <img alt="Berry Lace Dress 1" src="@{/assets-client/pages/img/products/book2.jpg}">
-          </a>
-          <a href="javascript:;">
-            <img alt="Berry Lace Dress 2" th:src="@{/assets-client/pages/img/products/book5.jpg}">
-          </a>
-          <a href="javascript:;">
-            <img alt="Berry Lace Dress 3" th:src="@{/assets-client/pages/img/products/book1.jpg}">
-          </a>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-9">
-        <h2></h2>
-        <div class="price-availability-block clearfix">
-          <div class="price">
-            <strong><span></span>price</strong>
-            <em><span>price quantity</span></em>
-          </div>
-          <div class="availability">
-            Availability: <strong>In Stock</strong>
-          </div>
-        </div>
-        <div class="description">
-          <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna
-            aliquarm erat volutpat Nostrud duis molestie at dolore.</p>
-        </div>
-        <div class="product-page-cart">
-          <div class="product-quantity">
-            <input id="product-quantity" type="text" value="quantity" readonly name="product-quantity"
-                   class="form-control input-sm">
-          </div>
-          <button class="btn btn-primary add2cart" type="submit">Add to cart</button>
-          <a th:href="@{/shop-item}" class="btn btn-default">More details</a>
-        </div>
-      </div>
-
-      <div class="sticker sticker-sale"></div>
-    </div>
-<!--  </div>-->
-</div>`;
-    $('.product-pop-up').append(vkUnit);
+function view(bookInfo) {
+    var id = bookInfo.getAttribute("Bookid");
+    var image = bookInfo.getAttribute("BookImg");
+    var price = bookInfo.getAttribute("BookPrice");
+    var description = bookInfo.getAttribute("BookDescription");
+    document.getElementById("descr").innerHTML = description;
+    var imageModal = document.getElementById("imgModal");
+    imageModal.src = image;
+    document.getElementById("priceModal").innerHTML = price;
 }
