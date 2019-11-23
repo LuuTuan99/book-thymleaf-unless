@@ -4,9 +4,7 @@ package com.fpt.config;
 import com.fpt.entity.Author;
 import com.fpt.entity.Member;
 import com.fpt.entity.Publisher;
-import com.fpt.repository.AuthorRepository;
-import com.fpt.repository.MemberRepository;
-import com.fpt.repository.PublisherRepository;
+import com.fpt.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
