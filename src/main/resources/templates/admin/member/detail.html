@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>
+    Detail author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+
 <body>
-detail
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_member"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Detail Member</h4>
+                        </div>
+                        <div class="row card-body">
+                            <!-- Begin Page Content -->
+                            <div class="col-sm-4">
+                                <div class="content">
+                                    <img th:src="@{${member.avatar}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5  th:text="${'Name: ' + member.username}" class="card-title"></h5>
+                                <p th:text="${'Email: ' + member.email}"></p>
+                                <p th:text="${'Phone: ' + member.phone}"></p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p th:text="${'Address: ' + member.address}"></p>
+                                <p th:text="${'Gender: ' + member.gender}"></p>
+                                <p th:text="${'Role: ' + member.role}"></p>
+                            </div>
+                            <!-- /.content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+
+    <script>
+        $(document).ready(function() {
+            demo.initGoogleMaps();
+        });
+    </script>
+</div>
 </body>
+
 </html>
