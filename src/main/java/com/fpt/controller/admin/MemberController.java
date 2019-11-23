@@ -28,7 +28,7 @@ public class MemberController {
         model.addAttribute("currentPage", memberPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", memberPage.getPageable().getPageSize());
         model.addAttribute("totalPage", memberPage.getTotalPages());
-        return "/admin/member/list";
+        return "admin/member/list";
 
     }
 
@@ -36,15 +36,20 @@ public class MemberController {
     public String detail(@PathVariable long id, Model model) {
         Member member = memberService.getById(id);
         if (member == null) {
-            return "404";
+            return "error/404";
         }
         model.addAttribute("member", member);
-        return "/admin/member/detail";
+        return "admin/member/detail";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String login() {
         return "client/login-register/page-login";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/403")
+    public String accessDenied() {
+        return "error/403";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/register")

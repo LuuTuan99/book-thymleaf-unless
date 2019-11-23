@@ -59,7 +59,7 @@ public class BookController {
     public String detail(@PathVariable long id, Model model) {
         Book book = bookService.getById(id);
         if (book == null) {
-            return "404";
+            return "error/404";
         }
         model.addAttribute("book", book);
         return "admin/book/detail";
@@ -80,7 +80,7 @@ public class BookController {
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     public String store(@Valid Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/admin/book/create";
+            return "admin/book/create";
         }
         bookService.save(book);
         return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_BOOKS;

@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
 
 @Entity
 public class Member {
@@ -16,7 +17,7 @@ public class Member {
     @Email(message = "Email không đúng định dạng.")
     @Size(min = 7, max = 30, message = "Tối thiểu 7 ký tự, tối đa 30 ký tự.")
     private String email;
-    @NotEmpty
+    @NotEmpty(message = "Password khong duoc de trong.")
     private String hashPassword;
     @NotEmpty(message = "UserName khong duoc de trong.")
     private String username;
@@ -33,6 +34,12 @@ public class Member {
     private long updatedAt;
     private long deletedAt;
     private int status;
+
+    public Member() {
+        this.createdAt = Calendar.getInstance().getTimeInMillis();
+        this.updatedAt = Calendar.getInstance().getTimeInMillis();
+        this.status = Member.Status.ACTIVE.getValue();
+    }
 
     public enum Status {
         ACTIVE(1), DEACTIVE(0), DELETED(-1);

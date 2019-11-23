@@ -40,13 +40,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/members/login",
-                             "/members/register").permitAll()
-                .antMatchers("/admin**").hasAnyRole(Member.Role.ADMIN.getValue())
+                .antMatchers("/members/register", "/**").permitAll()
+                .antMatchers("/admin/**").hasRole(Member.Role.ADMIN.getValue())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/members/login")
+                .loginPage("/login")
+                .loginProcessingUrl("/members/login")
+                .defaultSuccessUrl("/admin/authors")
                 .permitAll()
                 .failureUrl("/members/login?error")
                 .failureHandler(authenticationFailureHandler())
@@ -54,7 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll()
                 .and()
-                .exceptionHandling();
+                .exceptionHandling()
+                .accessDeniedPage("/members/403");
 
     }
 }
