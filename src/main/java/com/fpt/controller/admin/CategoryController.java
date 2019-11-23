@@ -1,7 +1,6 @@
 package com.fpt.controller.admin;
 
 import com.fpt.config.ProjectConfig;
-import com.fpt.entity.Author;
 import com.fpt.entity.Book;
 import com.fpt.entity.Category;
 import com.fpt.service.admin.CategoryServiceImpl;
@@ -41,7 +40,7 @@ public class CategoryController {
     public String detail(@PathVariable long id, Model model) {
         Category category = categoryService.getById(id);
         if (category == null) {
-            return "404";
+            return "error/404";
         }
         Set<Book> books = category.getBooks();
         model.addAttribute("category", category);

@@ -2,17 +2,20 @@ package com.fpt.controller.admin;
 
 import com.fpt.config.ProjectConfig;
 import com.fpt.entity.Author;
-import com.fpt.entity.Book;
 import com.fpt.service.admin.AuthorServiceImpl;
+import com.fpt.specification.AuthorSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import javax.validation.Valid;
 
@@ -25,10 +28,18 @@ public class AuthorController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
+            @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "5") int limit,
             Model model) {
-        Page<Author> authorPage = authorService.findAll(PageRequest.of(page - 1, limit));
+        Specification specification = Specification.where(null);
+        if (keyword != null && keyword.length() > 0) {
+            specification = specification
+                    .and(new AuthorSpecification(new SearchCriteria("name", ":", keyword)))
+                    .or(new AuthorSpecification(new SearchCriteria("description", ":", keyword)));
+        }
+
+        Page<Author> authorPage = authorService.findAll(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("authors", authorPage.getContent());
         model.addAttribute("currentPage", authorPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", authorPage.getPageable().getPageSize());
@@ -40,7 +51,7 @@ public class AuthorController {
     public String detail(@PathVariable long id, Model model) {
         Author author = authorService.getById(id);
         if (author == null) {
-            return "404";
+            return "error/404";
         }
         model.addAttribute("author", author);
         return "admin/author/detail";
@@ -55,7 +66,7 @@ public class AuthorController {
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     public String store(@Valid Author author, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/admin/author/create";
+            return "admin/author/create";
         }
         authorService.save(author);
         return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;

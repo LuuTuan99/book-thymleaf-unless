@@ -6,6 +6,7 @@ import com.fpt.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -25,8 +26,8 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.findAll();
     }
 
-    public Page<Author> findAll(Pageable pageable) {
-        return authorRepository.findAll(pageable);
+    public Page<Author> findAll(Specification specification,Pageable pageable) {
+        return authorRepository.findAll(specification, pageable);
     }
 
     @Override

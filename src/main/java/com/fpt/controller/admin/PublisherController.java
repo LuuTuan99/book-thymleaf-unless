@@ -41,7 +41,7 @@ public class PublisherController {
         Publisher publisher = publisherService.getById(id);
 
         if (publisher == null) {
-            return "404";
+            return "error/404";
         }
         Set<Book> books = publisher.getBooks();
         model.addAttribute("publisher", publisher);
