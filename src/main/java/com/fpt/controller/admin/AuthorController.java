@@ -44,6 +44,7 @@ public class AuthorController {
         }
 
         Page<Author> authorPage = authorService.findAll(specification, PageRequest.of(page - 1, limit));
+        model.addAttribute("keyword", keyword);
         model.addAttribute("authors", authorPage.getContent());
         model.addAttribute("currentPage", authorPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", authorPage.getPageable().getPageSize());

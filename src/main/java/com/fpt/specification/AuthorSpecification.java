@@ -9,6 +9,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 public class AuthorSpecification implements Specification<Author> {
+
     private SearchCriteria criteria;
 
     public AuthorSpecification(SearchCriteria criteria) {
