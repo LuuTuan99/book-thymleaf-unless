@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <title>
     List author | Admin
 </title>
@@ -54,7 +55,10 @@
                                         <td>
                                             <a th:href="@{'/admin/authors/' + ${author.id}}"> Detail</a>
                                             <a th:href="@{'/admin/authors/update/' + ${author.id}}"> Edit</a>
-                                            <a th:href="@{'/admin/authors/delete/' + ${author.id}}">Delete</a>
+                                            <a onclick="return confirm('Bạn có chắc muốn xoá tác giả này?')"
+                                               th:href="@{'/admin/authors/delete/' + ${author.id}}">Delete</a>
+                                            <a th:href="@{'#' + ${author.id}}" class="btn-delete-author">Delete with
+                                                ajax</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -64,13 +68,26 @@
                         <div class="card-footer">
                             <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
                                 <ul class="pagination float-right">
-                                    <li class="page-item"><a class="page-link" th:href="@{/admin/authors(page=${1}, limit=${limit})}">First</a></li>
-                                    <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit})}">Previous</a></li>
-                                    <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit})}">[[${currentPage - 1}]]</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">[[${currentPage}]]</a></li>
-                                    <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit})}">[[${currentPage + 1}]]</a></li>
-                                    <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit})}">Next</a></li>
-                                    <li class="page-item"><a class="page-link" th:href="@{/admin/authors(page=${totalPage}, limit=${limit})}">Last</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             th:href="@{/admin/authors(page=${1}, limit=${limit})}">First</a>
+                                    </li>
+                                    <li th:if="${currentPage > 1}" class="page-item"><a class="page-link"
+                                                                                        th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit})}">Previous</a>
+                                    </li>
+                                    <li th:if="${currentPage > 1}" class="page-item"><a class="page-link"
+                                                                                        th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit})}">[[${currentPage
+                                        - 1}]]</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">[[${currentPage}]]</a>
+                                    </li>
+                                    <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link"
+                                                                                                th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit})}">[[${currentPage
+                                        + 1}]]</a></li>
+                                    <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link"
+                                                                                                th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit})}">Next</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link"
+                                                             th:href="@{/admin/authors(page=${totalPage}, limit=${limit})}">Last</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -84,12 +101,33 @@
     <th:block th:include="fragments/admin/scripts"></th:block>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $("#select_all").click(function(){
+        $(document).ready(function () {
+            $("#select_all").click(function () {
                 var checked_status = this.checked;
-                $("input[name='select[]']").each(function(){
+                $("input[name='select[]']").each(function () {
                     this.checked = checked_status;
                 });
+            });
+
+            $(".btn-delete-author").click(function () {
+                var id = $(this).attr("href").replace("#", "");
+                if (confirm("Bạn có chắc muốn xoá tác giả này?")) {
+                    $.ajax({
+                        url: "/admin/authors/ajax-delete/" + id,
+                        type: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                        },
+                        success: function (data) {
+                            alert("Xoá thành công!");
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("Thao tác thất bại, vui lòng thử lại sau!");
+                        }
+                    });
+                }
+                return false;
             });
         });
     </script>
