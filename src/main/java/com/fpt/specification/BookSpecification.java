@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
+import java.security.acl.Owner;
 
 public class BookSpecification implements Specification<Book> {
 
@@ -25,7 +26,7 @@ public class BookSpecification implements Specification<Book> {
             return builder.lessThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
         } else if (criteria.getOperation().equalsIgnoreCase("!=")) {
             return builder.notEqual(root.get(criteria.getKey()), criteria.getValue().toString());
-        } else if (criteria.getOperation().equalsIgnoreCase("=")) {
+        } else if (criteria.getOperation().equalsIgnoreCase(":")) {
             if (root.get(criteria.getKey()).getJavaType() == String.class) {
                 return builder.like(
                         root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
@@ -37,6 +38,8 @@ public class BookSpecification implements Specification<Book> {
             Join<Book, Publisher> bookPublisherJoin = root.join("publisher");
             Join<Book, Category> bookCategoryJoin = root.join("categories");
             Predicate predicate = builder.or(
+                    builder.like(root.get("name"), "%" + criteria.getValue() + "%"),
+                    builder.like(root.get("description"), "%" + criteria.getValue() + "%"),
                     builder.like(bookAuthorJoin.get("name"), "%" + criteria.getValue() + "%"),
                     builder.like(bookAuthorJoin.get("description"), "%" + criteria.getValue() + "%"),
                     builder.like(bookPublisherJoin.get("name"), "%" + criteria.getValue() + "%"),

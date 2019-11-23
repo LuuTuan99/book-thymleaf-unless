@@ -22,11 +22,17 @@
                                     <div class="col-sm-9">
                                         <a class="btn btn-success" th:href="@{/admin/books/create}">New Book</a>
                                     </div>
+<!--                                    <div class="col-sm-3">-->
+<!--                                        <select id="category" name="categoryId" class="form-control" onchange="this.form.submit()">-->
+<!--                                            <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>-->
+<!--                                            &lt;!&ndash;                                                <option>Chon category</option>&ndash;&gt;-->
+<!--                                        </select>-->
+<!--                                    </div>-->
                                     <div class="col-sm-3">
                                         <div class="input-group no-border">
                                             <input type="text" th:value="${keyword}" name="keyword" class="form-control" placeholder="Search...">
                                             <input type="hidden" th:value="${limit}" name="limit">
-                                            <input type="hidden" th:value="${currentPage}" name="currentPage">
+                                            <input type="hidden" th:value="${currentPage}" name="page">
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <i class="nc-icon nc-zoom-split"></i>
@@ -84,6 +90,7 @@
                     this.checked = checked_status;
                 });
             });
+
         });
     </script>
 </div>

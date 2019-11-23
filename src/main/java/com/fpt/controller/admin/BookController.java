@@ -52,9 +52,8 @@ public class BookController {
         Specification specification = Specification.where(null);
         if (keyword != null && keyword.length() > 0) {
             specification = specification
-                    .and(new BookSpecification(new SearchCriteria("name", "=", keyword)))
-                    .or(new BookSpecification(new SearchCriteria("description", "=", keyword)))
-                    .or(new BookSpecification(new SearchCriteria("keyword", "join", keyword)));
+                    .and(new BookSpecification(new SearchCriteria("name", ":", keyword)))
+                    .or(new BookSpecification(new SearchCriteria("description", ":", keyword)));
         }
         Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("keyword", keyword);
