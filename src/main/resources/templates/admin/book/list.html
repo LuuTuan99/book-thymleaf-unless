@@ -19,15 +19,18 @@
                             <h4 class="card-title">Book Table</h4>
                             <form th:action="@{/admin/books}" method="get">
                                 <div class="row">
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-6">
                                         <a class="btn btn-success" th:href="@{/admin/books/create}">New Book</a>
                                     </div>
-<!--                                    <div class="col-sm-3">-->
-<!--                                        <select id="category" name="categoryId" class="form-control" onchange="this.form.submit()">-->
-<!--                                            <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>-->
-<!--                                            &lt;!&ndash;                                                <option>Chon category</option>&ndash;&gt;-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <div class="col-sm-3">
+                                        <select id="category" name="categoryId" class="form-control" onchange="this.form.submit()">
+                                            <option th:each="category : ${categories}"
+                                                    th:text="${category.name}"
+                                                    th:value="${category.id}"
+                                                    th:selected="${category.id==categoryId}">
+                                            </option>
+                                        </select>
+                                    </div>
                                     <div class="col-sm-3">
                                         <div class="input-group no-border">
                                             <input type="text" th:value="${keyword}" name="keyword" class="form-control" placeholder="Search...">

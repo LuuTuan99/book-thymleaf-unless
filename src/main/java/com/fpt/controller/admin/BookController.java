@@ -45,18 +45,23 @@ public class BookController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
+            @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "5") int limit,
             Model model) {
         Specification specification = Specification.where(null);
+        if (categoryId != null && categoryId > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("categoryId", "joinCategory", categoryId)));
+            model.addAttribute("categoryId", categoryId);
+        }
         if (keyword != null && keyword.length() > 0) {
             specification = specification
-                    .and(new BookSpecification(new SearchCriteria("name", ":", keyword)))
-                    .or(new BookSpecification(new SearchCriteria("description", ":", keyword)));
+                    .and(new BookSpecification(new SearchCriteria("keyword", "join", keyword)));
+            model.addAttribute("keyword", keyword);
         }
         Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit));
-        model.addAttribute("keyword", keyword);
         model.addAttribute("books", bookPage.getContent());
         model.addAttribute("authors", authorService.findAll());
         model.addAttribute("publishers", publisherService.findAll());
