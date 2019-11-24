@@ -97,6 +97,7 @@ function changeUnitQuantity(e, id){
 }
 function view(bookInfo) {
     var id = bookInfo.getAttribute("Bookid");
+    var name = bookInfo.getAttribute("BookName");
     var image = bookInfo.getAttribute("BookImg");
     var price = bookInfo.getAttribute("BookPrice");
     var description = bookInfo.getAttribute("BookDescription");
@@ -104,4 +105,5 @@ function view(bookInfo) {
     var imageModal = document.getElementById("imgModal");
     imageModal.src = image;
     document.getElementById("priceModal").innerHTML = price;
+    document.getElementById("nameModal").innerHTML = name;
 }
