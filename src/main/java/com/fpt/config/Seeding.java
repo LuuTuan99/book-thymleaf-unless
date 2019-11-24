@@ -44,7 +44,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         seedingBook();
     }
 
-    private void seedingBook() {
+     void seedingBook() {
         bookRepository.deleteAll();
         Book book = new Book();
         book.setName("Làm Phụ Nữ Không Khổ Tí Nào");
@@ -77,7 +77,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         bookRepository.save(book4);
     }
 
-    private void seedingCategory() {
+     void seedingCategory() {
         categoryRepository.deleteAll();
 
         Category category = new Category();
@@ -116,7 +116,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         categoryRepository.save(category6);
     }
 
-    private void seedingPublisher() {
+     void seedingPublisher() {
         publisherRepository.deleteAll();
 
         Publisher publisher = new Publisher();

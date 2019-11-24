@@ -10,8 +10,9 @@ public class Publisher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Lob
     private String avatar;
-    @Column(columnDefinition="text")
+    @Lob
     private String description;
     private long createdAt;
     private long updatedAt;

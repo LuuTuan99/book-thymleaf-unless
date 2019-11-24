@@ -9,8 +9,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Lob
     private String thumbnail;
-    @Column(columnDefinition="text")
+    @Lob
     private String description;
     private long createdAtMLS;
     private long updatedAtMLS;

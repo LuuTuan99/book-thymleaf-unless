@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <title>
     Detail author | Admin
 </title>
@@ -33,7 +34,6 @@
                             </div>
                             <div class="col-sm-4">
                                 <p th:text="${'Address: ' + member.address}"></p>
-                                <p th:text="${'Gender: ' + member.gender}"></p>
                                 <p th:text="${'Role: ' + member.role}"></p>
                             </div>
                             <!-- /.content -->
