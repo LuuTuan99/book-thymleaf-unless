@@ -366,6 +366,7 @@ Header and header elements
 }
 .pi-img-wrapper {
 	position: relative;
+	height: 270px;
 }
 .pi-img-wrapper div {
 	background: rgba(0,0,0,0.3);

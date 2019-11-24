@@ -69,6 +69,12 @@ public class MemberController {
         return "client/login-register/page-login";
     }
 
+//    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+//    public String logoutSuccessfulPage(Model model) {
+//        model.addAttribute("title", "Logout");
+//        return "logoutSuccessfulPage";
+//    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/403")
     public String accessDenied() {
         return "error/403";
