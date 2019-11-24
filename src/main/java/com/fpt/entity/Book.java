@@ -10,9 +10,10 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @Column(columnDefinition="text")
+    @Lob
     private String description;
     private double price;
+    @Lob
     private String photos;
     private int quantity;
     private long createdAtMLS;

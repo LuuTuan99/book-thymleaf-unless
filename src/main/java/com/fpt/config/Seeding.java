@@ -56,7 +56,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         LOGGER.log(Level.INFO, String.format("Seeding success!"));
     }
 
-    private void seedingBook() {
+     void seedingBook() {
         bookRepository.deleteAll();
         bookRepository.resetIncrement();
 
@@ -108,7 +108,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         bookRepository.saveAll(bookList);
     }
 
-    private void seedingCategory() {
+     void seedingCategory() {
         categoryRepository.deleteAll();
         categoryRepository.resetIncrement();
 
@@ -150,7 +150,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         categoryRepository.saveAll(categoryList);
     }
 
-    private void seedingPublisher() {
+     void seedingPublisher() {
         publisherRepository.deleteAll();
         publisherRepository.resetIncrement();
 

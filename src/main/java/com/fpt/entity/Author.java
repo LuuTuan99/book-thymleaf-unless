@@ -17,7 +17,7 @@ public class Author {
     @Lob
     private String avatar;
     @NotEmpty
-    @Column(columnDefinition="text")
+    @Lob
     private String description;
     private long createdAtMLS;
     private long updatedAtMLS;
