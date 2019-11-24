@@ -64,8 +64,9 @@ public class BookServiceImpl implements BookService {
         existBook.setPrice(updateBook.getPrice());
         existBook.setQuantity(updateBook.getQuantity());
         existBook.setAuthor(updateBook.getAuthor());
-//        existBook.setPublisher(updateBook.getPublisher());
-//        existBook.setCategories(updateBook.getCategories());
+        existBook.setPublisher(updateBook.getPublisher());
+        existBook.setCategories(updateBook.getCategories());
+        existBook.setUpdatedAtMLS(Calendar.getInstance().getTimeInMillis());
         return bookRepository.save(updateBook);
     }
 
@@ -76,7 +77,9 @@ public class BookServiceImpl implements BookService {
         if (existBook == null) {
             return false;
         }
-        bookRepository.delete(existBook);
+        existBook.setDeletedAtMLS(Calendar.getInstance().getTimeInMillis());
+        existBook.setStatus(Book.Status.DELETED.getValue());
+        bookRepository.save(existBook);
         return true;
     }
 }

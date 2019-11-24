@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <title>
     Detail author | Admin
 </title>
@@ -30,7 +32,7 @@
                                 <h5 th:text="${'Category : ' + category.name}" class="card-title"></h5>
                                 Description: <p th:text="${category.description}"></p>
                                 Book: <th:block th:each="book : ${category.books}">
-                                <p th:text="${book.name}"></p>
+                                <p th:text="${' + ' + book.name}"></p>
                             </th:block>
                             </div>
                             <!-- /.content -->

@@ -3,9 +3,13 @@ package com.fpt.service.admin;
 import com.fpt.entity.Author;
 import com.fpt.entity.Publisher;
 import com.fpt.repository.PublisherRepository;
+import com.fpt.specification.AuthorSpecification;
+import com.fpt.specification.PublisherSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -23,6 +27,12 @@ public class PublisherServiceImpl implements PublisherService {
 
     public Page<Publisher> findAll(Pageable pageable) {
         return publisherRepository.findAll(pageable);
+    }
+
+    public Page<Publisher> findAllActive(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new PublisherSpecification(new SearchCriteria("status", "!=", Publisher.Status.DELETED.getValue())));
+        return publisherRepository.findAll(specification, pageable);
     }
 
     @Override
@@ -59,7 +69,9 @@ public class PublisherServiceImpl implements PublisherService {
         if (existPublisher == null) {
             return false;
         }
-        publisherRepository.delete(existPublisher);
+        existPublisher.setDeletedAt(Calendar.getInstance().getTimeInMillis());
+        existPublisher.setStatus(Publisher.Status.DELETED.getValue());
+        publisherRepository.save(existPublisher);
         return true;
     }
 }
