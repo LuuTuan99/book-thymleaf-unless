@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <title>
     List author | Admin
 </title>
@@ -69,7 +70,7 @@
                                         <td>
                                             <a th:href="@{'/admin/books/' + ${book.id}}">Detail |</a>
                                             <a th:href="@{'/admin/books/update/' + ${book.id}}">Edit |</a>
-                                            <a th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
+                                            <a th:href="@{'#' + ${book.id}}" class="btn-delete-author">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -107,6 +108,26 @@
                 });
             });
 
+            $(".btn-delete-author").click(function () {
+                var id = $(this).attr("href").replace("#", "");
+                if (confirm("Bạn có chắc muốn xoá sách này?")) {
+                    $.ajax({
+                        url: "/admin/books/delete/" + id,
+                        type: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                        },
+                        success: function (data) {
+                            alert("Xoá thành công!");
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("Thao tác thất bại, vui lòng thử lại sau!");
+                        }
+                    });
+                }
+                return false;
+            });
         });
     </script>
 </div>

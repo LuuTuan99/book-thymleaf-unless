@@ -12,10 +12,12 @@ import com.fpt.service.admin.PublisherServiceImpl;
 import com.fpt.specification.AuthorSpecification;
 import com.fpt.specification.BookSpecification;
 import com.fpt.specification.SearchCriteria;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -23,6 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -66,6 +69,7 @@ public class BookController {
         model.addAttribute("authors", authorService.findAll());
         model.addAttribute("publishers", publisherService.findAll());
         model.addAttribute("categories", categoryService.findAll());
+
         model.addAttribute("currentPage", bookPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", bookPage.getPageable().getPageSize());
         model.addAttribute("totalPage", bookPage.getTotalPages());
@@ -113,11 +117,17 @@ public class BookController {
         return "admin/books/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/delete/{id}")
-    public String delete(@PathVariable long id, RedirectAttributes redirectAttributes) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    @ResponseBody
+    public String delete(@PathVariable(value = "id", required = false) long id, HttpServletResponse response) {
+        Book book = bookService.getById(id);
+        if (book == null) {
+            response.setStatus(HttpStatus.NOT_FOUND.value());
+            return new Gson().toJson("Error");
+        }
         bookService.delete(id);
-        redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
-        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_BOOKS;
+        response.setStatus(HttpStatus.OK.value());
+        return new Gson().toJson("Ok");
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")

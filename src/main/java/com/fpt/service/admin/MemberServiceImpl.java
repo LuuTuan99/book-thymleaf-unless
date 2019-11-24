@@ -1,10 +1,14 @@
 package com.fpt.service.admin;
+import com.fpt.entity.Author;
 import com.fpt.entity.Member;
 import com.fpt.repository.MemberRepository;
+import com.fpt.specification.AuthorSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +30,12 @@ public class MemberServiceImpl implements MemberService {
 
     public Page<Member> findAll(Pageable pageable) {
         return memberRepository.findAll(pageable);
+    }
+
+    public Page<Member> findAllActive(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new AuthorSpecification(new SearchCriteria("status", "!=", Member.Status.DELETED.getValue())));
+        return memberRepository.findAll(specification, pageable);
     }
 
     @Override
@@ -88,7 +98,9 @@ public class MemberServiceImpl implements MemberService {
         if (existMember == null) {
             return false;
         }
-        memberRepository.delete(existMember);
+        existMember.setDeletedAt(Calendar.getInstance().getTimeInMillis());
+        existMember.setStatus(Member.Status.DELETED.getValue());
+        memberRepository.save(existMember);
         return true;
     }
 }

@@ -3,10 +3,18 @@ package com.fpt.controller.admin;
 import com.fpt.config.ProjectConfig;
 import com.fpt.entity.Book;
 import com.fpt.entity.Category;
+import com.fpt.entity.Member;
+import com.fpt.entity.Publisher;
 import com.fpt.service.admin.CategoryServiceImpl;
+import com.fpt.specification.BookSpecification;
+import com.fpt.specification.CategorySpecification;
+import com.fpt.specification.SearchCriteria;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -14,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Set;
 
@@ -25,10 +34,19 @@ public class CategoryController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
+            @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "5") int limit,
             Model model) {
-        Page<Category> categoryPage = categoryService.findAll(PageRequest.of(page - 1, limit));
+        Specification specification = Specification.where(null);
+
+        if (keyword != null && keyword.length() > 0) {
+            specification = specification
+                    .and(new CategorySpecification(new SearchCriteria("keyword", "join", keyword)));
+            model.addAttribute("keyword", keyword);
+        }
+
+        Page<Category> categoryPage = categoryService.findAllActive(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("categories", categoryPage.getContent());
         model.addAttribute("currentPage", categoryPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", categoryPage.getPageable().getPageSize());
@@ -73,11 +91,17 @@ public class CategoryController {
         return "admin/category/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/delete/{id}")
-    public String delete(@PathVariable(value = "id", required = false) long id, RedirectAttributes redirectAttributes) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    @ResponseBody
+    public String delete(@PathVariable(value = "id", required = false) long id, HttpServletResponse response) {
+        Category category = categoryService.getById(id);
+        if (category == null) {
+            response.setStatus(HttpStatus.NOT_FOUND.value());
+            return new Gson().toJson("Error");
+        }
         categoryService.delete(id);
-        redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
-        return "redirect:"+ ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_CATEGORIES;
+        response.setStatus(HttpStatus.OK.value());
+        return new Gson().toJson("Ok");
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")

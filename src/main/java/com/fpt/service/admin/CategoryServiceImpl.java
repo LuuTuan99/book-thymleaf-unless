@@ -1,12 +1,17 @@
 package com.fpt.service.admin;
 
 import com.fpt.entity.Author;
+import com.fpt.entity.Book;
 import com.fpt.entity.Category;
 import com.fpt.repository.CategoryRepository;
 import com.fpt.service.admin.CategoryService;
+import com.fpt.specification.BookSpecification;
+import com.fpt.specification.CategorySpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -24,6 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     public Page<Category> findAll(Pageable pageable) {
         return categoryRepository.findAll(pageable);
+    }
+
+    public Page<Category> findAllActive(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new CategorySpecification(new SearchCriteria("status", "!=", Category.Status.DELETED.getValue())));
+        return categoryRepository.findAll(specification, pageable);
     }
 
     @Override
@@ -60,7 +71,9 @@ public class CategoryServiceImpl implements CategoryService {
         if (existCategory == null) {
             return false;
         }
-        categoryRepository.delete(existCategory);
+        existCategory.setDeletedAtMLS(Calendar.getInstance().getTimeInMillis());
+        existCategory.setStatus(Book.Status.DELETED.getValue());
+        categoryRepository.save(existCategory);
         return false;
     }
 }
