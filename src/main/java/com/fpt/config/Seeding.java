@@ -66,6 +66,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         book.setDescription("Nhà xuất bản: NXB Phụ Nữ,Nhà phát hành: Skybooks,Mã Sản phẩm: 8936186541094,Khối lượng: 242.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 12.5 x 20 cm,Ngày phát hành: 18/10/2019,Số trang: 224");
         book.setPrice(86000);
         book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
         book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
         book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
         book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -77,6 +78,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         book.setDescription("Nhà xuất bản: Nxb Trẻ,Nhà phát hành: NXB Trẻ,Mã Sản phẩm: 8934974164135,Khối lượng: 330.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20 cm,Ngày phát hành: 11/09/2019,Số trang: 252");
         book.setPrice(110000);
         book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
         book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
         book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
         book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -88,6 +90,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         book.setDescription("Nhà xuất bản: Nxb Trẻ ,Nhà phát hành: NXB Trẻ,Mã Sản phẩm: 8934974163701,Khối lượng: 286.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20 cm,Ngày phát hành: 11/09/2019,Số trang: 264");
         book.setPrice(85000);
         book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
         book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
         book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
         book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -99,6 +102,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Trẻ,Nhà phát hành: NXB Trẻ,Mã Sản phẩm: 8934974164135,Khối lượng: 506.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa cứng,Kích thước: 13 x 20 cm,Ngày phát hành: 11/09/2019,Số trang: 252");
          book.setPrice(220000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -110,6 +114,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb văn học,Nhà phát hành: Bachviet,BooksMã Sản phẩm: 9786049767838,Khối lượng: 352.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20.5 cm,Ngày phát hành: 27/09/2019,Số trang: 312");
          book.setPrice(70000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -121,6 +126,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB Dân Trí,Mã Sản phẩm: 1130000090093,Khối lượng: 550.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 14.5 x 20.5 cm,Ngày phát hành: 31/10/2019,Số trang: 476");
          book.setPrice(132000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -132,6 +138,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB Dân Trí,Nhà phát hành: Skybooks,Mã Sản phẩm: 9786048859640,Khối lượng: 374.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 18 x 18 cm,Ngày phát hành: 03/2018,Số trang: 144");
          book.setPrice(89000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -143,6 +150,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb văn học,Mã Sản phẩm: 1130000090160,Khối lượng: 132.00 gam,Ngôn ngữ: Tiếng Anh, Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 21 x 18.5 cm,Ngày phát hành: 10/11/2019,Số trang: 24");
          book.setPrice(28000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -154,6 +162,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb văn học,Mã Sản phẩm: 1130000090159,Khối lượng: 132.00 gam,Ngôn ngữ: Tiếng Anh, Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 21 x 18.5 cm,Ngày phát hành: 10/11/2019,Số trang: 24");
          book.setPrice(28000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -165,6 +174,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb văn học,Mã Sản phẩm: 1130000090158,Khối lượng: 132.00 gam,Ngôn ngữ: Tiếng Anh, Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 21 x 18.5 cm,Ngày phát hành: 10/11/2019,Số trang: 24");
          book.setPrice(28000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -176,6 +186,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Thanh Hóa,Nhà phát hành: Nhà sách Hoa Sen,Mã Sản phẩm: 9999900039146,Khối lượng: 242.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 17 x 24 cm,Ngày phát hành: 23/08/2019,Số trang: 64");
          book.setPrice(48000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -187,6 +198,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Mỹ thuật,Nhà phát hành: Huy Hoàng,Mã Sản phẩm: 8935095628476,Khối lượng: 198.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 20.5 x 29.5 cm,Ngày phát hành: 30/08/2019,Số trang: 28");
          book.setPrice(58000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -198,6 +210,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Mỹ thuật,Nhà phát hành: Huy Hoàng,Mã Sản phẩm: 8935095628377,Khối lượng: 88.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 17 x 24 cm,Ngày phát hành: 06/09/2019,Số trang: 20");
          book.setPrice(16000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -209,6 +222,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB ĐH Kinh tế Quốc dân,Nhà phát hành: Alpha books,Mã Sản phẩm: 8935251409086,Khối lượng: 616.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 16 x 24 cm,Ngày phát hành: 07/2018,Số trang: 392");
          book.setPrice(299000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -220,6 +234,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB Thanh Niên,Nhà phát hành: Tri Thức Trẻ,Mã Sản phẩm: 9786049702778,Khối lượng: 352.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 19 x 27 cm,Ngày phát hành: 09/2018,Số trang: 80");
          book.setPrice(36000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -231,6 +246,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB ĐH Kinh tế Quốc Dân,Nhà phát hành: Alpha books,Mã Sản phẩm: 8935251407730,Khối lượng: 704.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 16 x 24 cm,Ngày phát hành: 03/2018,Số trang: 540");
          book.setPrice(299000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -242,6 +258,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB ĐH Kinh tế Quốc dân,Nhà phát hành: 1980Books,Mã Sản phẩm: 8936066685122,Khối lượng: 770.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 14.5 x 20.5 cm,Ngày phát hành: 03/2018,Số trang: 660");
          book.setPrice(189000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -253,6 +270,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Lao động - Xã hội,Nhà phát hành: Alpha books,Mã Sản phẩm: 1130000090181,Khối lượng: 220.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20.5 cm,Ngày phát hành: 28/11/2014,Số trang: 220");
          book.setPrice(30000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -264,6 +282,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Lao động - Xã hội,Nhà phát hành: Alpha books,Mã Sản phẩm: 1130000090199,Khối lượng: 308.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20.5 cm,Ngày phát hành: 06/2013,Số trang: 324");
          book.setPrice(85000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -275,6 +294,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Lao động - Xã hội,Nhà phát hành: Alpha books,Mã Sản phẩm: 1130000090197,Khối lượng: 374.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 14 x 20.5 cm,Ngày phát hành: 23/10/2019,Số trang: 360");
          book.setPrice(99000);
          book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -297,6 +317,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         book.setDescription("Nhà xuất bản: Nxb văn họ,Nhà phát hành: Bachviet,BooksMã Sản phẩm: 9786049767838,Khối lượng: 352.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20.5 cm,Ngày phát hành: 27/09/2019,Số trang: 312");
         book.setPrice(85000);
         book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
         book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
         book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
         book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -308,6 +329,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         book.setDescription("Nhà xuất bản: Nxb Thế giới,Nhà phát hành: Nhã Nam,Mã Sản phẩm: 8935235223837,Khối lượng: 396.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 14 x 20.5 cm,Ngày phát hành: 12/10/2019,Số trang: 344");
         book.setPrice(125000);
         book.setQuantity(200);
+         book.setStatus(Book.Status.ACTIVE.getValue());
         book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
         book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
         book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -323,61 +345,73 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         Category category = new Category();
         category.setName("Sách văn học trong nước");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
         category = new Category();
         category.setName("Sách văn học nước ngoài");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
         category = new Category();
         category.setName("Sách thiếu nhi");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
         category = new Category();
         category.setName("Sách Blockchain");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
          category = new Category();
          category.setName("Sách Ngoại văn");
          category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
+         category.setStatus(Category.Status.ACTIVE.getValue());
          categoryList.add(category);
 
         category = new Category();
         category.setName("Sách Kinh tế");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
         category = new Category();
         category.setName("Sách Thường Thức – Đời Sống");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
         category = new Category();
         category.setName("Sách Phát Triển Bản Thân");
         category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
-        categoryList.add(category);
+         category.setStatus(Category.Status.ACTIVE.getValue());
+         categoryList.add(category);
 
          category = new Category();
          category.setName("Sách Tin Học - Ngoại Ngữ");
          category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
+         category.setStatus(Category.Status.ACTIVE.getValue());
          categoryList.add(category);
 
          category = new Category();
          category.setName("Sách Chuyên Ngành");
          category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
+         category.setStatus(Category.Status.ACTIVE.getValue());
          categoryList.add(category);
 
          category = new Category();
          category.setName("Sách Giáo Khoa - Giáo Trình");
          category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
+         category.setStatus(Category.Status.ACTIVE.getValue());
          categoryList.add(category);
 
          category = new Category();
          category.setName("Tạp chí - Văn phòng phẩm");
          category.setThumbnail("https://bitex.com.vn/vnt_upload/download/09_2013/thumbs/500_sach_huong_dan_casio_18.png");
+         category.setStatus(Category.Status.ACTIVE.getValue());
          categoryList.add(category);
 
         categoryRepository.saveAll(categoryList);
@@ -391,66 +425,77 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         publisher.setName("NXB Trẻ");
         publisher.setAvatar("https://locrpctricks.files.wordpress.com/2018/04/tumblr_static_f25n7rsd1jscgw4koogg04woc.png");
         publisher.setDescription("NXB Trẻ đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+        publisher.setStatus(Publisher.Status.ACTIVE.getValue());
         publisherList.add(publisher);
 
         publisher = new Publisher();
         publisher.setName("NXB Phụ Nữ");
         publisher.setAvatar("http://hieusach.vn/upload/8415/20140123/logo_nxbphunu.jpg");
         publisher.setDescription("NXB Phụ Nữ đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
-        publisherList.add(publisher);
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
+         publisherList.add(publisher);
 
         publisher = new Publisher();
         publisher.setName("Nxb Sư Phạm");
         publisher.setAvatar("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTA3600iqI36NmFZvaccmu4fy5W_jbEQIrX6AbNtbNsRMZuzrL&s");
         publisher.setDescription("NXB Sư Phạm đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
-        publisherList.add(publisher);
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
+         publisherList.add(publisher);
 
         publisher = new Publisher();
         publisher.setName("Nxb Thế Giới");
         publisher.setAvatar("https://ebook.vn//uploads/producers/thumb_1514338374.png");
         publisher.setDescription("NXB Thế Giới đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
-        publisherList.add(publisher);
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
+         publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName("Nxb Kim Đồng");
          publisher.setAvatar("https://www.nxbkimdong.com.vn/sites/default/files/default_images/img-default.png");
          publisher.setDescription("NXB Kim Đồng đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName("Nxb Lao Động");
          publisher.setAvatar("https://lazi.vn/files/large/593558a3daf1914");
          publisher.setDescription("Nxb Lao Độngđã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName(" Nxb Tổng hợp thành phố Hồ Chí Minh");
          publisher.setAvatar("https://yt3.ggpht.com/a/AGF-l7-wTwmOS_0WpxxbAcrYds4oYrPkOG7tIq-RYg=s900-c-k-c0xffffffff-no-rj-mo");
          publisher.setDescription("Nxb Tổng hợp thành phố Hồ Chí Minh đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName("Nxb Chính Trị Quốc Gia");
          publisher.setAvatar("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRt3-IICc3pzHRSaolPcMJss5UdiHPPWyfBfEg-JahrvP4Oev&s");
          publisher.setDescription("Nxb Chính Trị Quốc Gia đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName("Nxb Giáo Dục");
          publisher.setAvatar("http://ppower.vn/wp-content/uploads/2018/01/logo-nxbgd.jpg");
          publisher.setDescription("Nxb Giáo Dục đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName("Nxb Hội Nhà Năn");
          publisher.setAvatar("https://vanhaiphong.com/wp-content/uploads/2017/06/nxb-hi-nh-vn.jpg");
          publisher.setDescription("Nxb Hội Nhà Năn đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
          publisher = new Publisher();
          publisher.setName("Nxb Tư pháp");
          publisher.setAvatar("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNdqNwaeOn9vuHTZprLe46eSHxKhnGTXOiIibnESq5NW-ZnaC4&s");
          publisher.setDescription("Nxb Tư pháp đã xuất bản được gần 1000 ấn phẩm các loại, trong đó chủ yếu là sách giáo trình (Đại học và sau Đại học); sách hướng dẫn giảng dạy; sách phục vụ công tác nghiên cứu và học tập thuộc các lĩnh vực khác nhau như khoa học giáo dục, khoa học xã hội nhân văn, khoa học tự nhiên…; bên cạnh đó, là hàng trăm đầu sách là tác phẩm văn học (thơ, tiểu thuyết, truyện…); sách chính trị, xã hội của các tác giả các đơn vị, các tổ chức chính trị xã hội trong khu vực và trên toàn quốc.");
+         publisher.setStatus(Publisher.Status.ACTIVE.getValue());
          publisherList.add(publisher);
 
         publisherRepository.saveAll(publisherList);
