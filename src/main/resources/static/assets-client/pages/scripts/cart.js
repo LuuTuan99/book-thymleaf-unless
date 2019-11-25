@@ -100,10 +100,12 @@ function view(bookInfo) {
     var name = bookInfo.getAttribute("BookName");
     var image = bookInfo.getAttribute("BookImg");
     var price = bookInfo.getAttribute("BookPrice");
+    var author = bookInfo.getAttribute("BookAuthor");
     var description = bookInfo.getAttribute("BookDescription");
     document.getElementById("descr").innerHTML = description;
     var imageModal = document.getElementById("imgModal");
     imageModal.src = image;
     document.getElementById("priceModal").innerHTML = price;
     document.getElementById("nameModal").innerHTML = name;
+    document.getElementById("authorModal").innerHTML = author;
 }
