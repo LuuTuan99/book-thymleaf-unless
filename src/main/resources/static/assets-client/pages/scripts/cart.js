@@ -102,6 +102,7 @@ function view(bookInfo) {
     var price = bookInfo.getAttribute("BookPrice");
     var author = bookInfo.getAttribute("BookAuthor");
     var publisher = bookInfo.getAttribute("BookPublisher");
+
     var description = bookInfo.getAttribute("BookDescription");
     var categories = bookInfo.getAttribute("BookCategories");
     document.getElementById("descr").innerHTML = description;
@@ -112,4 +113,5 @@ function view(bookInfo) {
     document.getElementById("authorModal").innerHTML = author;
     document.getElementById("publisherModal").innerHTML = publisher;
     document.getElementById("categoriesModal").innerHTML = categories;
+
 }

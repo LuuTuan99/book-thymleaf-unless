@@ -152,7 +152,7 @@
                                        onclick="view(this)">View</a>
                                 </div>
                             </div>
-                            <h3><a th:href="@{/shop-item}" th:text="${book.name}"></a></h3>
+                            <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:text="${book.name}"></a></h3>
                             <div th:text="${book.price}" class="pi-price"></div>
                             <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
                         </div>
@@ -231,9 +231,9 @@
                 </div>
                 <div class="product-other-images">
                     <a href="javascript:;" class="active">
-                        <img alt="Berry Lace Dress"src=""></a>
+                        <img alt="Image book" src="" id="ImgModal"></a>
                     <a href="javascript:;">
-                        <img alt="Berry Lace Dress"src="/assets-client/pages/img/products/book2.jpg"></a>
+                        <img alt="Image book" src="/assets-client/pages/img/products/book2.jpg"></a>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-9">
@@ -248,6 +248,7 @@
                     </div>
                 </div>
                 <div class="author">
+
                    Tác giả: <p id="authorModal"></p>
                 </div>
                 <div class="publisher">
