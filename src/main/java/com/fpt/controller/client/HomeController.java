@@ -13,45 +13,51 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
     @Autowired
     BookServiceImpl bookService;
-    //demo shop index
+    // shop index page
     @RequestMapping(method = RequestMethod.GET)
     public String shop_product(Model model) {
         model.addAttribute("books", bookService.findAll());
         return "client/shop-index";
     }
 
-    //demo shop list item
+    // shop list item page
     @GetMapping(value = "/shop-product-list")
     public String shop_product_list(Model model) {
         model.addAttribute("productBook",bookService.findAll());
         return "client/shop-product-list";
     }
 
-    //demo shop list item
+    // shop list item page
     @GetMapping(value = "/shop-search-result")
     public String shop_search_result() {
         return "client/shop-search-result";
     }
 
-    //demo shop shopping cart
+    // shop shopping cart page
     @GetMapping(value = "/shop-shopping-cart")
     public String shop_shopping_cart() {
         return "client/shop-shopping-cart";
     }
 
-    //demo shop shopping cart null
+    // shop shopping cart null page
     @GetMapping(value = "/shop-shopping-cart-null")
     public String shop_shopping_cart_null() {
         return "client/shop-shopping-cart-null";
     }
 
-    //demo shop item
+    //shop item page
     @GetMapping(value = "/shop-item")
     public String shop_item() {
         return "client/shop-item";
     }
 
-    //demo shop account
+    //shop account page
+    @GetMapping(value = "/shop-checkout")
+    public String shop_checkout(){
+        return "client/shop-checkout";
+    }
+
+    //shop account page
     @GetMapping(value = "/shop-account")
         public String shop_account(){
         return "client/shop-account";
