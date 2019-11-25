@@ -121,4 +121,9 @@ public class AuthorController {
         authorService.update(id, author);
         return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
     }
+
+    @GetMapping("/demo")
+    public String demo(){
+        return "admin/author/demo";
+    }
 }
