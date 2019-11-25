@@ -101,11 +101,17 @@ function view(bookInfo) {
     var image = bookInfo.getAttribute("BookImg");
     var price = bookInfo.getAttribute("BookPrice");
     var author = bookInfo.getAttribute("BookAuthor");
+    var publisher = bookInfo.getAttribute("BookPublisher");
+
     var description = bookInfo.getAttribute("BookDescription");
+    var categories = bookInfo.getAttribute("BookCategories");
     document.getElementById("descr").innerHTML = description;
     var imageModal = document.getElementById("imgModal");
     imageModal.src = image;
     document.getElementById("priceModal").innerHTML = price;
     document.getElementById("nameModal").innerHTML = name;
     document.getElementById("authorModal").innerHTML = author;
+    document.getElementById("publisherModal").innerHTML = publisher;
+    document.getElementById("categoriesModal").innerHTML = categories;
+
 }
