@@ -85,18 +85,18 @@ public class AuthorController {
         return "admin/author/list";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
-    public String delete(@PathVariable(value = "id", required = false) long id, RedirectAttributes redirectAttributes) {
-        Author author = authorService.getById(id);
-        if (author == null) {
-            return "error/404";
-        }
-        authorService.delete(id);
-        redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
-        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
-    }
+//    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
+//    public String delete(@PathVariable(value = "id", required = false) long id, RedirectAttributes redirectAttributes) {
+//        Author author = authorService.getById(id);
+//        if (author == null) {
+//            return "error/404";
+//        }
+//        authorService.delete(id);
+//        redirectAttributes.addFlashAttribute("Success!", "Deleted contact successfully!");
+//        return "redirect:" + ProjectConfig.PREFIX_ADMIN + ProjectConfig.PREFIX_ADMIN_AUTHORS;
+//    }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/ajax-delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
     @ResponseBody
     public String deleteWithAjax(@PathVariable(value = "id", required = false) long id, HttpServletResponse response) {
         Author author = authorService.getById(id);

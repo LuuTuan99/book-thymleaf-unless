@@ -54,10 +54,9 @@
                                         <td>
                                             <a th:href="@{'/admin/authors/' + ${author.id}}"> Detail</a>
                                             <a th:href="@{'/admin/authors/update/' + ${author.id}}"> Edit</a>
-                                            <a onclick="return confirm('Bạn có chắc muốn xoá tác giả này?')"
-                                               th:href="@{'/admin/authors/delete/' + ${author.id}}">Delete</a>
-                                            <a th:href="@{'#' + ${author.id}}" class="btn-delete-author">Delete with
-                                                ajax</a>
+                                            <!--<a onclick="return confirm('Bạn có chắc muốn xoá tác giả này?')"-->
+                                               <!--th:href="@{'/admin/authors/delete/' + ${author.id}}">Delete</a>-->
+                                            <a th:href="@{'#' + ${author.id}}" class="btn-delete-author">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -114,7 +113,7 @@
                 var id = $(this).attr("href").replace("#", "");
                 if (confirm("Bạn có chắc muốn xoá tác giả này?")) {
                     $.ajax({
-                        url: "/admin/authors/ajax-delete/" + id,
+                        url: "/admin/authors/delete/" + id,
                         type: "DELETE",
                         headers: {
                             "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
