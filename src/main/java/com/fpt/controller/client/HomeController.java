@@ -1,10 +1,13 @@
 package com.fpt.controller.client;
 
+import com.fpt.entity.Author;
+import com.fpt.entity.Book;
 import com.fpt.service.admin.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,10 +49,20 @@ public class HomeController {
     }
 
     //shop item page
-    @GetMapping(value = "/shop-item")
-    public String shop_item() {
+    @RequestMapping(method = RequestMethod.GET, value = "shop-item/{id}")
+    public String detail(@PathVariable long id, Model model) {
+        Book book = bookService.getById(id);
+        if (book == null) {
+            return "error/404";
+        }
+        model.addAttribute("book", book);
         return "client/shop-item";
     }
+
+//    @GetMapping(value = "/shop-item")
+//    public String shop_item() {
+//        return "client/shop-item";
+//    }
 
     //shop account page
     @GetMapping(value = "/shop-checkout")
