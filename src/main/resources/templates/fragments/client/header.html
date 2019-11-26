@@ -26,7 +26,12 @@
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a th:href="@{/shop-account}">My Account</a></li>
                     <li><a href="#">Checkout</a></li>
-                    <li><a th:href="@{/members/login}">Log In</a></li>
+                    <th:block th:if="${auth != null}">
+                        <li><a th:href="@{/logout}">Log out</a></li>
+                    </th:block>
+                    <th:block th:unless="${auth != null}">
+                        <li><a th:href="@{/members/login}">Log in</a></li>
+                    </th:block>
                 </ul>
             </div>
             <!-- END TOP BAR MENU -->
