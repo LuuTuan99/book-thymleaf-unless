@@ -15,15 +15,15 @@ public class Member {
     @Email(message = "Email không đúng định dạng.")
     @Size(min = 7, max = 30, message = "Tối thiểu 7 ký tự, tối đa 30 ký tự.")
     private String email;
-    @NotEmpty(message = "Password khong duoc de trong.")
+    @NotEmpty(message = "Password không được để trống")
     private String hashPassword;
-    @NotEmpty(message = "UserName khong duoc de trong.")
+    @NotEmpty(message = "UserName không được để trống")
     private String username;
     @NotEmpty
     private String avatar;
-    @NotEmpty
+    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
-    @NotEmpty
+    @NotEmpty(message = "Địa chỉ không được để trống")
     private String address;
     private int gender;
     private String role;
