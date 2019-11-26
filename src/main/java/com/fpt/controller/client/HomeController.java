@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/")
@@ -38,8 +40,8 @@ public class HomeController {
     CategoryServiceImpl categoryService;
     //demo shop index
     @RequestMapping(method = RequestMethod.GET)
-    public String shop_product(Model model) {
-        model.addAttribute("books", bookService.findAll());
+    public String shop_product(Model model, Authentication authentication) {
+        model.addAttribute("auth",authentication);
         return "client/shop-index";
     }
 
@@ -50,7 +52,7 @@ public class HomeController {
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "8") int limit,
             Model model) {
         Specification specification = Specification.where(null);
 
@@ -98,11 +100,13 @@ public class HomeController {
 
     //shop item page
     @RequestMapping(method = RequestMethod.GET, value = "shop-item/{id}")
-    public String detail(@PathVariable long id, Model model) {
+    public String detail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
         Book book = bookService.getById(id);
         if (book == null) {
             return "error/404";
         }
+        if(model.asMap().get("success") != null)
+            redirectAttributes.addFlashAttribute("success",model.asMap().get("success").toString());
         model.addAttribute("book", book);
         return "client/shop-item";
     }
