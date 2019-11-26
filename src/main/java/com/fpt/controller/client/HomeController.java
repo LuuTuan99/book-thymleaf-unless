@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,8 @@ public class HomeController {
     CategoryServiceImpl categoryService;
     //demo shop index
     @RequestMapping(method = RequestMethod.GET)
-    public String shop_product(Model model) {
+    public String shop_product(Model model, Authentication authentication) {
+        model.addAttribute("auth",authentication);
         model.addAttribute("books", bookService.findAll());
         return "client/shop-index";
     }
