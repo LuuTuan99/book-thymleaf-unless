@@ -1,3 +1,45 @@
+<style>
+    /* Dropdown Button */
+    .dropbtn {
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        width: 5px;
+        display: block;}
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+
+</style>
 <div class="pre-header">
     <div class="container">
         <div class="row">
@@ -25,9 +67,15 @@
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a th:href="@{/shop-account}">My Account</a></li>
-                    <li><a href="#">Checkout</a></li>
+                    <li>My Cart<a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a></li>
                     <th:block th:if="${auth != null}">
-                        <li><a th:href="@{/logout}">Log out</a></li>
+
+                        <li class="dropdown">
+                           <a class="dropbtn"><b th:text="${auth.getName()}"></b></a>
+                            <div class="dropdown-content">
+                                <a th:href="@{/logout}">Logout</a>
+                            </div>
+                        </li>
                     </th:block>
                     <th:block th:unless="${auth != null}">
                         <li><a th:href="@{/members/login}">Log in</a></li>
@@ -49,10 +97,10 @@
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a th:href="@{/shop-shopping-cart}" class="top-cart-info-count">3 items</a>
-                <a th:href="@{/shop-shopping-cart}" class="top-cart-info-value">$1260</a>
+                <a class="top-cart-info-count">3 items</a>
+                <a class="top-cart-info-value">$1260</a>
             </div>
-            <a th:href="@{/shop-shopping-cart}" class="fa fa-shopping-cart"></a>
+            <a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a>
 
             <div class="top-cart-content-wrapper">
                 <div class="top-cart-content">

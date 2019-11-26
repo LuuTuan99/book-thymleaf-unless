@@ -505,6 +505,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         memberRepository.deleteAll();
         memberRepository.resetIncrement();
 
+
+
         Member member = new Member();
         member.setUsername("admin");
         member.setEmail("admin@gmail.com");

@@ -20,6 +20,7 @@ public interface MemberService {
 
     Member getByEmail(String email);
 
+    Member getByUsername(String username);
     Member getByName(String name);
 
     boolean delete(long id);

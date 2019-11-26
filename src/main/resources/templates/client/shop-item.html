@@ -94,20 +94,31 @@
                   Availability: <strong>In Stock</strong>
                 </div>
               </div>
+              <div th:if="${success}"
+                   class="row alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <span th:text="${success}"></span>
+              </div>
               <div class="description">
                 <p th:text="${book.description}"></p>
               </div>
               <div class="product-page-cart">
-                <div class="product-quantity">
-                  <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                </div>
-                <button class="btn btn-primary" type="submit">Add to cart</button>
+
+                <!--so luong order ban dau-->
+               <!-- <div class="product-quantity">
+                  <input name="quantity" type="number" value="1" class="form-control input-sm">
+                </div>-->
+                <!--end so luong order ban dau-->
+                <button class="btn btn-primary" type="submit"><a th:href="@{/cart/buy/{id}(id=*{id})}"><b style="color: white">ADD-CART</b></a></button>
               </div>
               <div class="review">
-                <input type="range" value="4" step="0.25" id="backing4">
-                <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
-                </div>
+                <!--<input type="range" value="4" step="0.25" id="backing4">
+                <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">-->
                 <a href="javascript:;">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">Write a review</a>
+                </div>
               </div>
               <ul class="social-icons">
                 <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>

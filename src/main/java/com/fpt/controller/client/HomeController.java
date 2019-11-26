@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/")
@@ -41,7 +42,6 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String shop_product(Model model, Authentication authentication) {
         model.addAttribute("auth",authentication);
-        model.addAttribute("books", bookService.findAll());
         return "client/shop-index";
     }
 
@@ -52,7 +52,7 @@ public class HomeController {
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "8") int limit,
             Model model) {
         Specification specification = Specification.where(null);
 
@@ -100,11 +100,13 @@ public class HomeController {
 
     //shop item page
     @RequestMapping(method = RequestMethod.GET, value = "shop-item/{id}")
-    public String detail(@PathVariable long id, Model model) {
+    public String detail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
         Book book = bookService.getById(id);
         if (book == null) {
             return "error/404";
         }
+        if(model.asMap().get("success") != null)
+            redirectAttributes.addFlashAttribute("success",model.asMap().get("success").toString());
         model.addAttribute("book", book);
         return "client/shop-item";
     }

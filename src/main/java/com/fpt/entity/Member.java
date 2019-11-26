@@ -1,13 +1,11 @@
 package com.fpt.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Calendar;
+import java.util.Set;
 
 @Entity
 public class Member {
@@ -34,6 +32,8 @@ public class Member {
     private long updatedAt;
     private long deletedAt;
     private int status;
+    @OneToMany(mappedBy = "createdBy")
+    private Set<OrderBook> orderBooks;
 
     public Member() {
         this.createdAt = Calendar.getInstance().getTimeInMillis();
@@ -196,5 +196,13 @@ public class Member {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Set<OrderBook> getOrderBooks() {
+        return orderBooks;
+    }
+
+    public void setOrderBooks(Set<OrderBook> orderBooks) {
+        this.orderBooks = orderBooks;
     }
 }
