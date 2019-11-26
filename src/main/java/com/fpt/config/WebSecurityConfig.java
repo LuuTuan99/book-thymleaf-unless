@@ -41,14 +41,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                    .antMatchers("/members/register", "/*").permitAll()
+                    .antMatchers("/members/register", "/*",
+                            "/assets-client/**",
+                            "/assets-admin/**").permitAll()
                     .antMatchers("/admin/**").hasAnyRole(Member.Role.ADMIN.getValue())
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/members/login")
                     .loginProcessingUrl("/members/login")
-                    .defaultSuccessUrl("/admin/authors")
+                    .defaultSuccessUrl("/")
                     .permitAll()
                     .failureUrl("/members/login?error")
                     .failureHandler(authenticationFailureHandler())
