@@ -70,21 +70,6 @@
                         thiếu nhi</a></li>
                 </ul>
 
-                <div class="sidebar-filter margin-bottom-25">
-                    <h2>Filter</h2>
-                    <h3>Availability</h3>
-                    <div class="checkbox-list">
-                        <label><input type="checkbox"> Not Available (3)</label>
-                        <label><input type="checkbox"> In Stock (26)</label>
-                    </div>
-                    <h3>Price</h3>
-                    <p>
-                        <label for="amount">Range:</label>
-                        <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
-                    </p>
-                    <div id="slider-range"></div>
-                </div>
-
                 <!--<div class="sidebar-products clearfix">
                     <h2>Bestsellers</h2>
                     <div class="item">
@@ -162,7 +147,7 @@
 
                 <!-- END PRODUCT LIST -->
                 <!-- BEGIN PAGINATOR -->
-                <div class="card-footer text-center">
+                <div class="card-footer text-right">
                     <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
                         <ul class="pagination float-right">
                             <li class="page-item"><a class="page-link" th:href="@{/shop-product-list(page=${1}, limit=${limit})}">First</a></li>
