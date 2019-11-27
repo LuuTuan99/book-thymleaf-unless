@@ -6,7 +6,6 @@ import com.fpt.service.admin.AuthorServiceImpl;
 import com.fpt.specification.AuthorSpecification;
 import com.fpt.specification.SearchCriteria;
 import com.google.gson.Gson;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,11 +13,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
