@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <title>
     Edit author | Admin
 </title>
@@ -7,7 +7,7 @@
 
 <body class="">
 <div class="wrapper ">
-    <th:block th:include="fragments/admin/sidebar"></th:block>
+    <th:block th:include="fragments/admin/sidebar_author"></th:block>
     <div class="main-panel">
         <!-- Navbar -->
         <th:block th:include="fragments/admin/navbar"></th:block>
@@ -17,33 +17,36 @@
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header ">
-                                <h4 class="card-title">Edit Book</h4>
-                                <p class="category">fill out & click save</p>
+                            <h4 class="card-title">Edit Author</h4>
                         </div>
                         <div class="card-body ">
                             <!-- Begin Page Content -->
-                                <div class="content">
-                                    <form th:object="${author}" th:action="@{/authors/update/{id}(id=${author.id})}" th:method="post">
-                                        <div class="form-group">
-                                            <input type="hidden" class="form-control" th:field="*{id}"/>
+                            <div class="content">
+                                <form th:object="${author}" th:action="@{'/admin/authors/update/{id}'(id=${author.id})}" th:method="post">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-12">Name</label>
+                                        <input type="text" class="form-control col-2 ml-3" id="name" th:field="*{name}">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="avatar" class="col-12">Avatar</label>
+                                        <div class="col-3">
+                                            <input type="hidden" name="avatar" id="avatar" aria-describedby="avatar" th:field="*{avatar}"/>
+                                            <img class="mb-2" src="" alt="" id="preview">
+                                            <input type="button" id="upload_widget" class="btn btn-info" value="Upload files">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" th:field="*{name}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="avatar">Avatar</label>
-                                            <input type="text" class="form-control" id="avatar" th:field="*{avatar}"/>
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="description">Desciption</label>
-                                            <textarea rows="4" type="textarea" class="form-control" id="description" th:field="*{description}"/></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                        <a th:href="@{'/index'}" class="btn btn-default">Cancel</a>
-                                    </form>
-                                </div>
+                                    <div class="form-group row">
+                                        <label for="description" class="col-12">Description</label>
+                                        <textarea rows="4" type="textarea" class="form-control col-10 ml-3" id="description" th:field="*{description}"/></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a th:href="@{'/admin/authors'}" class="btn btn-default">Cancel</a>
+                                </form>
+                            </div>
                             <!-- /.content -->
                         </div>
                     </div>
@@ -53,12 +56,8 @@
         </div>
     </div>
     <th:block th:include="fragments/admin/scripts"></th:block>
-
-    <script>
-        $(document).ready(function() {
-            demo.initGoogleMaps();
-        });
-    </script>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
 </div>
 </body>
 

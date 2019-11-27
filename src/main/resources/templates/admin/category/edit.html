@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>
+    Edit author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+
+<body class="">
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_category"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Edit Category</h4>
+                        </div>
+                        <div class="card-body ">
+                            <!-- Begin Page Content -->
+                            <div class="content">
+                                <form th:object="${category}" th:action="@{'/admin/categories/update/{id}'(id=${category.id})}" th:method="post">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" th:field="*{id}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-12">Name</label>
+                                        <input type="text" class="form-control col-2 ml-3" id="name" th:field="*{name}">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="thumbnail" class="col-12">Thumbnail</label>
+                                        <div class="col-3">
+                                            <input type="hidden" name="thumbnail" id="thumbnail" aria-describedby="thumbnail" th:field="*{thumbnail}"/>
+                                            <img class="mb-2" src="" alt="" id="preview">
+                                            <input type="button" id="upload_widget" class="btn btn-info" value="Upload files">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="description" class="col-12">Description</label>
+                                        <textarea rows="4" type="textarea" class="form-control col-10 ml-3" id="description" th:field="*{description}"/></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a th:href="@{'/admin/categories'}" class="btn btn-default">Cancel</a>
+                                </form>
+                            </div>
+                            <!-- /.content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+</div>
+</body>
+
+</html>

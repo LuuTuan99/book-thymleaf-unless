@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>
+    List author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+<body class="">
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_member"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Member Table</h4>
+                            <form th:action="@{/members}" method="get">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                </div>
+                                <div class="col-sm-3">
+                                        <div class="input-group no-border">
+                                            <input type="text" th:value="${keyword}" name="keyword" value="" class="form-control" placeholder="Search...">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="nc-icon nc-zoom-split"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th><input type="checkbox" id="select_all"></th>
+                                    <th>Id</th>
+                                    <th>UserName</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="member : ${members}">
+                                        <td><input type="checkbox" name="select[]"></td>
+                                        <td th:text="${member.id}"></td>
+                                        <td th:text="${member.username}"></td>
+                                        <th th:text="${member.email}"></th>
+                                        <th th:text="${member.phone}"></th>
+                                        <th th:text="${member.role}"></th>
+                                        <td>
+                                            <a th:href="@{'/members/' + ${member.id}}">Detail |</a>
+                                            <a th:href="@{'#' + ${member.id}}" class="btn-delete-author">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
+                                <ul class="pagination float-right">
+                                    <li class="page-item"><a class="page-link" th:href="@{/members(page=${1}, limit=${limit})}">First</a></li>
+                                    <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/members(page=${currentPage - 1}, limit=${limit})}">Previous</a></li>
+                                    <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/members(page=${currentPage - 1}, limit=${limit})}">[[${currentPage - 1}]]</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">[[${currentPage}]]</a></li>
+                                    <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/members(page=${currentPage + 1}, limit=${limit})}">[[${currentPage + 1}]]</a></li>
+                                    <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/members(page=${currentPage + 1}, limit=${limit})}">Next</a></li>
+                                    <li class="page-item"><a class="page-link" th:href="@{/members(page=${totalPage}, limit=${limit})}">Last</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#select_all").click(function(){
+                var checked_status = this.checked;
+                $("input[name='select[]']").each(function(){
+                    this.checked = checked_status;
+                });
+            });
+
+            $(".btn-delete-author").click(function () {
+                var id = $(this).attr("href").replace("#", "");
+                if (confirm("Bạn có chắc muốn xoá tài khoản này?")) {
+                    $.ajax({
+                        url: "/members/delete/" + id,
+                        type: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                        },
+                        success: function (data) {
+                            alert("Xoá thành công!");
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("Thao tác thất bại, vui lòng thử lại sau!");
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>

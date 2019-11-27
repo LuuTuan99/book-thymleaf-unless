@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>
+    Detail author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+
+<body>
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_book"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Detail Book</h4>
+                        </div>
+                        <div class="card-body row">
+                            <!-- Begin Page Content -->
+                            <div class="col-sm-4">
+                                <div class="content">
+                                    <img th:src="@{${book.photos}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <h5 th:text="${'Book name: ' + book.name}" class="card-title"></h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <p th:text="${'Author: ' + book.author.name}">
+                                        <p th:text="${'Publisher: ' + book.publisher.name}"></p>
+                                        <p th:text="${'Description: ' + book.description}"></p>
+                                    </div>
+                                    <div class="col-6">
+                                        Category: <th:block th:each="category : ${book.categories}">
+                                        <p th:text="${' + ' + category.name}"></p></th:block>
+                                        <p th:text="${'Price: ' + book.price}"></p>
+                                        <p th:text="${'Quantity: ' + book.quantity}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+</div>
+</body>
+
+</html>

@@ -1,3 +1,45 @@
+<style>
+    /* Dropdown Button */
+    .dropbtn {
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        width: 5px;
+        display: block;}
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+
+</style>
 <div class="pre-header">
     <div class="container">
         <div class="row">
@@ -24,9 +66,20 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="shop-account.html">#My Account</a></li>
-                    <li><a href="shop-checkout.html">#Checkout</a></li>
-                    <li><a th:href="@{/authors/login}">Log In</a></li>
+                    <li><a th:href="@{/shop-account}">My Account</a></li>
+                    <li>My Cart<a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a></li>
+                    <th:block th:if="${auth != null}">
+
+                        <li class="dropdown">
+                           <a class="dropbtn"><b th:text="${auth.getName()}"></b></a>
+                            <div class="dropdown-content">
+                                <a th:href="@{/logout}">Logout</a>
+                            </div>
+                        </li>
+                    </th:block>
+                    <th:block th:unless="${auth != null}">
+                        <li><a th:href="@{/members/login}">Log in</a></li>
+                    </th:block>
                 </ul>
             </div>
             <!-- END TOP BAR MENU -->
@@ -36,7 +89,7 @@
 <!-- END TOP BAR -->
 <div class="header">
     <div class="container">
-        <a class="site-logo" th:href="@{/authors/demo}"><img src="/assets-client/corporate/img/logos/logo-shop-red.png"
+        <a class="site-logo" th:href="@{/}"><img src="/assets-client/corporate/img/logos/logo-shop-red.png"
                                                          alt="Metronic Shop UI"></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
@@ -44,82 +97,42 @@
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-                <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
+                <a class="top-cart-info-count">3 items</a>
+                <a class="top-cart-info-value">$1260</a>
             </div>
-            <i class="fa fa-shopping-cart"></i>
+            <a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a>
 
             <div class="top-cart-content-wrapper">
                 <div class="top-cart-content">
                     <ul class="scroller" style="height: 250px;">
                         <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
+                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
                                                           height="34"></a>
                             <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
                             <em>$1230</em>
                             <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                         </li>
                         <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
+                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
                                                           height="34"></a>
                             <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
                             <em>$1230</em>
                             <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                         </li>
                         <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
+                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
                                                           height="34"></a>
                             <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a href="shop-item.html"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
                             <em>$1230</em>
                             <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                         </li>
                     </ul>
                     <div class="text-right">
-                        <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-                        <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+                        <a th:href="@{shop-shopping-cart}" class="btn btn-default">View Cart</a>
+                        <a th:href="@{shop-checkout}" class="btn btn-primary">Checkout</a>
                     </div>
                 </div>
             </div>

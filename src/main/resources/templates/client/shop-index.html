@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- Head BEGIN -->
 <title>Home | Book Store</title>
 <th:block th:include="fragments/client/head"></th:block>
@@ -18,37 +18,34 @@
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar col-md-3 col-sm-4">
         <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo2}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             bán chạy</a></li>
           <li class="list-group-item clearfix dropdown">
-            <a th:href="@{/authors/demo2}">
+            <a th:href="@{/}">
               <i class="fa fa-angle-right"></i>Sách mới phát hành
             </a>
             <ul class="dropdown-menu">
-              <li class="active"><a th:href="@{/authors/demo}">Home Default</a></li>
-              <li><a th:href="@{/authors/demo2}">Product List</a></li>
-              <li><a href="#shop-search-result.html">Search Result</a></li>
-              <li><a href="#shop-item.html">Product Page</a></li>
-              <li><a href="#shop-shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
-              <li><a href="#shop-shopping-cart.html">Shopping Cart</a></li>
-              <li><a href="#shop-contacts.html">Contacts</a></li>
-              <li><a href="#shop-account.html">My account</a></li>
-              <li><a href="#shop-standart-forms.html">Standart Forms</a></li>
+              <li class="active"><a th:href="@{/}">Home Default</a></li>
+              <li><a th:href="@{shop-product-list}">Product List</a></li>
+              <li><a th:href="@{shop-search-result}">Search Result</a></li>
+              <li><a th:href="@{shop-item}">Product Page</a></li>
+              <li><a th:href="@{shop-shopping-cart-null}">Shopping Cart (Null Cart)</a></li>
+              <li><a th:href="@{shop-shopping-cart}">Shopping Cart</a></li>
             </ul>
           </li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             sắp phát hành</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             văn học</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             ngoại văn</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             kinh tế</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             giáo khoa</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             tạp chí</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/authors/demo1}"><i class="fa fa-angle-right"></i> Sách
+          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             thiếu nhi</a></li>
         </ul>
       </div>
@@ -94,22 +91,22 @@
         <h2>Sách mới phát hành trong tuần</h2>
         <div class="owl-carousel owl-carousel5">
           <div>
-            <div class="product-item">
+            <div class="product-item book-1">
               <div class="pi-img-wrapper">
                 <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
                   <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view" bookId="1">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Mắt biếc</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <h3><a th:href="@{/shop-item}" id="bookName">Mắt biếc</a></h3>
+              <div class="pi-price" id="price">29.00</div>
+              <a href="javascript:;" bookId="1" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-sale"></div>
             </div>
           </div>
           <div>
-            <div class="product-item">
+            <div class="product-item book-2">
               <div class="pi-img-wrapper">
                 <img src="/assets-client/pages/img/products/book2.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
@@ -117,13 +114,13 @@
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Mắt biếc</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <h3><a th:href="@{/shop-item}" id="bookName">Mắt biếc</a></h3>
+              <div class="pi-price" id="price">29.00</div>
+              <a href="javascript:;" bookid="2" class="btn btn-default add2cart">Add to cart</a>
             </div>
           </div>
           <div>
-            <div class="product-item">
+            <div class="product-item book-3">
               <div class="pi-img-wrapper">
                 <img src="/assets-client/pages/img/products/book3.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
@@ -131,13 +128,13 @@
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Mắt biếc</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <h3><a th:href="@{/shop-item}" id="bookName">Mắt biếc</a></h3>
+              <div class="pi-price" id="price">29.00</div>
+              <a href="javascript:;" bookid="3" class="btn btn-default add2cart">Add to cart</a>
             </div>
           </div>
           <div>
-            <div class="product-item">
+            <div class="product-item book-4">
               <div class="pi-img-wrapper">
                 <img src="/assets-client/pages/img/products/book4.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
@@ -145,14 +142,14 @@
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="javascript:;">Mắt biếc</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <h3><a href="javascript:;" id="bookName">Mắt biếc</a></h3>
+              <div class="pi-price" id="price">29.00</div>
+              <a href="javascript:;" bookid="4" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-new"></div>
             </div>
           </div>
           <div>
-            <div class="product-item">
+            <div class="product-item book-5">
               <div class="pi-img-wrapper">
                 <img src="/assets-client/pages/img/products/book5.jpg" class="img-responsive" alt="Berry Lace Dress">
                 <div>
@@ -160,9 +157,9 @@
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="shop-item.html">Mắt biếc</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <h3><a th:href="@{/shop-item}"  id="bookName">Mắt biếc</a></h3>
+              <div class="pi-price" id="price">29.00</div>
+              <a href="javascript:;" bookid="5" class="btn btn-default add2cart">Add to cart</a>
             </div>
           </div>
 
@@ -263,7 +260,25 @@
       <!-- END Book Coming soon -->
     </div>
     <!-- END BEGIN Book new & Book Coming soon -->
-
+    <table class="table table-stripped">
+      <thead>
+      <tr>
+        <th class="goods-page-image">Image</th>
+        <th class="goods-page-description">Description</th>
+        <th class="goods-page-ref-no">Ref No</th>
+        <th class="goods-page-quantity">Quantity</th>
+        <th class="goods-page-price">Unit price</th>
+        <th class="goods-page-total" colspan="2">Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--    cart shopping-->
+      <tr>
+        <td colspan="4">Total Price</td>
+        <td ><b>$<span class="unit-price">0</span></b></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <!-- BEGIN STEPS -->
@@ -312,13 +327,13 @@
         </div>
         <div class="product-other-images">
           <a href="javascript:;" class="active">
-            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/model3.jpg}">
+            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/book2.jpg}">
           </a>
           <a href="javascript:;">
-            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/model4.jpg}">
+            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/book5.jpg}">
           </a>
           <a href="javascript:;">
-            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/model5.jpg}">
+            <img alt="Berry Lace Dress" th:src="@{/assets-client/pages/img/products/book1.jpg}">
           </a>
         </div>
       </div>
@@ -343,7 +358,7 @@
                    class="form-control input-sm">
           </div>
           <button class="btn btn-primary" type="submit">Add to cart</button>
-          <a href="shop-item.html" class="btn btn-default">More details</a>
+          <a th:href="@{/shop-item}" class="btn btn-default">More details</a>
         </div>
       </div>
 

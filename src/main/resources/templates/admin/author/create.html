@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <title>
     Create author | Admin
 </title>
 <th:block th:include="fragments/admin/head"></th:block>
 <body>
 <div class="wrapper ">
-    <th:block th:include="fragments/admin/sidebar"></th:block>
+    <th:block th:include="fragments/admin/sidebar_author"></th:block>
     <div class="main-panel">
         <!-- Navbar -->
         <th:block th:include="fragments/admin/navbar"></th:block>
@@ -14,24 +14,29 @@
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card ">
+                    <div class="card">
                         <div class="card-header ">
-                            Add new author
+                            <h4 class="card-title">Add New Author</h4>
                         </div>
-                        <div class="card-body ">
+                        <div class="card-body">
                             <div class="content">
-                                <form th:object="${author}" th:action="@{/authors/create}" th:method="post">
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}" playeholder="Harry Potter and the Deathly Hollows">
+                                <form th:object="${author}" th:action="@{/admin/authors/create}" th:method="post">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-12">Name</label>
+                                        <input type="text" class="form-control col-2 ml-3" id="name" th:field="*{name}">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="avatar">Avatar</label>
-                                        <input type="text" class="form-control" id="avatar" aria-describedby="avatar" th:field="*{avatar}" playeholder="Joanne K. Rowling"/>
+                                    <div class="form-group row">
+                                        <label for="avatar" class="col-12">Avatar</label>
+                                        <div class="col-3">
+                                            <input type="hidden" name="avatar" id="avatar" th:field="*{avatar}"/>
+                                            <img class="mb-2" src="" alt="" id="preview">
+                                            <input type="button" id="upload_widget" class="btn btn-info" value="Upload files"></input>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea rows="4" type="textarea" class="form-control" id="description" th:field="*{description}" playeholder="type here ..."/></textarea>
+
+                                    <div class="form-group row">
+                                        <label for="description" class="col-12">Description</label>
+                                        <textarea rows="4" class="form-control border-input col-10 ml-3" id="description" th:field="*{description}" playeholder="type here ..."/></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                     <button type="reset" class="btn btn-danger">Reset</button>
@@ -46,12 +51,8 @@
         </div>
     </div>
     <th:block th:include="fragments/admin/scripts"></th:block>
-
-    <script>
-        $(document).ready(function() {
-            demo.initGoogleMaps();
-        });
-    </script>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
 </div>
 </body>
 

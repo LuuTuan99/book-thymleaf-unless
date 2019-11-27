@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<title>
+    Detail author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+
+<body>
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_category"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Detail Category</h4>
+                        </div>
+                        <div class="row card-body">
+                            <!-- Begin Page Content -->
+                            <div class="col-sm-4">
+                                <div class="content">
+                                    <img th:src="@{${category.thumbnail}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h5 th:text="${'Category : ' + category.name}" class="card-title"></h5>
+                                Description: <p th:text="${category.description}"></p>
+                                Book: <th:block th:each="book : ${category.books}">
+                                <p th:text="${' + ' + book.name}"></p>
+                            </th:block>
+                            </div>
+                            <!-- /.content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+</div>
+</body>
+
+</html>
