@@ -42,13 +42,13 @@ public class HomeController {
     @Autowired
     CategoryServiceImpl categoryService;
     //demo shop index
-    @RequestMapping(method = RequestMethod.GET)
+    /* @RequestMapping(method = RequestMethod.GET)
     public String shop_product(Model model) {
         model.addAttribute("books", bookService.findAll());
         return "client/shop-index";
-    }
+    } */
 
-    @RequestMapping(value = "/listBooks", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String listBooks(
             Model model,
             @RequestParam("page") Optional<Integer> page,

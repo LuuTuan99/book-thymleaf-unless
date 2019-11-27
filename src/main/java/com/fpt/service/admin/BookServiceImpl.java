@@ -9,6 +9,7 @@ import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -52,6 +53,17 @@ public class BookServiceImpl implements BookService {
                 = new PageImpl<Book>(list, PageRequest.of(currentPage, pageSize), books.size());
 
         return bookPage;
+    }
+
+    public List<Book> latestBook() {
+        List<Book> books = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"updatedAtMLS"));
+        List<Book> latestBook = new ArrayList<>();
+        for (int i = 0; i < 5 ; i++ ){
+            Book book = books.get(i);
+            latestBook.add(book);
+        }
+
+        return latestBook;
     }
 
     @Override
