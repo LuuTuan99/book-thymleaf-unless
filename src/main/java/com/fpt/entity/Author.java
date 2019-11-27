@@ -11,13 +11,13 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotEmpty
+    @NotEmpty(message = "Tên tác giả không được để trống")
     private String name;
-    @NotEmpty
     @Lob
+    @NotEmpty(message = "Không được để trống trường này")
     private String avatar;
-    @NotEmpty
     @Lob
+    @NotEmpty
     private String description;
     private long createdAtMLS;
     private long updatedAtMLS;

@@ -25,6 +25,7 @@
                                         <div class="col-8">
                                             <label for="name">Name</label>
                                             <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}">
+                                            <small class="error col-12" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</small>
                                         </div>
                                         <div class="col-4">
                                             <label for="category">Category</label>
