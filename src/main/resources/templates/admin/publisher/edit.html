@@ -29,13 +29,15 @@
                                     <div class="form-group row">
                                         <label for="name" class="col-12">Name</label>
                                         <input type="text" class="form-control col-3 ml-3" id="name" th:field="*{name}">
+                                        <small class="error col-12" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</small>
                                     </div>
                                     <div class="form-group row">
                                         <label for="avatar" class="col-12">Avatar</label>
                                         <div class="col-3">
                                             <input type="hidden" name="avatar" id="avatar" aria-describedby="avatar" th:field="*{avatar}"/>
                                             <img class="mb-2" src="" alt="" id="preview">
-                                            <input type="button" id="upload_widget" class="btn btn-info" value="Upload files"></input>
+                                            <input type="button" id="upload_widget" class="btn btn-info" value="Upload files"><br>
+                                            <small class="error col-12" th:if="${#fields.hasErrors('avatar')}" th:errors="*{avatar}">Error</small>
                                         </div>
                                     </div>
 

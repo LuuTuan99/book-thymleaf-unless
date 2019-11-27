@@ -1,6 +1,7 @@
 package com.fpt.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,8 +10,10 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "Tên nhà xuất bản không được để trống")
     private String name;
     @Lob
+    @NotEmpty(message = "Không được để trống trường này")
     private String avatar;
     @Lob
     private String description;
