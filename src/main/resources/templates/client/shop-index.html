@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:javascript="http://www.w3.org/1999/xhtml">
 <!-- Head BEGIN -->
 <title>Home | Book Store</title>
 <th:block th:include="fragments/client/head"></th:block>
@@ -89,18 +89,18 @@
       <!-- BEGIN SALE PRODUCT -->
       <div class="col-md-12 sale-product">
         <h2>Sách mới phát hành trong tuần</h2>
-        <div class="owl-carousel owl-carousel5">
-          <div>
-            <div class="product-item book-1">
+        <div class="owl-carousel owl-carousel5" >
+          <div th:each="book, iStat : ${fourBooks}">
+            <div th:class="${book.getId()}">
               <div class="pi-img-wrapper">
-                <img src="/assets-client/pages/img/products/book1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <img th:src="${book.getPhotos()}" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a href="/assets-client/pages/img/products/book1.jpg" class="btn btn-default fancybox-button">Zoom</a>
+                  <a th:href="${book.getPhotos()}" class="btn btn-default fancybox-button">Zoom</a>
                   <a href="#product-pop-up" class="btn btn-default fancybox-fast-view" bookId="1">View</a>
                 </div>
               </div>
-              <h3><a th:href="@{/shop-item}" id="bookName">Mắt biếc</a></h3>
-              <div class="pi-price" id="price">29.00</div>
+              <h3><a th:href="@{/shop-item}" th:id="${book.getName()}" th:text="${book.getName()}"></a></h3>
+              <div class="pi-price" id="price" th:text="${book.getPrice()}"></div>
               <a href="javascript:;" bookId="1" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-sale"></div>
             </div>
