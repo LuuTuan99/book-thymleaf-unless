@@ -11,8 +11,10 @@
                         <a href="javascript:void(0);" class="current">80.000 tựa sách</a>
                         <div class="langs-block-others-wrapper">
                             <div class="langs-block-others">
-                                <p>Với hơn 80,000 đầu sách trong mọi lĩnh vực (và tiếp tục tăng mỗi ngày),tự hào là nhà sách trên mạng
-                                    có số lượng đầu sách lớn nhất Việt Nam, bạn có thể tìm được bất kỳ quyển sách nào cho mọi nhu cầu
+                                <p>Với hơn 80,000 đầu sách trong mọi lĩnh vực (và tiếp tục tăng mỗi ngày),tự hào là nhà
+                                    sách trên mạng
+                                    có số lượng đầu sách lớn nhất Việt Nam, bạn có thể tìm được bất kỳ quyển sách nào
+                                    cho mọi nhu cầu
                                     đọc sách của bạn.</p>
                             </div>
                         </div>
@@ -25,13 +27,18 @@
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a th:href="@{/shop-account}">My Account</a></li>
-                    <li><a href="#">Checkout</a></li>
-                    <th:block th:if="${auth != null}">
-                        <li><a th:href="@{/logout}">Log out</a></li>
-                    </th:block>
-                    <th:block th:unless="${auth != null}">
-                        <li><a th:href="@{/members/login}">Log in</a></li>
-                    </th:block>
+                    <li><a th:href="@{/shop-checkout}">Check out</a></li>
+                    <li class="dropdown">
+                        <th:block th:if="${auth != null}">
+                            <a class="dropbtn" th:text="${auth.getName()}"></a>
+                            <div class="dropdown-content">
+                                <a th:href="@{/logout}">Logout</a>
+                            </div>
+                        </th:block>
+                    </li>
+                    <li>
+                    <th:block th:unless="${auth != null}"><a th:href="@{/members/login}">Log in</a></th:block>
+                    </li>
                 </ul>
             </div>
             <!-- END TOP BAR MENU -->
@@ -42,40 +49,43 @@
 <div class="header">
     <div class="container">
         <a class="site-logo" th:href="@{/}"><img src="/assets-client/corporate/img/logos/logo-shop-red.png"
-                                                         alt="Metronic Shop UI"></a>
+                                                 alt="Metronic Shop UI"></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a th:href="@{/shop-shopping-cart}" class="top-cart-info-count">3 items</a>
-                <a th:href="@{/shop-shopping-cart}" class="top-cart-info-value">$1260</a>
+                <a class="top-cart-info-count">3 items</a>
+                <a class="top-cart-info-value">$1260</a>
             </div>
-            <a th:href="@{/shop-shopping-cart}" class="fa fa-shopping-cart"></a>
+            <a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a>
 
             <div class="top-cart-content-wrapper">
                 <div class="top-cart-content">
                     <ul class="scroller" style="height: 250px;">
                         <li>
-                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
+                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"
+                                                           alt="Rolex Classic Watch" width="37"
+                                                           height="34"></a>
                             <span class="cart-content-count">x 1</span>
                             <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
                             <em>$1230</em>
                             <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                         </li>
                         <li>
-                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
+                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"
+                                                           alt="Rolex Classic Watch" width="37"
+                                                           height="34"></a>
                             <span class="cart-content-count">x 1</span>
                             <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
                             <em>$1230</em>
                             <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
                         </li>
                         <li>
-                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37"
-                                                          height="34"></a>
+                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"
+                                                           alt="Rolex Classic Watch" width="37"
+                                                           height="34"></a>
                             <span class="cart-content-count">x 1</span>
                             <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
                             <em>$1230</em>
