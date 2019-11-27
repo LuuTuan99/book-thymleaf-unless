@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- Head BEGIN -->
 <title>Shopping Cart | Book Store</title>
 <th:block th:include="fragments/client/head"></th:block>
@@ -19,95 +19,73 @@
       <!-- BEGIN CONTENT -->
       <div class="col-md-12 col-sm-12">
         <h1>Shopping cart</h1>
-        <div class="goods-page">
-          <div class="goods-data clearfix">
-            <div class="table-wrapper-responsive">
-              <table summary="Shopping cart">
-                <tr>
-                  <th class="goods-page-image">Image</th>
-                  <th class="goods-page-description">Description</th>
-                  <th class="goods-page-ref-no">Ref No</th>
-                  <th class="goods-page-quantity">Quantity</th>
-                  <th class="goods-page-price">Unit price</th>
-                  <th class="goods-page-total" colspan="2">Total</th>
-                </tr>
-                <tr>
-                  <td class="goods-page-image">
-                    <a href="javascript:;"><img src="/assets-client/pages/img/products/book1.jpg" alt="Berry Lace Dress"></a>
-                  </td>
-                  <td class="goods-page-description">
-                    <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
-                    <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                    <em>More info is here</em>
-                  </td>
-                  <td class="goods-page-ref-no">
-                    javc2133
-                  </td>
-                  <td class="goods-page-quantity">
-                    <div class="product-quantity">
-                      <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                    </div>
-                  </td>
-                  <td class="goods-page-price">
-                    <strong><span>$</span>47.00</strong>
-                  </td>
-                  <td class="goods-page-total">
-                    <strong><span>$</span>47.00</strong>
-                  </td>
-                  <td class="del-goods-col">
-                    <a class="del-goods" href="javascript:;">&nbsp;</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="goods-page-image">
-                    <a href="javascript:;"><img src="/assets-client/pages/img/products/book2.jpg" alt="Berry Lace Dress"></a>
-                  </td>
-                  <td class="goods-page-description">
-                    <h3><a href="javascript:;">Cool green dress with red bell</a></h3>
-                    <p><strong>Item 1</strong> - Color: Green; Size: S</p>
-                    <em>More info is here</em>
-                  </td>
-                  <td class="goods-page-ref-no">
-                    javc2133
-                  </td>
-                  <td class="goods-page-quantity">
-                    <div class="product-quantity">
-                      <input id="product-quantity2" type="text" value="1" readonly class="form-control input-sm">
-                    </div>
-                  </td>
-                  <td class="goods-page-price">
-                    <strong><span>$</span>47.00</strong>
-                  </td>
-                  <td class="goods-page-total">
-                    <strong><span>$</span>47.00</strong>
-                  </td>
-                  <td class="del-goods-col">
-                    <a class="del-goods" href="javascript:;">&nbsp;</a>
-                  </td>
-                </tr>
-              </table>
+        <th:block th:if="${total == 0}">
+          <p>Chưa có sản phẩm trong giỏ hàng của bạn.</p>
+         <p>Click <a th:href="@{/shop-product-list}">vào đây</a> để quay lại trang chủ.</p>
+        </th:block>
+        <th:block th:unless="${total == 0}">
+          <div>
+            <div class="goods-page">
+              <form method="post" th:action="${'/cart/update'}">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                  <table summary="Shopping cart">
+                    <tr>
+                      <th class="goods-page-image">Ảnh sách</th>
+                      <th class="goods-page-name">Tên sách</th>
+                      <th class="goods-page-publisher">Nhà xuất bản</th>
+                      <th class="goods-page-quantity">Số lượng</th>
+                      <th class="goods-page-quantity">Số lượng test</th>
+                      <th class="goods-page-price">Đơn giá</th>
+                      <th class="goods-page-total" colspan="2">Total</th>
+                    </tr>
+                    <tr th:each="item :${session.cart}">
+                      <td class="">
+                        <img th:src="${item.book.photos}" width="100px" alt="">
+                      </td>
+                      <td>
+                        <h3><a href="javascript:;"><span th:text="${item.book.name}"></span></a></h3>
+                      </td>
+                      <td th:text="${item.book.publisher.name}">
+                      </td>
+                      <td class="goods-page-quantity">
+                        <div class="product-quantity">
+                          <input id="product-quantity" type="text" th:value="${item.quantity}" readonly class="form-control input-sm">
+                        </div>
+                      </td>
+                      <td>
+                        <input name="quantity" type="number" th:value="${item.quantity}" width="20px">
+                      </td>
+                      <td class="goods-page-price">
+                        <strong th:text="${item.book.price + 'đ'}"></strong>
+                      </td>
+                      <td class="goods-page-total">
+                        <strong th:text="${item.book.price * item.quantity + 'đ'}"></strong>
+                      </td>
+                      <td class="del-goods-col">
+                        <a th:href="${'/cart/remove/' +item.book.id}" class="del-goods" href="javascript:;">&nbsp;</a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="shopping-total">
+                  <ul>
+                    <li style="text-align: right">
+                      <input type="submit" class="btn btn-warning" value="update giá">
+<!--                      <em>Sub total</em>-->
+<!--                      <strong class="price"><span>$</span>47.00</strong>-->
+                    </li>
+                    <em>Tổng giá: </em>
+                    <strong class="price" th:text="${total + 'đ'}"></strong>
+                  </ul>
+                </div>
+              </div>
+              </form>
             </div>
-
-            <div class="shopping-total">
-              <ul>
-                <li>
-                  <em>Sub total</em>
-                  <strong class="price"><span>$</span>47.00</strong>
-                </li>
-                <li>
-                  <em>Shipping cost</em>
-                  <strong class="price"><span>$</span>3.00</strong>
-                </li>
-                <li class="shopping-total-price">
-                  <em>Total</em>
-                  <strong class="price"><span>$</span>50.00</strong>
-                </li>
-              </ul>
-            </div>
+            <a th:href="@{/shop-product-list}" class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
+            <a class="btn btn-primary" type="submit">Checkout<i class="fa fa-check"></i></a>
           </div>
-          <button class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></button>
-          <button class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></button>
-        </div>
+        </th:block>
       </div>
       <!-- END CONTENT -->
     </div>
@@ -213,6 +191,9 @@
 </div>
 <!-- END fast view of a product -->
 <th:block th:include="fragments/client/scripts"></th:block>
+<script>
+
+</script>
 </body>
 <!-- END BODY -->
 </html>

@@ -1,13 +1,11 @@
 package com.fpt.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Calendar;
+import java.util.Set;
 
 @Entity
 public class Member {
@@ -17,15 +15,15 @@ public class Member {
     @Email(message = "Email không đúng định dạng.")
     @Size(min = 7, max = 30, message = "Tối thiểu 7 ký tự, tối đa 30 ký tự.")
     private String email;
-    @NotEmpty(message = "Password khong duoc de trong.")
+    @NotEmpty(message = "Password không được để trống")
     private String hashPassword;
-    @NotEmpty(message = "UserName khong duoc de trong.")
+    @NotEmpty(message = "UserName không được để trống")
     private String username;
     @NotEmpty
     private String avatar;
-    @NotEmpty
+    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
-    @NotEmpty
+    @NotEmpty(message = "Địa chỉ không được để trống")
     private String address;
     private int gender;
     private String role;
@@ -34,6 +32,8 @@ public class Member {
     private long updatedAt;
     private long deletedAt;
     private int status;
+    @OneToMany(mappedBy = "createdBy")
+    private Set<OrderBook> orderBooks;
 
     public Member() {
         this.createdAt = Calendar.getInstance().getTimeInMillis();
@@ -196,5 +196,13 @@ public class Member {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Set<OrderBook> getOrderBooks() {
+        return orderBooks;
+    }
+
+    public void setOrderBooks(Set<OrderBook> orderBooks) {
+        this.orderBooks = orderBooks;
     }
 }

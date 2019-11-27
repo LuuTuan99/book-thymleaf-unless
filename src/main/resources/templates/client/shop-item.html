@@ -14,7 +14,7 @@
 <div class="main">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a th:href="@{/index}">Home</a></li>
+      <li><a th:href="@{/}">Home</a></li>
       <li><a href="">Store</a></li>
       <li class="active" th:text="${book.name}"></li>
     </ul>
@@ -48,25 +48,6 @@
           <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
             thiếu nhi</a></li>
         </ul>
-
-        <div class="sidebar-products clearfix">
-          <h2>Bestsellers</h2>
-          <div class="item">
-            <a href="shop-item.html"><img src="/assets-client/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$31.00</div>
-          </div>
-          <div class="item">
-            <a href="shop-item.html"><img src="/assets-client/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$23.00</div>
-          </div>
-          <div class="item">
-            <a href="shop-item.html"><img src="/assets-client/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="shop-item.html">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$86.00</div>
-          </div>
-        </div>
       </div>
       <!-- END SIDEBAR -->
 
@@ -94,20 +75,31 @@
                   Availability: <strong>In Stock</strong>
                 </div>
               </div>
+              <div th:if="${success}"
+                   class="row alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <span th:text="${success}"></span>
+              </div>
               <div class="description">
                 <p th:text="${book.description}"></p>
               </div>
               <div class="product-page-cart">
-                <div class="product-quantity">
-                  <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                </div>
-                <button class="btn btn-primary" type="submit">Add to cart</button>
+
+                <!--so luong order ban dau-->
+               <!-- <div class="product-quantity">
+                  <input name="quantity" type="number" value="1" class="form-control input-sm">
+                </div>-->
+                <!--end so luong order ban dau-->
+                <a th:href="@{/cart/buy/{id}(id=*{id})}" class="btn btn-primary add2cart">Add to cart</a>
               </div>
               <div class="review">
-                <input type="range" value="4" step="0.25" id="backing4">
-                <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
-                </div>
+                <!--<input type="range" value="4" step="0.25" id="backing4">
+                <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">-->
                 <a href="javascript:;">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">Write a review</a>
+                </div>
               </div>
               <ul class="social-icons">
                 <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>

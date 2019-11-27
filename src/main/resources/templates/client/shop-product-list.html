@@ -70,22 +70,7 @@
                         thiếu nhi</a></li>
                 </ul>
 
-                <div class="sidebar-filter margin-bottom-25">
-                    <h2>Filter</h2>
-                    <h3>Availability</h3>
-                    <div class="checkbox-list">
-                        <label><input type="checkbox"> Not Available (3)</label>
-                        <label><input type="checkbox"> In Stock (26)</label>
-                    </div>
-                    <h3>Price</h3>
-                    <p>
-                        <label for="amount">Range:</label>
-                        <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
-                    </p>
-                    <div id="slider-range"></div>
-                </div>
-
-                <div class="sidebar-products clearfix">
+                <!--<div class="sidebar-products clearfix">
                     <h2>Bestsellers</h2>
                     <div class="item">
                         <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k1.jpg"
@@ -105,12 +90,12 @@
                         <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
                         <div class="price">$86.00</div>
                     </div>
-                </div>
+                </div>-->
             </div>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-7">
-                <div class="content-search margin-bottom-20">
+               <!-- <div class="content-search margin-bottom-20">
                     <form th:action="@{/shop-product-list}" method="get">
                     <div class="row">
                         <div class="col-md-6">
@@ -127,7 +112,7 @@
                         </div>
                     </div>
                     </form>
-                </div>
+                </div>-->
 
                 <!-- BEGIN PRODUCT LIST -->
                 <div class="row product-list">
@@ -138,7 +123,7 @@
                                 <img th:src="@{${book.photos}}" class="img-responsive" alt="image book" style="object-fit: cover;">
                                 <div>
                                     <a th:href="@{${book.photos}}" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view"
+                                    <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view"
                                        th:BookName="${book.name}"
                                        th:BookDescription="${book.description}"
                                        th:BookPrice="${book.price}"
@@ -149,7 +134,7 @@
                                        th:BookPublisher="${book.publisher.name}"
                                        th:each = "category: ${book.categories}"
                                        th:BookCategories = "${category.name}"
-                                       onclick="view(this)">View</a>
+                                       >View</a>
                                 </div>
                             </div>
                             <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:text="${book.name}"></a></h3>
@@ -162,7 +147,7 @@
 
                 <!-- END PRODUCT LIST -->
                 <!-- BEGIN PAGINATOR -->
-                <div class="card-footer">
+                <div class="card-footer text-right">
                     <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
                         <ul class="pagination float-right">
                             <li class="page-item"><a class="page-link" th:href="@{/shop-product-list(page=${1}, limit=${limit})}">First</a></li>
@@ -220,7 +205,7 @@
 <!-- END FOOTER -->
 
 <!-- BEGIN fast view of a product -->
-<div id="product-pop-up" style="display: none; width: 700px;">
+<!--<div id="product-pop-up" style="display: none; width: 700px;">
     <div class="product-page product-pop-up">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-3">
@@ -273,7 +258,7 @@
             <div class="sticker sticker-sale"></div>
         </div>
     </div>
-</div>
+</div>-->
 <!-- END fast view of a product -->
 <th:block th:include="fragments/client/scripts"></th:block>
 </body>
