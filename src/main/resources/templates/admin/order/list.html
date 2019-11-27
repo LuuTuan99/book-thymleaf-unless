@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>
+    List author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+<body class="">
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_order"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Order Table</h4>
+                            <form th:action="@{/admin/books}" method="get">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                    </div>
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group no-border">
+                                            <input type="text" th:value="${keyword}" name="keyword" class="form-control" placeholder="Search...">
+                                            <input type="hidden" th:value="${limit}" name="limit">
+                                            <input type="hidden" th:value="${currentPage}" name="page">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="nc-icon nc-zoom-split"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th><input type="checkbox" id="select_all"></th>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>text 1</th>
+                                    <th>text 2</th>
+                                    <th>text 3</th>
+                                    <th>Action</th>
+                                    </thead>
+                                    <tbody>
+<!--                                    code data-->
+                                    <tr >
+                                        <td><input type="checkbox" name="select[]"></td>
+                                        <td >demo</td>
+                                        <td>demo</td>
+                                        <td>demo</td>
+                                        <td>demo</td>
+                                        <td>demo</td>
+                                        <td>
+                                            <a th:href="@{#}">Detail |</a>
+                                            <a th:href="@{#}">Edit |</a>
+                                            <a th:href="@{#}" class="btn-delete-author">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#select_all").click(function(){
+                var checked_status = this.checked;
+                $("input[name='select[]']").each(function(){
+                    this.checked = checked_status;
+                });
+            });
+
+            $(".btn-delete-author").click(function () {
+                var id = $(this).attr("href").replace("#", "");
+                if (confirm("Bạn có chắc muốn xoá tài khoản này?")) {
+                    $.ajax({
+                        url: "/members/delete/" + id,
+                        type: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                        },
+                        success: function (data) {
+                            alert("Xoá thành công!");
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("Thao tác thất bại, vui lòng thử lại sau!");
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>

@@ -43,37 +43,37 @@
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-7">
+
                <div class="content-search margin-bottom-20">
                     <form th:action="@{/shop-product-list}" method="get">
+
                     <div class="row">
                         <div class="col-md-6">
-                            <h1>Search result for <em>Book</em></h1>
+                            <h1>Kết quả tìm kiếm cho <em>sách</em></h1>
+                        </div>
+
+                        <div class="col-md-6">
+                            <form action="#">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Tìm sách ..." class="form-control">
+                                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                      </span>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    </form>
                 </div>
-
                 <!-- BEGIN PRODUCT LIST -->
                 <div class="row product-list">
                     <!-- PRODUCT ITEM START -->
                     <div class="col-md-3 col-sm-6 col-xs-12" th:each="book: ${books}">
-                        <div class="product-item" th:id="${book.id}">
+                        <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img th:src="@{${book.photos}}" class="img-responsive" alt="image book" style="object-fit: cover;">
+                                <img th:src="${book.getPhotos()}" class="img-responsive" alt="image book" style="object-fit: cover;">
                                 <div>
-                                    <a th:href="@{${book.photos}}" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view"
-                                       th:BookName="${book.name}"
-                                       th:BookDescription="${book.description}"
-                                       th:BookPrice="${book.price}"
-                                       th:BookQuantity="${book.quantity}"
-                                       th:Bookid="${book.id}"
-                                       th:BookImg="${book.photos}"
-                                       th:BookAuthor="${book.author.name}"
-                                       th:BookPublisher="${book.publisher.name}"
-                                       th:each = "category: ${book.categories}"
-                                       th:BookCategories = "${category.name}"
-                                       >View</a>
+                                    <a th:href="${book.getPhotos()}" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:text="${book.name}"></a></h3>
@@ -143,62 +143,6 @@
 <th:block th:include="fragments/client/footer"></th:block>
 <!-- END FOOTER -->
 
-<!-- BEGIN fast view of a product -->
-<!--<div id="product-pop-up" style="display: none; width: 700px;">
-    <div class="product-page product-pop-up">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-3">
-                <div class="product-main-image">
-                    <div id="bookInfo">
-                        <img src="" alt="image book" class="img-responsive" id="imgModal">
-                    </div>
-                </div>
-                <div class="product-other-images">
-                    <a href="javascript:;" class="active">
-                        <img alt="Image book" src="" id="ImgModal"></a>
-                    <a href="javascript:;">
-                        <img alt="Image book" src="/assets-client/pages/img/products/book2.jpg"></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-9">
-                <h1 id="nameModal"></h1>
-                <div class="price-availability-block clearfix">
-                    <div class="price">
-                        <strong id="priceModal"><span>$</span></strong>
-                        <em>$<span>62.00</span></em>
-                    </div>
-                    <div class="availability">
-                        Availability: <strong>In Stock</strong>
-                    </div>
-                </div>
-                <div class="author">
-
-                   Tác giả: <p id="authorModal"></p>
-                </div>
-                <div class="publisher">
-                    Nhà xuất bản: <p id="publisherModal"></p>
-                </div>
-                <div>
-                    Category: <p id="categoriesModal"></p>
-                </div>
-                <div class="description">
-                    <p id="descr"></p>
-                </div>
-                <div class="product-page-cart">
-                    <div class="product-quantity">
-                        <input id="product-quantity" type="text" value="1" readonly name="product-quantity"
-                               class="form-control input-sm">
-                    </div>
-                    <button class="btn btn-primary" type="submit">Add to cart</button>
-                    <a th:href="@{/shop-item}" class="btn btn-default">More details</a>
-                </div>
-            </div>
-
-            <div class="sticker sticker-sale"></div>
-        </div>
-    </div>
-</div>-->
-<!-- END fast view of a product -->
 <th:block th:include="fragments/client/scripts"></th:block>
 </body>
 <!-- END BODY -->
