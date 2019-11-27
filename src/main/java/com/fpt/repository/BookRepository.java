@@ -1,6 +1,8 @@
 package com.fpt.repository;
 
 import com.fpt.entity.Book;
+import com.fpt.pagination.PageModel;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -29,4 +31,7 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
     void resetIncrement();
 
     List<Book> findByName(String name);
+
+
+
 }

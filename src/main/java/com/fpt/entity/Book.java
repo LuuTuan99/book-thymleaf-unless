@@ -2,6 +2,7 @@ package com.fpt.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +38,10 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private Set<Category> categories = new HashSet<>();
 
+    public Book() {
+        this.createdAtMLS= Calendar.getInstance().getTimeInMillis();
+        this.updatedAtMLS= Calendar.getInstance().getTimeInMillis();
+    }
 
     public enum Status {
         ACTIVE(1), DEACTIVE(0),DELETED(-1);
