@@ -1,19 +1,16 @@
 package com.fpt.service.admin;
 
-import com.fpt.entity.Author;
 import com.fpt.entity.Book;
 import com.fpt.repository.BookRepository;
-import com.fpt.service.admin.BookService;
-import com.fpt.specification.AuthorSpecification;
 import com.fpt.specification.BookSpecification;
 import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,6 +31,27 @@ public class BookServiceImpl implements BookService {
         specification = specification
                 .and(new BookSpecification(new SearchCriteria("status", "!=", Book.Status.DELETED.getValue())));
         return bookRepository.findAll(specification, pageable);
+    }
+
+    public Page<Book> findPaginated(Pageable pageable) {
+        List<Book> books = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"updatedAtMLS"));
+
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Book> list;
+
+        if (books.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, books.size());
+            list = books.subList(startItem, toIndex);
+        }
+
+        Page<Book> bookPage
+                = new PageImpl<Book>(list, PageRequest.of(currentPage, pageSize), books.size());
+
+        return bookPage;
     }
 
     @Override
