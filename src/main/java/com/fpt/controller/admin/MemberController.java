@@ -1,5 +1,6 @@
 package com.fpt.controller.admin;
 
+import com.fpt.entity.Author;
 import com.fpt.entity.Member;
 import com.fpt.entity.Publisher;
 import com.fpt.service.admin.MemberServiceImpl;
@@ -93,6 +94,16 @@ public class MemberController {
         }
         memberService.register(member);
         return "success";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public String detail(@PathVariable long id, Model model) {
+        Member member = memberService.getById(id);
+        if (member == null) {
+            return "error/404";
+        }
+        model.addAttribute("member", member);
+        return "admin/member/detail";
     }
 
 
