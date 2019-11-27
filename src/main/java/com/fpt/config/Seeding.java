@@ -1065,12 +1065,6 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
                 .withStatus(Author.Status.ACTIVE.getValue())
                 .build());
         authorList.add(Author.Builder.anAuthor()
-                .withName("")
-                .withAvatar("http://khoavanhoc-ngonngu.edu.vn/images/Nghiencuu/VanhocVietNam/Nguyen-binh-phuong.JPG")
-                .withDescription("")
-                .withStatus(Author.Status.ACTIVE.getValue())
-                .build());
-        authorList.add(Author.Builder.anAuthor()
                 .withName("Nguyễn Bình Phương")
                 .withAvatar("http://khoavanhoc-ngonngu.edu.vn/images/Nghiencuu/VanhocVietNam/Nguyen-binh-phuong.JPG")
                 .withDescription("Nguyễn Bình Phương (1965, Thái Nguyên), đại tá, tổng biên tập tạp chí Văn Nghệ Quân Đội, Ủy viên Ban chấp hành Hội nhà văn Việt Nam. Được xem là nhà văn luôn có ý thức cách tân về kỹ thuật. Đã xuất bản 8 tiểu thuyết và 6 tập thơ, trong đó có hai tác phẩm được giải thưởng của Hội nhà văn Hà Nội: Buổi câu hờ hững (thơ, 2013) và Mình và họ (tiểu thuyết, 2015). Bút pháp sắc cạnh, hiện đại, thoáng chất ma quái, huyền ảo, Nguyễn Bình Phương thể hiện nét đặc biệt của con người và không gian miền Bắc Việt Nam: cái rối ren trong tâm hồn của từng cá nhân và cái hỗn độn thời đại. Mình và họ là tác phẩm được chú ý nhiều nhất, nói về sự hòa trộn giữa quá khứ (cuộc chiến tranh biên giới phía Bắc 1979) và hiện tại (bóng tối tội ác và bạo lực của lớp trẻ làm ăn, kinh doanh).")
