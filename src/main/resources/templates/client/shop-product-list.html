@@ -26,18 +26,23 @@
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
-            <li><a th:href="@{/index}">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">Book category</li>
+            <li><a th:href="@{/}">Trang chủ</a></li>
+            <li class="active">Thể loại sách</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SIDEBAR -->
             <form th:action="@{/shop-product-list}" method="get">
             <div class="sidebar col-md-3 col-sm-5">
-                <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" name="categoryId"
-                   th:each="category : ${categories}" th:href="'?categoryId=' + ${category.id}"
-                   th:text="${category.name}" th:value="${category.id}"></a>
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+                    <li class="list-group-item clearfix" th:each="category : ${categories}">
+                        <i class="fa fa-angle-right"></i>
+                        <a th:href="'?categoryId=' + ${category.id}"
+                           th:text="${category.name}"
+                           th:value="${category.id}">
+                        </a>
+                    </li>
+                </ul>
             </div>
             </form>
             <!-- END SIDEBAR -->
