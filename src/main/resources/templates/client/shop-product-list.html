@@ -33,51 +33,25 @@
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SIDEBAR -->
+            <form th:action="@{/shop-product-list}" method="get">
             <div class="sidebar col-md-3 col-sm-5">
-                <ul class="list-group margin-bottom-25 sidebar-menu">
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        bán chạy</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        mới phát hành</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        sắp phát hành</a></li>
-                    <li class="list-group-item clearfix dropdown active">
-                        <a href="javascript:void(0);" class="collapsed">
-                            <i class="fa fa-angle-right"></i>
-                            Sách văn học
-                        </a>
-                        <ul class="dropdown-menu" style="display:block;">
-                            <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học nước
-                                ngoài</a></li>
-                            <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học trong
-                                nước</a></li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        kinh tế</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        giáo khoa</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        tạp chí</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        thiếu nhi</a></li>
-                </ul>
+                <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" name="categoryId"
+                   th:each="category : ${categories}" th:href="'?categoryId=' + ${category.id}"
+                   th:text="${category.name}" th:value="${category.id}"></a>
             </div>
+            </form>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-7">
-                <div class="content-search margin-bottom-20">
+
+               <div class="content-search margin-bottom-20">
+                    <form th:action="@{/shop-product-list}" method="get">
+
                     <div class="row">
                         <div class="col-md-6">
                             <h1>Kết quả tìm kiếm cho <em>sách</em></h1>
                         </div>
+
                         <div class="col-md-6">
                             <form action="#">
                                 <div class="input-group">
