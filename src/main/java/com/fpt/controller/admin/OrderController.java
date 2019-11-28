@@ -1,13 +1,20 @@
 package com.fpt.controller.admin;
 
-import com.fpt.entity.Book;
+
 import com.fpt.entity.OrderBook;
-import com.fpt.service.admin.BookService;
 import com.fpt.service.admin.order.OrderDetailsService;
 import com.fpt.service.admin.order.OrderService;
+import com.fpt.service.admin.order.OrderServiceImplement;
+import com.fpt.specification.BookSpecification;
+import com.fpt.specification.OrderSpecification;
+import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +27,11 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.fpt.config.ProjectConfig;
+
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping(value = "/admin/orders")
@@ -32,17 +40,39 @@ public class OrderController {
     private OrderDetailsService orderDetailsService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrderServiceImplement orderServiceImplement;
     @RequestMapping(method = RequestMethod.GET)
-    public String listOrder(Model model){
+    public String listOrder(
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            Model model){
+        Specification specification = Specification.where(null);
+        if (keyword != null && keyword.length() > 0) {
+            specification = specification
+                    .and(new OrderSpecification(new SearchCriteria("keyword", "join", keyword)));
+            model.addAttribute("keyword", keyword);
+        }
+
+        Page<OrderBook> orderBookPage = orderServiceImplement.findAllActive(specification, PageRequest.of(page - 1, limit));
+        model.addAttribute("orderBooks", orderBookPage.getContent());
         double total =SumPrice();
         double total1 =getUnitPriceOnWeek();
         model.addAttribute("list2",orderDetailsService.fillAll());
-        model.addAttribute("list",orderService.findAll());
+        // model.addAttribute("list",orderService.findAll());
         model.addAttribute("order",new OrderBook());
         model.addAttribute("total",total);
+
         model.addAttribute("total1",total1);
 
-        return "order/test";
+
+        model.addAttribute("currentPage", orderBookPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", orderBookPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", orderBookPage.getTotalPages());
+
+
+        return "/admin/order/list";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable long id, Model model) {
@@ -51,7 +81,7 @@ public class OrderController {
             return "error/404";
         }
         model.addAttribute("order", order);
-        return "order/detail";
+        return "/admin/order/detail";
     }
 
     @PostMapping(value = "/updateStatus/{orderId}")
@@ -75,6 +105,7 @@ public class OrderController {
         }
         return totalPrice;
     }
+
     public double getUnitPriceOnWeek(){
         List<OrderBook> orderBookListSuccess =orderService.findByStatus(0);
         LocalDate currentTime = Instant.ofEpochMilli(System.currentTimeMillis()).atZone(ZoneId.systemDefault()).toLocalDate();
@@ -87,4 +118,5 @@ public class OrderController {
         }
         return total;
     }
+
 }
