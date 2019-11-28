@@ -72,7 +72,7 @@ public class OrderController {
         model.addAttribute("totalPage", orderBookPage.getTotalPages());
 
 
-        return "/admin/order/list";
+        return "admin/order/list";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable long id, Model model) {
