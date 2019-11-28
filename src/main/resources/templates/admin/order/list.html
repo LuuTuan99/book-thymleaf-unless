@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Order Table</h4>
-                            <form th:action="@{/admin/books}" method="get">
+                            <form th:action="@{/admin/orders}" method="get">
                                 <div class="row">
                                     <div class="col-sm-6">
                                     </div>
@@ -43,30 +43,63 @@
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <th><input type="checkbox" id="select_all"></th>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>text 1</th>
-                                    <th>text 2</th>
-                                    <th>text 3</th>
-                                    <th>Action</th>
+                                    <th>Nguoi dat</th>
+                                    <th>SDT</th>
+                                    <th>DIA CHI</th>
+                                    <th>Gia don hang</th>
+                                    <th>Trang thai</th>
+                                    <th>ORDER DETAILS</th>
                                     </thead>
                                     <tbody>
 <!--                                    code data-->
-                                    <tr >
+                                    <tr th:each="o :${orderBooks}">
                                         <td><input type="checkbox" name="select[]"></td>
-                                        <td >demo</td>
-                                        <td>demo</td>
-                                        <td>demo</td>
-                                        <td>demo</td>
-                                        <td>demo</td>
-                                        <td>
-                                            <a th:href="@{#}">Detail |</a>
-                                            <a th:href="@{#}">Edit |</a>
-                                            <a th:href="@{#}" class="btn-delete-author">Delete</a>
+                                        <td th:text="${o.customerName}"></td>
+                                        <td th:text="${o.customerPhone}"></td>
+                                        <td th:text="${o.customerAddress}"></td>
+                                        <td th:text="${o.unitPrice}"></td>
+                                        <form  th:action="@{'/admin/orders/updateStatus/' + ${o.id}}" method="post">
+                                            <th:block th:if="${o.updatedAt == 0}">
+                                                <td>
+                                                    <select name="status" onchange="this.form.submit()">
+                                                        <option th:value="1">Đang xử lý</option>
+                                                        <option th:value="0">Đã xử lý</option>
+                                                    </select>
+                                                </td>
+                                            </th:block>
+                                            <th:block th:unless="${o.updatedAt == 0}">
+                                                <td>Đã xử lý</td>
+                                            </th:block>
+                                        </form>
+                                        <td >
+                                            <a th:href="@{'/admin/orders/' + ${o.id}}">Detail</a>
+                                            <!--<ul th:each="detail :${o.orderDetails}">
+                                                <li th:text="${detail.book.name}+':'+${detail.quantity}+' cuốn'"></li>
+                                                <li th:text="'Price:'+${detail.price}"></li>
+                                                <li th:text="'BookID:'+${detail.id.getBookId()}"></li>
+                                                <li th:text="'OrderID:'+${detail.id.getOrderId()}"></li>
+                                            </ul>-->
                                         </td>
+                                    </tr>
+                                    <tr>
+                                          <td colspan="6" th:text="'Tổng doanh thu: '+${total}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
+
+                                <div class="card-footer">
+                                    <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
+                                        <ul class="pagination float-right">
+                                            <li class="page-item"><a class="page-link" th:href="@{/admin/orders(page=${1}, limit=${limit})}">First</a></li>
+                                            <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/admin/orders(page=${currentPage - 1}, limit=${limit})}">Previous</a></li>
+                                            <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/admin/orders(page=${currentPage - 1}, limit=${limit})}">[[${currentPage - 1}]]</a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">[[${currentPage}]]</a></li>
+                                            <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/admin/orders(page=${currentPage + 1}, limit=${limit})}">[[${currentPage + 1}]]</a></li>
+                                            <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/admin/orders(page=${currentPage + 1}, limit=${limit})}">Next</a></li>
+                                            <li class="page-item"><a class="page-link" th:href="@{/admin/orders(page=${totalPage}, limit=${limit})}">Last</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
 
