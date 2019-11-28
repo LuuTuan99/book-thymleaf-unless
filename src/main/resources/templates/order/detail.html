@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Thong tin chi tiet</h1>
+<div th:object="${order}">
+
+        <table border="1">
+            <tr>
+                <th colspan="5" th:text="*{nameOrder}"></th>
+            </tr>
+            <tr>
+                    <th>Tên x Số Lượng x Giá</th>
+                    <th>Price/1c</th>
+                    <th>Price xQuantity</th>
+                    <th>BookID</th>
+                    <th>OrderID</th>
+            </tr>
+            <tr th:each="item,count : *{orderDetails}">
+                <td th:text="${item.bookName}+' x '+${item.quantity}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.price *item.quantity}"></td>
+                <td th:text="${item.id.bookId}"></td>
+                <td th:text="${item.id.orderId}"></td>
+           <!-- <td th:text="+${count.index +1}"></td>
+            <td th:text="${item.book.name}"></td>
+            <td th:text="${item.id.bookId}"></td>
+            <td th:text="${item.id.orderId}"></td>-->
+        </tr>
+        </table>
+</div>
+</body>
+</html>

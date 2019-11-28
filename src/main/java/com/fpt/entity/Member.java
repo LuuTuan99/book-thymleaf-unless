@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -32,8 +33,8 @@ public class Member {
     private long updatedAt;
     private long deletedAt;
     private int status;
-    @OneToMany(mappedBy = "createdBy")
-    private Set<OrderBook> orderBooks;
+    @OneToMany(mappedBy = "createdBy",cascade = CascadeType.ALL)
+    private Set<OrderBook> orderBooks =new HashSet<>();
 
     public Member() {
         this.createdAt = Calendar.getInstance().getTimeInMillis();

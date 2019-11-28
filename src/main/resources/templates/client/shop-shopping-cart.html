@@ -35,9 +35,10 @@
                       <th class="goods-page-name">Tên sách</th>
                       <th class="goods-page-publisher">Nhà xuất bản</th>
                       <th class="goods-page-quantity">Số lượng</th>
-                      <th class="goods-page-quantity">Số lượng test</th>
-                      <th class="goods-page-price">Đơn giá</th>
-                      <th class="goods-page-total" colspan="2">Total</th>
+                      <!--<th class="goods-page-quantity">Số lượng test</th>-->
+                      <th class="goods-page-price">Giá</th>
+                      <th class="goods-page-total">Sub Total</th>
+                      <th class="goods-page-remove">Gỡ bỏ</th>
                     </tr>
                     <tr th:each="item :${session.cart}">
                       <td class="">
@@ -50,12 +51,12 @@
                       </td>
                       <td class="goods-page-quantity">
                         <div class="product-quantity">
-                          <input id="product-quantity" type="text" th:value="${item.quantity}" readonly class="form-control input-sm">
+                          <input id="product-quantity" name="quantity" type="number" th:value="${item.quantity}"class="form-control input-sm">
                         </div>
                       </td>
-                      <td>
-                        <input name="quantity" type="number" th:value="${item.quantity}" width="20px">
-                      </td>
+                     <!-- <td>
+                       &lt;!&ndash; <input name="quantity" type="number" th:value="${item.quantity}" width="20px">&ndash;&gt;
+                      </td>-->
                       <td class="goods-page-price">
                         <strong th:text="${item.book.price + 'đ'}"></strong>
                       </td>
@@ -83,7 +84,7 @@
               </form>
             </div>
             <a th:href="@{/shop-product-list}" class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
-            <a class="btn btn-primary" type="submit">Checkout<i class="fa fa-check"></i></a>
+            <a th:href="@{/cart/checkout}" class="btn btn-primary" type="submit">Checkout<i class="fa fa-check"></i></a>
           </div>
         </th:block>
       </div>

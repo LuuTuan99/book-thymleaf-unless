@@ -1,6 +1,7 @@
 package com.fpt.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,11 +14,30 @@ public class OrderBook {
     private String customerPhone;
     private long createdAt;
     private int status;
+    private double unitPrice;
     @ManyToOne
     @JoinColumn(name = "created_by_id")
     private Member createdBy;
-    @OneToMany(mappedBy = "order")
-    private Set<OrderDetails> orderDetails;
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    private Set<OrderDetails> orderDetails =new HashSet<>();
+
+    public enum Status {
+        ACTIVE(1), DEACTIVE(0),DELETED(-1);
+
+        private int value;
+
+        Status(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
 
     public long getId() {
         return id;
@@ -89,5 +109,13 @@ public class OrderBook {
 
     public void setOrderDetails(Set<OrderDetails> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

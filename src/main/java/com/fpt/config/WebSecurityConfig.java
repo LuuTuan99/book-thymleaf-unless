@@ -41,9 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                    .antMatchers("/members/register", "/*","/shop-item/*",
-                            "/assets-client/**",
-                            "/assets-admin/**","/cart/**").permitAll()
+                .antMatchers("/members/register", "/*","/shop-item/*",
+                        "/assets-client/**",
+                        "/assets-admin/**","/cart/remove/*","/cart/buy/*","/cart/update","/cart/listCard").permitAll()
                     .antMatchers("/admin/**").hasAnyRole(Member.Role.ADMIN.getValue())
                     .anyRequest().authenticated()
                 .and()
