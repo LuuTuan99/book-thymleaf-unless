@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/")
                     .permitAll()
                     .failureUrl("/members/login?error")
-                    .failureHandler(authenticationFailureHandler())
+                    /*.failureHandler(authenticationFailureHandler())*/
                 .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

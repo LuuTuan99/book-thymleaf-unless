@@ -18,7 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,10 +58,14 @@ public class OrderController {
         Page<OrderBook> orderBookPage = orderServiceImplement.findAllActive(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("orderBooks", orderBookPage.getContent());
         double total =SumPrice();
+        double total1 =getUnitPriceOnWeek();
         model.addAttribute("list2",orderDetailsService.fillAll());
         // model.addAttribute("list",orderService.findAll());
         model.addAttribute("order",new OrderBook());
         model.addAttribute("total",total);
+
+        model.addAttribute("total1",total1);
+
 
         model.addAttribute("currentPage", orderBookPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", orderBookPage.getPageable().getPageSize());
@@ -75,7 +83,6 @@ public class OrderController {
         model.addAttribute("order", order);
         return "/admin/order/detail";
     }
-
 
     @PostMapping(value = "/updateStatus/{orderId}")
     /*@ResponseBody*/
@@ -99,5 +106,17 @@ public class OrderController {
         return totalPrice;
     }
 
+    public double getUnitPriceOnWeek(){
+        List<OrderBook> orderBookListSuccess =orderService.findByStatus(0);
+        LocalDate currentTime = Instant.ofEpochMilli(System.currentTimeMillis()).atZone(ZoneId.systemDefault()).toLocalDate();
+        double total=0;
+        for (OrderBook item :orderBookListSuccess){
+            Period different = Period.between(Instant.ofEpochMilli(item.getCreatedAt()).atZone(ZoneId.systemDefault()).toLocalDate(), currentTime);
+            if (different.getDays()<=7){
+                total +=item.getUnitPrice();
+            }
+        }
+        return total;
+    }
 
 }
