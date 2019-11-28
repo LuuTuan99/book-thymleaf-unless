@@ -62,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
         existCategory.setName(updateCategory.getName());
         existCategory.setThumbnail(updateCategory.getThumbnail());
         existCategory.setDescription(updateCategory.getDescription());
-        return categoryRepository.save(updateCategory);
+        return categoryRepository.save(existCategory);
     }
 
     @Override

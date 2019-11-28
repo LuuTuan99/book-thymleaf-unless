@@ -97,7 +97,7 @@ public class BookServiceImpl implements BookService {
         existBook.setPublisher(updateBook.getPublisher());
         existBook.setCategories(updateBook.getCategories());
         existBook.setUpdatedAtMLS(Calendar.getInstance().getTimeInMillis());
-        return bookRepository.save(updateBook);
+        return bookRepository.save(existBook);
     }
 
     @Override

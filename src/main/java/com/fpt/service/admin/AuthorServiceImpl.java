@@ -63,7 +63,7 @@ public class AuthorServiceImpl implements AuthorService {
         author.setName(updateAuthor.getName());
         author.setAvatar(updateAuthor.getAvatar());
         author.setDescription(updateAuthor.getDescription());
-        return authorRepository.save(updateAuthor);
+        return authorRepository.save(author);
     }
 
     @Override
