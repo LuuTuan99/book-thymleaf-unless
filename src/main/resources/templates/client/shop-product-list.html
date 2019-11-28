@@ -23,117 +23,65 @@
 </div>
 
 <div class="main">
+
     <div class="container">
+        <form th:action="@{/shop-product-list}" method="get">
         <ul class="breadcrumb">
-            <li><a th:href="@{/index}">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">Book category</li>
+            <li><a th:href="@{/}">Trang chủ</a></li>
+            <li><a href="">Thể loại sách</a></li>
+            <li class="active" th:text="${categoryId}"></li>
         </ul>
+        </form>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
             <!-- BEGIN SIDEBAR -->
+            <form th:action="@{/shop-product-list}" method="get">
             <div class="sidebar col-md-3 col-sm-5">
                 <ul class="list-group margin-bottom-25 sidebar-menu">
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        bán chạy</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        mới phát hành</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        sắp phát hành</a></li>
-                    <li class="list-group-item clearfix dropdown active">
-                        <a href="javascript:void(0);" class="collapsed">
-                            <i class="fa fa-angle-right"></i>
-                            Sách văn học
+                    <li class="list-group-item clearfix" th:each="category : ${categories}">
+                        <i class="fa fa-angle-right"></i>
+                        <a th:href="'?categoryId=' + ${category.id}"
+                           th:text="${category.name}"
+                           th:value="${category.id}">
                         </a>
-                        <ul class="dropdown-menu" style="display:block;">
-                            <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học nước
-                                ngoài</a></li>
-                            <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học trong
-                                nước</a></li>
-                        </ul>
                     </li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        kinh tế</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        giáo khoa</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        tạp chí</a></li>
-                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i
-                            class="fa fa-angle-right"></i> Sách
-                        thiếu nhi</a></li>
                 </ul>
-
-                <!--<div class="sidebar-products clearfix">
-                    <h2>Bestsellers</h2>
-                    <div class="item">
-                        <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k1.jpg"
-                                                        alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
-                        <div class="price">$31.00</div>
-                    </div>
-                    <div class="item">
-                        <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k4.jpg"
-                                                        alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
-                        <div class="price">$23.00</div>
-                    </div>
-                    <div class="item">
-                        <a th:href="@{/shop-item}"><img src="/assets-client/pages/img/products/k3.jpg"
-                                                        alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a th:href="@{/shop-item}">Some Shoes in Animal with Cut Out</a></h3>
-                        <div class="price">$86.00</div>
-                    </div>
-                </div>-->
             </div>
+            </form>
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="col-md-9 col-sm-7">
-               <!-- <div class="content-search margin-bottom-20">
+
+               <div class="content-search margin-bottom-20">
                     <form th:action="@{/shop-product-list}" method="get">
+
                     <div class="row">
                         <div class="col-md-6">
-                            <h1>Search result for <em>Book</em></h1>
+                            <h1>Kết quả tìm kiếm cho <em>sách</em></h1>
                         </div>
                         <div class="col-md-6">
-                            <select id="category" name="categoryId" class="form-control" onchange="this.form.submit()">
-                                <option th:each="category : ${categories}"
-                                        th:text="${category.name}"
-                                        th:value="${category.id}"
-                                        th:selected="${category.id==categoryId}">
-                                </option>
-                            </select>
+                                <div class="input-group">
+                                    <input th:value="${keyword}" name="keyword" type="text" placeholder="Tìm sách ..." class="form-control">
+                                    <input type="hidden" th:value="${limit}" name="limit">
+                                    <input type="hidden" th:value="${currentPage}" name="page">
+                                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                      </span>
+                                </div>
                         </div>
                     </div>
                     </form>
-                </div>-->
-
+                </div>
                 <!-- BEGIN PRODUCT LIST -->
                 <div class="row product-list">
                     <!-- PRODUCT ITEM START -->
                     <div class="col-md-3 col-sm-6 col-xs-12" th:each="book: ${books}">
-                        <div class="product-item" th:id="${book.id}">
+                        <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img th:src="@{${book.photos}}" class="img-responsive" alt="image book" style="object-fit: cover;">
+                                <img th:src="${book.getPhotos()}" class="img-responsive" alt="image book" style="object-fit: cover;">
                                 <div>
-                                    <a th:href="@{${book.photos}}" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view"
-                                       th:BookName="${book.name}"
-                                       th:BookDescription="${book.description}"
-                                       th:BookPrice="${book.price}"
-                                       th:BookQuantity="${book.quantity}"
-                                       th:Bookid="${book.id}"
-                                       th:BookImg="${book.photos}"
-                                       th:BookAuthor="${book.author.name}"
-                                       th:BookPublisher="${book.publisher.name}"
-                                       th:each = "category: ${book.categories}"
-                                       th:BookCategories = "${category.name}"
-                                       >View</a>
+                                    <a th:href="${book.getPhotos()}" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:text="${book.name}"></a></h3>
@@ -203,62 +151,6 @@
 <th:block th:include="fragments/client/footer"></th:block>
 <!-- END FOOTER -->
 
-<!-- BEGIN fast view of a product -->
-<!--<div id="product-pop-up" style="display: none; width: 700px;">
-    <div class="product-page product-pop-up">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-3">
-                <div class="product-main-image">
-                    <div id="bookInfo">
-                        <img src="" alt="image book" class="img-responsive" id="imgModal">
-                    </div>
-                </div>
-                <div class="product-other-images">
-                    <a href="javascript:;" class="active">
-                        <img alt="Image book" src="" id="ImgModal"></a>
-                    <a href="javascript:;">
-                        <img alt="Image book" src="/assets-client/pages/img/products/book2.jpg"></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-9">
-                <h1 id="nameModal"></h1>
-                <div class="price-availability-block clearfix">
-                    <div class="price">
-                        <strong id="priceModal"><span>$</span></strong>
-                        <em>$<span>62.00</span></em>
-                    </div>
-                    <div class="availability">
-                        Availability: <strong>In Stock</strong>
-                    </div>
-                </div>
-                <div class="author">
-
-                   Tác giả: <p id="authorModal"></p>
-                </div>
-                <div class="publisher">
-                    Nhà xuất bản: <p id="publisherModal"></p>
-                </div>
-                <div>
-                    Category: <p id="categoriesModal"></p>
-                </div>
-                <div class="description">
-                    <p id="descr"></p>
-                </div>
-                <div class="product-page-cart">
-                    <div class="product-quantity">
-                        <input id="product-quantity" type="text" value="1" readonly name="product-quantity"
-                               class="form-control input-sm">
-                    </div>
-                    <button class="btn btn-primary" type="submit">Add to cart</button>
-                    <a th:href="@{/shop-item}" class="btn btn-default">More details</a>
-                </div>
-            </div>
-
-            <div class="sticker sticker-sale"></div>
-        </div>
-    </div>
-</div>-->
-<!-- END fast view of a product -->
 <th:block th:include="fragments/client/scripts"></th:block>
 </body>
 <!-- END BODY -->

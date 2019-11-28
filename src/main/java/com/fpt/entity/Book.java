@@ -1,6 +1,8 @@
 package com.fpt.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -10,6 +12,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "Tên thể loại không được để trống")
     private String name;
     @Lob
     private String description;
@@ -37,6 +40,10 @@ public class Book {
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private Set<Category> categories = new HashSet<>();
 
+    public Book() {
+        this.createdAtMLS= Calendar.getInstance().getTimeInMillis();
+        this.updatedAtMLS= Calendar.getInstance().getTimeInMillis();
+    }
 
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
     private Set<OrderDetails> orderDetails = new HashSet<>();
