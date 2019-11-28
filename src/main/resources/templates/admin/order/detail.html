@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>
+    List author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+<body class="">
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_order"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Order Table</h4>
+                        </div>
+                        <div class="card-body" th:object="${order}">
+                            <div class="table-responsive">
+                                <h6 th:text="*{nameOrder}"></h6>
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>Name book</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total price</th>
+<!--                                    <th>BookId</th>-->
+<!--                                    <th>OrderId</th>-->
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="item,count : *{orderDetails}">
+                                        <td th:text="${item.bookName}"></td>
+                                        <td th:text="${item.quantity}"></td>
+                                        <td th:text="${item.price}"></td>
+                                        <td th:text="${item.price *item.quantity}"></td>
+<!--                                        <td th:text="${item.id.bookId}"></td>-->
+<!--                                        <td th:text="${item.id.orderId}"></td>-->
+                                        <!-- <td th:text="+${count.index +1}"></td>
+                                         <td th:text="${item.book.name}"></td>
+                                         <td th:text="${item.id.bookId}"></td>
+                                         <td th:text="${item.id.orderId}"></td>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+</div>
+</body>
+
+</html>

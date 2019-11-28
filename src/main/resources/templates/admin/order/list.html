@@ -25,9 +25,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="input-group no-border">
-                                            <input type="text" th:value="${keyword}" name="keyword" class="form-control" placeholder="Search...">
-                                            <input type="hidden" th:value="${limit}" name="limit">
-                                            <input type="hidden" th:value="${currentPage}" name="page">
+                                            <input type="text" name="keyword" class="form-control" placeholder="Search...">
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <i class="nc-icon nc-zoom-split"></i>
@@ -42,27 +40,28 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
-                                    <th><input type="checkbox" id="select_all"></th>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>text 1</th>
-                                    <th>text 2</th>
-                                    <th>text 3</th>
+                                    <th>Username</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Total price</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
-<!--                                    code data-->
-                                    <tr >
-                                        <td><input type="checkbox" name="select[]"></td>
-                                        <td >demo</td>
-                                        <td>demo</td>
-                                        <td>demo</td>
-                                        <td>demo</td>
-                                        <td>demo</td>
+                                    <tr  th:each="o :${list}">
+                                        <td th:text="${o.customerName}"></td>
+                                        <td th:text="${o.customerPhone}"></td>
+                                        <td th:text="${o.customerAddress}"></td>
+                                        <td th:text="${o.unitPrice}"></td>
+                                        <th:block th:if="${o.status ==1}">
+                                            <td>Đang xử lý</td>
+                                        </th:block>
+                                        <th:block th:unless="${o.status ==1}">
+                                            <td>Đã sử lý</td>
+                                        </th:block>
                                         <td>
-                                            <a th:href="@{#}">Detail |</a>
-                                            <a th:href="@{#}">Edit |</a>
-                                            <a th:href="@{#}" class="btn-delete-author">Delete</a>
+                                            <a th:href="@{'/admin/orders/' + ${o.id}}">Detail |</a>
+                                            <a href="#" class="btn-delete-author">Delete</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -84,13 +83,6 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#select_all").click(function(){
-                var checked_status = this.checked;
-                $("input[name='select[]']").each(function(){
-                    this.checked = checked_status;
-                });
-            });
-
             $(".btn-delete-author").click(function () {
                 var id = $(this).attr("href").replace("#", "");
                 if (confirm("Bạn có chắc muốn xoá tài khoản này?")) {

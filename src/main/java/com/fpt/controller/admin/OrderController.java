@@ -25,7 +25,8 @@ public class OrderController {
 
         model.addAttribute("list2",orderDetailsService.fillAll());
         model.addAttribute("list",orderService.findAll());
-        return "order/test";
+//        return "order/test";
+        return "admin/order/list";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable long id, Model model) {
@@ -34,7 +35,7 @@ public class OrderController {
             return "error/404";
         }
         model.addAttribute("order", order);
-        return "order/detail";
+        return "admin/order/detail";
     }
 
 

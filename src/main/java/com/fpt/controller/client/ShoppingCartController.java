@@ -96,7 +96,7 @@ public class ShoppingCartController {
     @GetMapping(value = "/checkout")
     public String showForm(Model model){
         model.addAttribute("order",new OrderBook());
-        return "order/checkout";
+        return "client/shop-checkout";
     }
     @PostMapping(value = "/checkout")
     public String checkOut(Authentication authentication, HttpSession session,OrderBook order){
@@ -124,7 +124,7 @@ public class ShoppingCartController {
                 //remove cart
                 session.removeAttribute("cart");
             }
-            return "order/thank";
+            return "client/thank";
         }
 
     }
