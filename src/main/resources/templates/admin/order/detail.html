@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>
+    List author | Admin
+</title>
+<th:block th:include="fragments/admin/head"></th:block>
+<body class="">
+<div class="wrapper ">
+    <th:block th:include="fragments/admin/sidebar_order"></th:block>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <th:block th:include="fragments/admin/navbar"></th:block>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Order Table</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" th:object="${order}">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th colspan="5" th:text="*{nameOrder}"></th>
+                                    </tr>
+                                    <tr>
+                                    <th>Tên x Số Lượng x Giá</th>
+                                    <th>Price/1c</th>
+                                    <th>Price xQuantity</th>
+                                    <th>BookID</th>
+                                    <th>OrderID</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="item,count : *{orderDetails}">
+                                        <td th:text="${item.bookName}+' x '+${item.quantity}"></td>
+                                        <td th:text="${item.price}"></td>
+                                        <td th:text="${item.price *item.quantity}"></td>
+                                        <td th:text="${item.id.bookId}"></td>
+                                        <td th:text="${item.id.orderId}"></td>
+                                        <!-- <td th:text="+${count.index +1}"></td>
+                                         <td th:text="${item.book.name}"></td>
+                                         <td th:text="${item.id.bookId}"></td>
+                                         <td th:text="${item.id.orderId}"></td>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <th:block th:include="fragments/admin/footer"></th:block>
+        </div>
+    </div>
+    <th:block th:include="fragments/admin/scripts"></th:block>
+    <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.jsv=2.0.0}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#select_all").click(function(){
+                var checked_status = this.checked;
+                $("input[name='select[]']").each(function(){
+                    this.checked = checked_status;
+                });
+            });
+
+            $(".btn-delete-author").click(function () {
+                var id = $(this).attr("href").replace("#", "");
+                if (confirm("Bạn có chắc muốn xoá tài khoản này?")) {
+                    $.ajax({
+                        url: "/members/delete/" + id,
+                        type: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                        },
+                        success: function (data) {
+                            alert("Xoá thành công!");
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("Thao tác thất bại, vui lòng thử lại sau!");
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>
