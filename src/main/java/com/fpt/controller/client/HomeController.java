@@ -53,7 +53,7 @@ public class HomeController {
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "8") int limit,
-            Model model) {
+            Model model,Authentication authentication) {
         Specification specification = Specification.where(null);
 
         if (categoryId != null && categoryId > 0) {
@@ -77,6 +77,7 @@ public class HomeController {
         model.addAttribute("currentPage", bookPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", bookPage.getPageable().getPageSize());
         model.addAttribute("totalPage", bookPage.getTotalPages());
+        model.addAttribute("auth",authentication);
         return "client/shop-product-list";
     }
 

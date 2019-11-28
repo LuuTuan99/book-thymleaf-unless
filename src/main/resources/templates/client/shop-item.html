@@ -72,7 +72,8 @@
 <!--                  <em>$<span>62.00</span></em>-->
                 </div>
                 <div class="availability">
-                  Availability: <strong>In Stock</strong>
+                  <th:block th:if="${book.quantity>0}">Availability: <strong>Còn hàng</strong></th:block>
+                  <th:block th:unless="${book.quantity>0}"><span>No Available</span></th:block>
                 </div>
               </div>
               <div th:if="${success}"
@@ -84,17 +85,28 @@
                 <span th:text="${success}"></span>
               </div>
               <div class="description">
-                <p th:text="${book.description}"></p>
+                <th:block th:each="category :${book.categories}">
+                  <span>Category: </span><a href=""><span th:text="${category.name}"></span></a>
+                </th:block>
+                <p><span>Description: </span><span th:text="${book.description}"></span></p>
               </div>
-              <div class="product-page-cart">
-
-                <!--so luong order ban dau-->
-               <!-- <div class="product-quantity">
-                  <input name="quantity" type="number" value="1" class="form-control input-sm">
-                </div>-->
-                <!--end so luong order ban dau-->
-                <a th:href="@{/cart/buy/{id}(id=*{id})}" class="btn btn-primary add2cart">Add to cart</a>
-              </div>
+              <th:block th:if="${book.quantity>0}">
+                <div class="product-page-cart">
+                  <!--so luong order ban dau-->
+                  <form th:action="@{/cart/buy/{id}(id=*{id})}">
+                    <div class="product-quantity">
+                      <input name="quantity" type="number" th:value="1" class="form-control input-sm">
+                    </div>
+                    <!--end so luong order ban dau-->
+                    <button class="btn btn-default" type="submit">ADD-CART</button>
+                  </form>
+                </div>
+              </th:block>
+              <th:block th:unless="${book.quantity>0}">
+                <div class="product-page-cart">
+                 <span style="color: white;font-size: larger;background-color: orangered">Tạm thời hết hàng</span>
+                </div>
+              </th:block>
               <div class="review">
                 <!--<input type="range" value="4" step="0.25" id="backing4">
                 <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">-->

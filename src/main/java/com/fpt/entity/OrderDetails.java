@@ -19,20 +19,20 @@ public class OrderDetails {
     @JoinColumn(name = "book_id", insertable = false, updatable = false)
     private Book book;
 
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
     public OrderDetailsId getId() {
         return id;
     }
 
     public void setId(OrderDetailsId id) {
         this.id = id;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public double getPrice() {

@@ -81,11 +81,11 @@ public class ShoppingCartController {
             List<Item> cart = (List<Item>) session.getAttribute("cart");
             int index =isExists(id,cart);
             if(index==-1){
-                cart.add(new Item(bookService.getById(id),1));
+                cart.add(new Item(bookService.getById(id),quantity));
 
             }else {
-                quantity =cart.get(index).getQuantity() +1;
-                cart.get(index).setQuantity(quantity);
+                int quantities =cart.get(index).getQuantity() +quantity;
+                cart.get(index).setQuantity(quantities);
             }
             session.setAttribute("cart",cart);
         }
@@ -96,7 +96,7 @@ public class ShoppingCartController {
     @GetMapping(value = "/checkout")
     public String showForm(Model model){
         model.addAttribute("order",new OrderBook());
-        return "checkout";
+        return "order/checkout";
     }
     @PostMapping(value = "/checkout")
     public String checkOut(Authentication authentication, HttpSession session,OrderBook order){
@@ -104,11 +104,12 @@ public class ShoppingCartController {
 
 
         if(authentication ==null){
-            return "redirect:/account/login";
+            return "redirect:/members/login";
         }else {
             if(session.getAttribute("cart") !=null){
                 order.setCreatedBy(accountService.getByUsername(authentication.getName()));
                 order.setNameOrder("Order by account: "+authentication.getName());
+                order.setUnitPrice(totalPrice(session));
                 order= orderService.create(order);
                 //save orderdetails
                 List<Item> cart = (List<Item>) session.getAttribute("cart");
@@ -123,7 +124,7 @@ public class ShoppingCartController {
                 //remove cart
                 session.removeAttribute("cart");
             }
-            return "orders/thanks";
+            return "order/thank";
         }
 
     }

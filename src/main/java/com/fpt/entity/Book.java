@@ -2,6 +2,7 @@ package com.fpt.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,7 @@ public class Book {
     private double price;
     @Lob
     private String photos;
+    private double amount;
     private int quantity;
     private long createdAtMLS;
     private long updatedAtMLS;
@@ -36,6 +38,18 @@ public class Book {
     private Set<Category> categories = new HashSet<>();
 
 
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private Set<OrderDetails> orderDetails = new HashSet<>();
+
+    public Book() {
+        this.amount = getRandomAmout();
+    }
+
+    public double getRandomAmout(){
+        Random random = new Random();
+        double amount = random.nextDouble()* (0.1-0.7) + 0.7;
+        return Math.floor(amount*10)/10;
+    }
     public enum Status {
         ACTIVE(1), DEACTIVE(0),DELETED(-1);
 
@@ -156,6 +170,22 @@ public class Book {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public Set<OrderDetails> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     public void addCategory(Category category) {
