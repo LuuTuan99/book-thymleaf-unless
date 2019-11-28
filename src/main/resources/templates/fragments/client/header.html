@@ -56,8 +56,8 @@
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a class="top-cart-info-count">Cart</a>
-                <a class="top-cart-info-value"></a>
+                <a th:href="@{/cart/listCard}" class="top-cart-info-count">Giỏ hàng</a>
+<!--                <a class="top-cart-info-value"></a>-->
             </div>
             <a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a>
 
@@ -109,7 +109,6 @@
                 <!-- BEGIN TOP SEARCH -->
                 <li class="menu-search">
                     <span class="sep"></span>
-                    <i class="fa fa-search search-btn"></i>
                     <div class="search-box">
                         <form action="#">
                             <div class="input-group">

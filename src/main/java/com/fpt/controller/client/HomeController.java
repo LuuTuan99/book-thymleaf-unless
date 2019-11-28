@@ -118,13 +118,31 @@ public class HomeController {
 
     //shop item page
     @RequestMapping(method = RequestMethod.GET, value = "shop-item/{id}")
-    public String detail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes,Authentication authentication) {
+    public String detail(
+            @PathVariable long id,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            Authentication authentication,
+            @RequestParam(name = "categoryId", required = false) Long categoryId,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "8") int limit) {
+        Specification specification = Specification.where(null);
+
+        if (categoryId != null && categoryId > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("categoryId", "joinCategory", categoryId)));
+            model.addAttribute("categoryId", categoryId);
+        }
+        Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit));
+        model.addAttribute("books", bookPage.getContent());
+
         Book book = bookService.getById(id);
         if (book == null) {
             return "error/404";
         }
         if(model.asMap().get("success") != null)
             redirectAttributes.addFlashAttribute("success",model.asMap().get("success").toString());
+        model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("book", book);
         model.addAttribute("auth",authentication);
         return "client/shop-item";
