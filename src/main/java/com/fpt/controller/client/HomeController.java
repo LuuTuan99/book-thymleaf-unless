@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String listBooks(
-            Model model) {
+            Model model,Authentication authentication) {
 
         List<Book> books = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"updatedAtMLS"));
 
@@ -58,7 +59,7 @@ public class HomeController {
             fourBooks.add(book);
         }
         model.addAttribute("fourBooks",fourBooks);
-
+        model.addAttribute("auth",authentication);
         return "client/shop-index";
     }
 
@@ -69,7 +70,7 @@ public class HomeController {
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "8") int limit,
-            Model model,Authentication authentication) {
+            Model model, Authentication authentication) {
         Specification specification = Specification.where(null);
 
         if (categoryId != null && categoryId > 0) {
@@ -117,7 +118,7 @@ public class HomeController {
 
     //shop item page
     @RequestMapping(method = RequestMethod.GET, value = "shop-item/{id}")
-    public String detail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable long id, Model model, RedirectAttributes redirectAttributes,Authentication authentication) {
         Book book = bookService.getById(id);
         if (book == null) {
             return "error/404";
@@ -125,6 +126,7 @@ public class HomeController {
         if(model.asMap().get("success") != null)
             redirectAttributes.addFlashAttribute("success",model.asMap().get("success").toString());
         model.addAttribute("book", book);
+        model.addAttribute("auth",authentication);
         return "client/shop-item";
     }
 
