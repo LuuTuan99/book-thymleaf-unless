@@ -48,9 +48,9 @@ public class Book {
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
     private Set<OrderDetails> orderDetails = new HashSet<>();
 
-    public Book() {
+   /* public Book() {
         this.amount = getRandomAmout();
-    }
+    }*/
 
     public double getRandomAmout(){
         Random random = new Random();
