@@ -8,20 +8,22 @@ import com.fpt.service.admin.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-=======
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.fpt.config.ProjectConfig;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
->>>>>>> 835c72d12fe5c4a31a5b2bc55f8877e83b1fc0c7
 
 @Controller
 @RequestMapping(value = "/admin/orders")
@@ -33,11 +35,12 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.GET)
     public String listOrder(Model model){
         double total =SumPrice();
+        double total1 =getUnitPriceOnWeek();
         model.addAttribute("list2",orderDetailsService.fillAll());
         model.addAttribute("list",orderService.findAll());
         model.addAttribute("order",new OrderBook());
         model.addAttribute("total",total);
-
+        model.addAttribute("total1",total1);
 
         return "order/test";
     }
@@ -51,7 +54,6 @@ public class OrderController {
         return "order/detail";
     }
 
-<<<<<<< HEAD
     @PostMapping(value = "/updateStatus/{orderId}")
     /*@ResponseBody*/
     public String updateStatus(@PathVariable long orderId, HttpServletRequest request){
@@ -73,7 +75,16 @@ public class OrderController {
         }
         return totalPrice;
     }
-=======
-
->>>>>>> 835c72d12fe5c4a31a5b2bc55f8877e83b1fc0c7
+    public double getUnitPriceOnWeek(){
+        List<OrderBook> orderBookListSuccess =orderService.findByStatus(0);
+        LocalDate currentTime = Instant.ofEpochMilli(System.currentTimeMillis()).atZone(ZoneId.systemDefault()).toLocalDate();
+        double total=0;
+        for (OrderBook item :orderBookListSuccess){
+            Period different = Period.between(Instant.ofEpochMilli(item.getCreatedAt()).atZone(ZoneId.systemDefault()).toLocalDate(), currentTime);
+            if (different.getDays()<=7){
+                total +=item.getUnitPrice();
+            }
+        }
+        return total;
+    }
 }
