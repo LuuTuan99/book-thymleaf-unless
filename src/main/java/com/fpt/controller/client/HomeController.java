@@ -1,10 +1,9 @@
 package com.fpt.controller.client;
 
 
-import com.fpt.entity.Author;
 import com.fpt.entity.Book;
+import com.fpt.repository.BookRepository;
 import com.fpt.service.admin.AuthorServiceImpl;
-
 import com.fpt.service.admin.BookServiceImpl;
 import com.fpt.service.admin.CategoryServiceImpl;
 import com.fpt.service.admin.PublisherServiceImpl;
@@ -13,10 +12,12 @@ import com.fpt.specification.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping(value = "/")
 public class HomeController {
+    @Autowired
+    BookRepository bookRepository;
+
     @Autowired
     BookServiceImpl bookService;
   
@@ -39,12 +43,24 @@ public class HomeController {
     @Autowired
     CategoryServiceImpl categoryService;
     //demo shop index
-    @RequestMapping(method = RequestMethod.GET)
-    public String shop_product(Model model, Authentication authentication) {
-        model.addAttribute("auth",authentication);
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String listBooks(
+            Model model) {
+
+        List<Book> books = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"updatedAtMLS"));
+
+        model.addAttribute("bookList", books);
+
+        List<Book> fourBooks = new ArrayList<>();
+        for (int i= 0; i < 5;i++){
+            Book book = books.get(i);
+            fourBooks.add(book);
+        }
+        model.addAttribute("fourBooks",fourBooks);
+
         return "client/shop-index";
     }
-
 
     //demo shop list item
     @RequestMapping(method = RequestMethod.GET,value = "/shop-product-list")

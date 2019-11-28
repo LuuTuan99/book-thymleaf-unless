@@ -1,6 +1,7 @@
 package com.fpt.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -8,8 +9,10 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "Tên thể loại không được để trống")
     private String name;
     @Lob
+    @NotEmpty(message = "Không được để trống trường này")
     private String thumbnail;
     @Lob
     private String description;

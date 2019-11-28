@@ -609,7 +609,60 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
                 .withDescription("Trần Đăng Khoa (sinh ngày 26 tháng 4 năm 1958), quê làng Trực Trì, xã Quốc Tuấn, huyện Nam Sách, tỉnh Hải Dương, là một nhà thơ, nhà báo, biên tập viên Tạp chí Văn nghệ Quân đội, hội viên của Hội Nhà văn Việt Nam. Ông nguyên là Trưởng ban Văn học Nghệ thuật, Giám đốc Hệ Phát thanh có hình VOVTV của Đài tiếng nói Việt Nam, Phó Bí thư thường trực Đảng ủy Đài Tiếng nói Việt Nam[3]. Hiện nay, ông giữ chức Phó Chủ tịch Hội Nhà văn Việt Nam, Phó Chủ tịch Liên hiệp VHNT Hà Nội. Ông cũng là Trưởng Ban Chung khảo, Hội đồng Giám khảo Quốc gia của cuộc thi Viết thư quốc tế UPU tại Việt Nam từ năm 2016 đến nay, thay cho Phó chủ tịch Hội Nhà văn Việt Nam (Nguyễn Trí Huân).")
                 .withStatus(Author.Status.ACTIVE.getValue())
                 .build());
-
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Bùi Ngọc Tấn")
+                .withAvatar("http://khoavanhoc-ngonngu.edu.vn/images/Nghiencuu/VanhocVietNam/Bui-Ngoc-Tan.jpg")
+                .withDescription("Bùi Ngọc Tấn (1934 – 2014, Hải Phòng) là một sự phục sinh kỳ diệu. Ông viết văn, làm báo từ năm 20 tuổi, đã được dư luận thừa nhận. Nhưng từ 1968 đến 1973, ông bị bắt đi cải tạo vì tội “tuyên truyền chống Đảng” mà không được xét xử. Trải qua nhiều nghề lao động chân tay để mưu sinh, mãi đến năm 1993, ông mới viết lại. 20 năm cuối đời, trang viết của ông bừng sáng. Đặc biệt, từ 2000-2015, ông có sáu tác phẩm, tất cả đều ánh lên một vẻ đẹp kỳ lạ qua trải nghiệm đớn đau cùng khổ mà tràn đầy lòng bao dung của một tù nhân: Chuyện kể năm 2000, tiểu thuyết; Rừng xưa xanh lá, ký, 2004 (Giải B văn xuôi (không có giải A) của Hội Nhà văn Việt Nam 2004); Kiếp chó, tập truyện ngắn, 2007; Biển và chim bói cá, tiểu thuyết, 2008 (Giải Henri Queffenlec, Pháp, năm 2012); Viết về bè bạn, ký, 2012; Thời biến đổi gien 2015. Chuyện kể năm 2000 được xem là tác phẩm hay nhất của Bùi Ngọc Tấn. Ông viết nó trong 10 năm, được in năm 2000 (Nxb.Thanh Niên), nhưng bị thu hồi và thiêu hủy ngay sau đó. Hiện nay tiểu thuyết đã được dịch ra tiếng Anh, tiếng Đức và tiếng Pháp.")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Nguyễn Ngọc Tư ")
+                .withAvatar("http://khoavanhoc-ngonngu.edu.vn/images/Nghiencuu/VanhocVietNam/Nguyen-Ngoc-Tu.JPG")
+                .withDescription("Nguyễn Ngọc Tư (1976, Cà Mau) là một tài năng đặc biệt của Việt Nam. Xuất hiện từ năm 2000, viết rất đều tay, đến nay bà đã có 24 tác phẩm gồm các thể loại: truyện ngắn, tạp văn, tiểu thuyết, thơ. Đã nhận được hai giải thưởng của Hội nhà văn Việt Nam: Ngọn đèn không tắt (2001) và Cánh đồng bất tận (2006). Phong cách riêng xuất hiện ngay từ trang viết đầu tay: giọng văn đậm đà vị mặn của đời sống, chân thực mà sâu lắng, giản dị và tinh tế, tươi tắn và táo bạo. Dù có một khởi điểm học vấn không cao và sống nơi mảnh đất tận cùng đất nước (Cà Mau) nhưng trang viết của Nguyễn Ngọc Tư luôn chạm vào tâm điểm của xã hội Việt Nam với một cách viết hiện đại và quan điểm mới mẻ. Cánh đồng bất tận được tái bản nhiều lần và đã chuyển thể thành một bộ phim điện ảnh công chiếu năm 2010, được dư luận đánh giá cao.")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Nguyễn Bình Phương")
+                .withAvatar("http://khoavanhoc-ngonngu.edu.vn/images/Nghiencuu/VanhocVietNam/Nguyen-binh-phuong.JPG")
+                .withDescription("Nguyễn Bình Phương (1965, Thái Nguyên), đại tá, tổng biên tập tạp chí Văn Nghệ Quân Đội, Ủy viên Ban chấp hành Hội nhà văn Việt Nam. Được xem là nhà văn luôn có ý thức cách tân về kỹ thuật. Đã xuất bản 8 tiểu thuyết và 6 tập thơ, trong đó có hai tác phẩm được giải thưởng của Hội nhà văn Hà Nội: Buổi câu hờ hững (thơ, 2013) và Mình và họ (tiểu thuyết, 2015). Bút pháp sắc cạnh, hiện đại, thoáng chất ma quái, huyền ảo, Nguyễn Bình Phương thể hiện nét đặc biệt của con người và không gian miền Bắc Việt Nam: cái rối ren trong tâm hồn của từng cá nhân và cái hỗn độn thời đại. Mình và họ là tác phẩm được chú ý nhiều nhất, nói về sự hòa trộn giữa quá khứ (cuộc chiến tranh biên giới phía Bắc 1979) và hiện tại (bóng tối tội ác và bạo lực của lớp trẻ làm ăn, kinh doanh).")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Nhật Chiêu")
+                .withAvatar("http://khoavanhoc-ngonngu.edu.vn/images/Nghiencuu/VanhocVietNam/NhatChieu.JPG")
+                .withDescription("Nhật Chiêu (1951, Sài Gòn), khởi đầu bằng dạy học, nghiên cứu và dịch thuật (giảng viên Khoa Văn học và ngôn ngữ Trường đại học Khoa học xã hội và Nhân văn, ĐHQG Thành phố Hồ Chí Minh), từ 2007 đến nay chuyển sang viết văn và đã có 5 tập truyện ngắn: Người ăn gió và quả chuông bay đi (2007), Mưa mặt nạ (2008), Viết tên trên nước (2010), Lời tiên tri của giọt sương (2011), Ân ái với hư không (2015) và 1 tập thơ: Tôi là một kẻ khác – Thơ giao lời kể và thơ tượng quẻ. Tác phẩm của Nhật Chiêu tinh, gọn, rất kén người đọc. Hầu hết đều được viết bằng tư duy và kỹ thuật hậu hiện đại. Người đọc có thể tìm thấy ở đó độ nén cao của cảm xúc và tư tưởng, những nút thắt của các giao điểm văn hóa Đông- Tây, Việt Nam- thế giới. Tất cả hình thành từ những chiêm nghiệm trong không gian chữ nghĩa, sách vở hơn là những trải nghiệm thực của đời sống.Vẻ đẹp và tính mới mẻ của trang viết Nhật Chiêu tạo cảm hứng cho những người trẻ làm việc ở đại học, họ xem đó là những mẫu tốt để thực hành các lý thuyết văn học hiện đại")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Nguyễn Huy Tưởng")
+                .withAvatar("https://upload.wikimedia.org/wikipedia/vi/1/15/Nguy%E1%BB%85n_Huy_T%C6%B0%E1%BB%9Fng.jpg")
+                .withDescription("Nguyễn Huy Tưởng (1912 – 1960) là một nhà văn, nhà viết kịch Việt Nam nổi tiếng. Ông là tác giả của những tiểu thuyết lịch sử, vở kịch lớn như: Vũ Như Tô, Đêm hội Long Trì, Bắc Sơn, Sống mãi với thủ đô.")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Nguyễn Tuân")
+                .withAvatar("https://upload.wikimedia.org/wikipedia/vi/4/4b/NguyenTuan.jpg")
+                .withDescription("Nguyễn Tuân (13 tháng 10 năm 1910 – 28 tháng 7 năm 1987), sở trường về tùy bút và ký, được tặng Giải thưởng Hồ Chí Minh về văn học nghệ thuật năm 1996. Tác phẩm của Nguyễn Tuân luôn thể hiện phong cách độc đáo, tài hoa, sự hiểu biết phong phú nhiều mặt và vốn ngôn ngữ, giàu có, điêu luyện. Sách giáo khoa hiện hành xếp ông vào một trong 9 tác giả tiêu biểu của văn học Việt Nam hiện đại. Ông viết văn với một phong cách tài hoa uyên bác và được xem là bậc thầy trong việc sáng tạo và sử dụng Tiếng Việt. Hiện nay, ở Hà Nội có một con đường mang tên ông, nối từ đường Nguyễn Trãi cắt ngang qua các phố Nguyễn Huy Tưởng, Ngụy Như Kon Tum đến đường Lê Văn Lương, nối với phố Hoàng Minh Giám.")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Hoài Thanh")
+                .withAvatar("https://upload.wikimedia.org/wikipedia/vi/thumb/a/a1/Ho%C3%A0i_thanh.jpg/240px-Ho%C3%A0i_thanh.jpg")
+                .withDescription("Hoài Thanh (1909 – 1982) có tên khai sinh là Nguyễn Đức Nguyên (ngoài ra ông còn sử dụng các bút danh khác như Văn Thiên, Le Nhà Quê), là một nhà phê bình văn học Việt Nam, đã có những đóng góp về mặt phê bình, lý luận để khẳng định Thơ mới trong văn học Việt Nam thế kỉ XX. Tác phẩm Thi nhân Việt Nam do ông và em trai Hoài Chân viết đã đưa tác giả lên vị trí một nhà phê bình lớn của nền văn học Việt Nam đầu thế kỷ 20.")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Thế Lữ")
+                .withAvatar("https://upload.wikimedia.org/wikipedia/vi/1/15/The_Lu.jpg")
+                .withDescription("Thế Lữ (10 tháng 6 năm 1907 – 3 tháng 6 năm 1989; tên khai sinh là Nguyễn Đình Lễ (có tài liệu khác ghi tên ông là Nguyễn Thứ Lễ) là nhà thơ, nhà văn, nhà hoạt động sân khấu người Việt Nam. Thế Lữ nổi danh trên văn đàn vào những năm 1930, với những tác phẩm Thơ mới, đặc biệt là bài Nhớ rừng, cùng những tác phẩm văn xuôi, tiêu biểu là tập truyện Vàng và máu (1934). Trở thành thành viên của nhóm Tự Lực văn đoàn kể từ khi mới thành lập (1934), ông hầu hết hoạt động sáng tác văn chương trong thời gian là thành viên của nhóm, đồng thời cũng đảm nhận vai trò một nhà báo, nhà phê bình, biên tập viên mẫn cán của các tờ báo Phong hóa và Ngày nay.")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
+        authorList.add(Author.Builder.anAuthor()
+                .withName("Đoàn Phú Tứ")
+                .withAvatar("https://upload.wikimedia.org/wikipedia/vi/b/be/Doanphutu.jpg")
+                .withDescription("Đoàn Phú Tứ (1910 - 1989) là một nhà soạn kịch, nhà thơ, dịch giả Việt Nam nổi danh từ thời tiền chiến. Khi viết, ông ký tên thật hoặc các bút danh: Ngộ Không, Tam Tinh, Tuấn Đô,...")
+                .withStatus(Author.Status.ACTIVE.getValue())
+                .build());
         authorRepository.saveAll(authorList);
     }
 
