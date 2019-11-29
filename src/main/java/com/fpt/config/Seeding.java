@@ -63,7 +63,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setPhotos("https://www.vinabook.com/images/detailed/349/P90102Enhung_ngay.jpg");
          book.setDescription("Nhà xuất bản: Nxb Lao động - Xã hội,Nhà phát hành: Thái Hà,Mã Sản phẩm: 8935280903890,Khối lượng: 396.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 16 x 23 cm,Ngày phát hành: 09/10/2019,Số trang: 176");
          book.setPrice(89000);
-         book.setQuantity(200);
+         book.setQuantity(0);
          book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
@@ -99,7 +99,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setPhotos("https://www.vinabook.com/images/detailed/350/P90201Escan0001.jpg");
          book.setDescription("Nhà xuất bản: NXB Phụ Nữ,Nhà phát hành: NXB Phụ Nữ,Mã Sản phẩm: 9786045668283,Khối lượng: 638.00 gam,Ngôn ngữ: Tiếng Anh, Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 19 x 23 cm,Ngày phát hành: 09/2019,Số trang: 212");
          book.setPrice(189000);
-         book.setQuantity(200);
+         book.setQuantity(0);
          book.setStatus(Book.Status.ACTIVE.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
@@ -925,6 +925,118 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         member.setGender(Member.Gender.FEMALE.getValue());
         member.setStatus(Member.Status.ACTIVE.getValue());
         memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Tuan");
+        member.setEmail("tuan@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("0858585595");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Hai Duong");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Hai");
+        member.setEmail("hai@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("0855445678");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Hung Yen");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Nhung");
+        member.setEmail("nhung@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("0987585625");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Nam Dinh");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.FEMALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Vien");
+        member.setEmail("levien@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("0985685325");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Ninh Binh");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Cuong");
+        member.setEmail("cuong@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("012578936");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Hung Yen");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Minh");
+        member.setEmail("minh@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("0874585625");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Thai Binh");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Tung");
+        member.setEmail("tung@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("0855585625");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Ha Noi");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Mai");
+        member.setEmail("mai@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("098268625");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Quang Ninh");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.FEMALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+        member = new Member();
+        member.setUsername("Son");
+        member.setEmail("son@gmail.com");
+        member.setHashPassword(new BCryptPasswordEncoder().encode("123"));
+        member.setPhone("093668625");
+        member.setAvatar("https://sites.google.com/site/cauchuyenvanhocnghethuat/_/rsrc/1467889570104/vhnt-56/XD%202.jpg");
+        member.setAddress("Hai Duong");
+        member.setRole(Member.Role.CUSTOMER.getValue());
+        member.setGender(Member.Gender.MALE.getValue());
+        member.setStatus(Member.Status.ACTIVE.getValue());
+        memberList.add(member);
+
+
+
+
 
         memberRepository.saveAll(memberList);
     }

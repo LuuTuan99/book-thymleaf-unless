@@ -79,12 +79,6 @@
                                             </ul>-->
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="1" th:text="'Tổng doanh thu: '+${total}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="1" th:text="'Tổng doanh thu tuần vừa qua: '+${total1}"></td>
-                                    </tr>
                                     </tbody>
                                 </table>
 
@@ -114,7 +108,7 @@
     </div>
     <th:block th:include="fragments/admin/scripts"></th:block>
     <script th:src="@{/assets-admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
-    <script th:src="@{/assets-admin/js/paper-dashboard.min.js?v=2.0.0}" type="text/javascript"></script>
+    <script th:src="@{/assets-admin/js/paper-dashboard.min.jsv=2.0.0}" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){

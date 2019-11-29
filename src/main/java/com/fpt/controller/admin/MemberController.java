@@ -106,6 +106,24 @@ public class MemberController {
         return "admin/member/detail";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
+    public String updateMember(@PathVariable long id, Model model) {
+        Member member = memberService.getById(id);
+        if (member == null) {
+            return "error/404";
+        }
+        model.addAttribute("member", member);
+        return "";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/update/{id}")
+    public String update(@PathVariable long id, Member member) {
+        memberService.update(id, member);
+        return "redirect";
+    }
+
+
+
 
 
 
