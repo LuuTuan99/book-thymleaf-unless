@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:include="fragments/client/head"></th:block>
 </head>
 <body>
-<h1>Success!</h1>
-<a th:href="@{/members/login}">Back to Login</a>
+<div class="jumbotron text-center">
+    <h1 class="display-3">Success !</h1>
+    <hr>
+    <p class="lead">
+        <a class="btn btn-primary btn-sm" th:href="@{/members/login}" role="button">Back to Login</a>
+    </p>
+</div>
 </body>
 </html>

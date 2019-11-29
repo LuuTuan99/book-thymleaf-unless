@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- Head BEGIN -->
 <title>Account | Book Store</title>
 <th:block th:include="fragments/client/head"></th:block>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Head END -->
-
+<style>
+  body{
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+  }
+  .emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+  .profile-img{
+    text-align: center;
+  }
+  .profile-img img{
+    width: 70%;
+    height: 100%;
+  }
+  .profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+  }
+  .profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+  .profile-head h5{
+    color: #333;
+  }
+  .profile-head h6{
+    color: #0062cc;
+  }
+  .profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+  }
+  .proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+  }
+  .proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .profile-head .nav-tabs{
+    margin-bottom:5%;
+  }
+  .profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+  }
+  .profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+  }
+  .profile-work{
+    padding: 14%;
+    margin-top: -15%;
+  }
+  .profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+  }
+  .profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .profile-work ul{
+    list-style: none;
+  }
+  .profile-tab label{
+    font-weight: 600;
+  }
+  .profile-tab p{
+    font-weight: 600;
+    color: #0062cc;
+  }
+</style>
 <!-- Body BEGIN -->
 <body class="ecommerce">
 <!-- BEGIN HEADER -->
@@ -15,48 +112,99 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Store</a></li>
-            <li class="active">My Account Page</li>
+            <li><a th:href="@{/}">Trang chủ</a></li>
+            <li class="active">Trang tài khoản</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
-          <!-- BEGIN SIDEBAR -->
-          <div class="sidebar col-md-3 col-sm-3">
-            <ul class="list-group margin-bottom-25 sidebar-menu">
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Login/Register</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Restore Password</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> My account</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Address book</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Wish list</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Returns</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Newsletter</a></li>
-            </ul>
-          </div>
-          <!-- END SIDEBAR -->
-
           <!-- BEGIN CONTENT -->
-          <div class="col-md-9 col-sm-7">
-            <h1>My Account Page</h1>
-            <div class="content-page">
-              <h3>My Account</h3>
-              <ul>
-                <li><a href="javascript:;">Edit your account information</a></li>
-                <li><a href="javascript:;">Change your password</a></li>
-                <li><a href="javascript:;">Modify your address book entries</a></li>
-                <li><a href="javascript:;">Modify your wish list</a></li>
-              </ul>
-              <hr>
-
-              <h3>My Orders</h3>
-              <ul>
-                <li><a href="javascript:;">View your order history</a></li>
-                <li><a href="javascript:;">Downloads</a></li>
-                <li><a href="javascript:;">Your Reward Points</a></li>
-                <li><a href="javascript:;">View your return requests</a></li>
-                <li><a href="javascript:;">Your Transactions</a></li>
-              </ul>
-            </div>
+          <div class="container emp-profile">
+            <form method="post">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <div class="file btn btn-lg btn-primary">
+                      Sửa ảnh
+                      <input type="file" name="file"/>
+                    </div>
+                  </div>
+                  <div class="profile-work">
+                    <br/>
+                    <a href="">Sửa thông tin cá nhân</a><br/><br/>
+                    <a href="">Thay đổi mật khẩu</a>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="profile-head">
+                    <h5>
+                      Tên người dùng để đây
+                    </h5>
+                    <h6>
+                      Chỗ này đéo biết
+                    </h6>
+                    <br>
+                  </div>
+<!--test-->
+                  <div class="product-page-content">
+                    <ul id="myTab" class="nav nav-tabs">
+                      <li class="active"><a href="#Information" data-toggle="tab">Thông tin cá nhân</a></li>
+                      <li><a href="#Description" data-toggle="tab">Lịch sử giao dịch</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content ">
+                      <div class="tab-pane fade in active" id="Information">
+                        <table class="datasheet">
+                          <tr>
+                              <th colspan="2">Tên tài khoản để đây</th>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">Họ và tên</td>
+                            <td>nguyen van a</td>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">Email</td>
+                            <td>a@gmail.com</td>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">Số điện thoại</td>
+                            <td>0123456789</td>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">Địa chỉ</td>
+                            <td>Số a, đường a, phố a</td>
+                          </tr>
+                        </table>
+                      </div>
+                      <div class="tab-pane fade" id="Description">
+                        <table class="datasheet">
+                          <tr>
+                            <td class="datasheet-features-type">đơn hàng 1</td>
+                            <td>book1</td>
+                            <td>Ngày abc</td>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">đơn hàng 1</td>
+                            <td>book1</td>
+                            <td>Ngày abc</td>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">đơn hàng 1</td>
+                            <td>book1</td>
+                            <td>Ngày abc</td>
+                          </tr>
+                          <tr>
+                            <td class="datasheet-features-type">đơn hàng 1</td>
+                            <td>book1</td>
+                            <td>Ngày abc</td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+<!--                  test-->
+                </div>
+              </div>
+            </form>
           </div>
           <!-- END CONTENT -->
         </div>
