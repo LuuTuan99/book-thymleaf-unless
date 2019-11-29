@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>ok, thank you</h1>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Head BEGIN -->
+<title>Home | Book Store</title>
+<th:block th:include="fragments/client/head"></th:block>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body class="ecommerce">
+<!-- BEGIN HEADER -->
+<th:block th:include="fragments/client/header"></th:block>
+<!-- END HEADER -->
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">CheckoutSuccess</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1>CẢM ƠN BẠN ĐÃ ĐẶT HÀNG TẠI TRANG WEB. CHÚNG TÔI SẼ LIÊN HỆ SỚM NHẤT VỚI BẠN ĐỂ XÁC NHẬN ĐƠN HÀNG</h1>
+                <!-- BEGIN CHECKOUT PAGE -->
+                <span>Vui lòng nhấn </span><a th:href="@{/}" style="font-size: larger">vào đây</a> để trở về trang chủ.
+                <!-- END CHECKOUT PAGE -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+<!-- BEGIN STEPS -->
+<div class="steps-block steps-block-red">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-truck"></i>
+                <div>
+                    <h2>Free shipping</h2>
+                    <em>Express delivery withing 3 days</em>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-gift"></i>
+                <div>
+                    <h2>Daily Gifts</h2>
+                    <em>3 Gifts daily for lucky customers</em>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-phone"></i>
+                <div>
+                    <h2>477 505 8877</h2>
+                    <em>24/7 customer care available</em>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END STEPS -->
+<!-- BEGIN FOOTER -->
+<th:block th:include="fragments/client/footer"></th:block>
+<!-- END FOOTER -->
+<!-- END fast view of a product -->
+<th:block th:include="fragments/client/scripts"></th:block>
 </body>
+<!-- END BODY -->
 </html>

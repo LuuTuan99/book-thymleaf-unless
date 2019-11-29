@@ -27,12 +27,23 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(specification, pageable);
     }
 
+    public Page<Book> findAllWaiting(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new BookSpecification(new SearchCriteria("status", "=", Book.Status.WAITING.getValue())));
+        return bookRepository.findAll(specification, pageable);
+    }
 
 
     @Override
     public List<Book> search(String name) {
         return bookRepository.findByName(name);
     }
+
+    @Override
+    public List<Book> bookComingSoon(int status, long createdAt) {
+        return bookRepository.findAllByStatusAndCreatedAtMLS(2,0);
+    }
+
 
     @Override
     public Book getById(long id) {

@@ -21,16 +21,15 @@ public class OrderServiceImplement implements OrderService{
 
     public Page<OrderBook> findAllActive(Specification specification, Pageable pageable) {
         specification = specification
-                .and(new OrderSpecification(new SearchCriteria("status", "!=", OrderBook.Status.DELETED.getValue())));
+                .and(new OrderSpecification(new SearchCriteria("status", "!=", OrderBook.Status.CANCEL.getValue())));
         return orderRepository.findAll(specification, pageable);
     }
-
 
     @Override
     public OrderBook create(OrderBook orderBook) {
         orderBook.setId(Calendar.getInstance().getTimeInMillis());
         orderBook.setCreatedAt(Calendar.getInstance().getTimeInMillis());
-        orderBook.setStatus(1);
+        orderBook.setStatus(2);
         return orderRepository.save(orderBook);
     }
 

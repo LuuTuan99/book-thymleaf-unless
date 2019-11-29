@@ -21,7 +21,7 @@
         <h1>Shopping cart</h1>
         <th:block th:if="${total == 0}">
           <p>Chưa có sản phẩm trong giỏ hàng của bạn.</p>
-         <p>Click <a th:href="@{/shop-product-list}">vào đây</a> để quay lại trang chủ.</p>
+         <p>Click <a th:href="@{/}">vào đây</a> để quay lại trang chủ.</p>
         </th:block>
         <th:block th:unless="${total == 0}">
           <div>
@@ -84,7 +84,8 @@
               </form>
             </div>
             <a th:href="@{/shop-product-list}" class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
-            <a th:href="@{/cart/checkout}" class="btn btn-primary" type="submit">Checkout<i class="fa fa-check"></i></a>
+
+              <a class="btn btn-primary" type="submit" th:href="@{/cart/checkout}">Checkout<i class="fa fa-check"></i></a>
           </div>
         </th:block>
       </div>

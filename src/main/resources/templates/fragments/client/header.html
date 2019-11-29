@@ -27,10 +27,10 @@
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a th:href="@{/shop-account}">My Account</a></li>
-                    <li><a th:href="@{/cart/checkout}">Check out</a></li>
+                    <li><a th:href="@{/cart/listCard}">My Cart<i class="fa fa-shopping-cart"></i></a></li>
                     <li class="dropdown">
                         <th:block th:if="${auth != null}">
-                            <a class="dropbtn" th:text="${auth.getName()}"></a>
+                            <a class="dropbtn" th:text="'Welcome '+${auth.getName()}"></a>
                             <div class="dropdown-content">
                                 <a th:href="@{/logout}">Logout</a>
                             </div>

@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -31,6 +32,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     AuthenticationFailureHandler authenticationFailureHandler() {
         return new MyAuthenticationFailureHandler();
     }
+    @Bean
+    protected AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new MyAuthenticationSuccessHandle();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,20 +49,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/members/register", "/*","/shop-item/*",
                         "/assets-client/**",
                         "/assets-admin/**","/cart/remove/*","/cart/buy/*","/cart/update","/cart/listCard").permitAll()
-                    .antMatchers("/admin/**").hasAnyRole(Member.Role.ADMIN.getValue())
-                    .anyRequest().authenticated()
+                .antMatchers("/admin/**").hasAnyRole(Member.Role.ADMIN.getValue())
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/members/login")
-                    .loginProcessingUrl("/members/login")
-                    .defaultSuccessUrl("/")
-                    .permitAll()
-                    .failureUrl("/members/login?error")
-                    /*.failureHandler(authenticationFailureHandler())*/
+                .loginPage("/members/login")
+                .loginProcessingUrl("/members/login")
+                /*.defaultSuccessUrl("/",true)*/
+                .permitAll()
+                .failureUrl("/members/login?error")
+                /*.failureHandler(authenticationFailureHandler())*/
+                /*.failureHandler(authenticationFailureHandler())*/
+                .successHandler(authenticationSuccessHandler())
                 .and()
                 .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/members/login")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/members/login")
                 .permitAll()
                 .and()
                 .exceptionHandling()

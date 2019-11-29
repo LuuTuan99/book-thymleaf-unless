@@ -8,6 +8,7 @@ public interface BookService {
 
 
     List<Book> search(String name);
+    List<Book> bookComingSoon(int status,long createdAt);
 
     Book getById(long id);
 

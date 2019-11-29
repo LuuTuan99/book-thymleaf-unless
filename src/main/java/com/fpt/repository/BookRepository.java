@@ -33,7 +33,6 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
 
     List<Book> findByName(String name);
 
-
-
+    List<Book> findAllByStatusAndCreatedAtMLS(int status,long createdAt);
 
 }

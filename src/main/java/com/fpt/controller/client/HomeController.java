@@ -49,19 +49,28 @@ public class HomeController {
     public String listBooks(
             Model model,Authentication authentication) {
 
-        List<Book> books = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"updatedAtMLS"));
-
+        List<Book> books = bookRepository.findAll(Sort.by(Sort.Direction.DESC,"createdAtMLS"));
         model.addAttribute("bookList", books);
+
+        List<Book> books1 =bookService.bookComingSoon(2,0);
+
+        List<Book> bookComingSoon = new ArrayList<>();
+        for (int i=0;i<5;i++){
+            Book book = books1.get(i);
+            bookComingSoon.add(book);
+        }
 
         List<Book> fourBooks = new ArrayList<>();
         for (int i= 0; i < 10;i++){
             Book book = books.get(i);
             fourBooks.add(book);
         }
+        model.addAttribute("bookComingSoon",bookComingSoon);
         model.addAttribute("fourBooks",fourBooks);
         model.addAttribute("auth",authentication);
         return "client/shop-index";
     }
+
 
     //demo shop list item
     @RequestMapping(method = RequestMethod.GET,value = "/shop-product-list")
@@ -122,7 +131,7 @@ public class HomeController {
             model.addAttribute("keyword", keyword);
         }
 
-        Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit, Sort.by("updatedAtMLS").descending()));
+        Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit, Sort.by("createdAtMLS").descending()));
 
         model.addAttribute("books", bookPage.getContent());
 
@@ -136,6 +145,40 @@ public class HomeController {
         return "/client/shop-product-new-release";
     }
 
+    //Sach sap phat hanh
+    @RequestMapping(method = RequestMethod.GET,value = "/shop-product-waiting")
+    public String shop_product_waiting(
+            @RequestParam(name = "categoryId", required = false) Long categoryId,
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "8") int limit,
+            Model model, Authentication authentication) {
+        Specification specification = Specification.where(null);
+
+        if (categoryId != null && categoryId > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("categoryId", "joinCategory", categoryId)));
+            model.addAttribute("categoryId", categoryId);
+        }
+
+        if (keyword != null && keyword.length() > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("keyword", "join", keyword)));
+            model.addAttribute("keyword", keyword);
+        }
+        Page<Book> bookPage = bookService.findAllWaiting(specification, PageRequest.of(page - 1, limit));
+
+        model.addAttribute("books", bookPage.getContent());
+
+        model.addAttribute("authors", authorService.findAll());
+        model.addAttribute("publishers", publisherService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("currentPage", bookPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", bookPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", bookPage.getTotalPages());
+        model.addAttribute("auth",authentication);
+        return "client/shop-product-waiting";
+    }
 
     @GetMapping(value = "/shop-product-best-selling")
     public String shop_product_best_selling() {

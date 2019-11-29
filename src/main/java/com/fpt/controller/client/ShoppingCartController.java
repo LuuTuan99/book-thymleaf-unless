@@ -36,7 +36,8 @@ public class ShoppingCartController {
 
     //List card
     @GetMapping(value = "/listCard")
-    public String index(Model model,HttpSession session){
+    public String index(Model model,HttpSession session,Authentication authentication){
+        model.addAttribute("auth",authentication);
         model.addAttribute("total",totalPrice(session));
         System.out.println("Gia theo phien: "+totalPrice(session));
         return "client/shop-shopping-cart";
@@ -89,14 +90,21 @@ public class ShoppingCartController {
             }
             session.setAttribute("cart",cart);
         }
-        redirectAttributes.addFlashAttribute("success","Thêm thành công sách vào giỏ hàng");
+        redirectAttributes.addFlashAttribute("success",quantity);
         return "redirect:/shop-item/{id}";
     }
 
+    @GetMapping(value = "/checkoutSuccess")
+    public String checkoutSuccess(Authentication authentication,Model model){
+        model.addAttribute("auth",authentication);
+        return "order/thank";
+    }
+
     @GetMapping(value = "/checkout")
-    public String showForm(Model model){
+    public String showForm(Model model,Authentication authentication){
+        model.addAttribute("auth",authentication);
         model.addAttribute("order",new OrderBook());
-        return "client/shop-checkout";
+        return "order/checkout";
     }
     @PostMapping(value = "/checkout")
     public String checkOut(Authentication authentication, HttpSession session,OrderBook order){
@@ -122,9 +130,8 @@ public class ShoppingCartController {
                 //remove cart
                 session.removeAttribute("cart");
             }
-            return "client/thank";
+            return "redirect:/cart/checkoutSuccess";
         }
-
     }
 
     //kiểm tra tồn tại của 1 cuốn sách đã order trong cart

@@ -32,8 +32,9 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Username</label>
-                                <input type="text" class="form-control" th:field="*{username}">
+                                <input type="text" class="form-control" name="username" th:field="*{username}">
                                 <small class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</small>
+                                <small class="error" th:if="${existMember!=null}">Vui lòng chọn username khác!</small>
                             </div> <!-- form-group end.// -->
                             <div class="form-group col-md-3">
                                 <label>Avatar</label>
@@ -78,7 +79,8 @@
                             <label>Create password</label>
                             <input class="form-control" type="password" th:field="*{hashPassword}">
                             <small class="error" th:if="${#fields.hasErrors('hashPassword')}" th:errors="*{hashPassword}">Error</small>
-                        </div> <!-- form-group end.// -->
+                        </div>
+                        <!-- form-group end.// -->
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block"> Register  </button>
                         </div> <!-- form-group// -->

@@ -42,35 +42,35 @@
                                 <div class="content-form-page">
                                     <form role="form" th:action="@{/cart/checkout}" th:object="${order}" method="post" class="form-horizontal form-without-legend">
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="full-name">Họ và tên<span class="require">*</span></label>
+                                            <label class="col-lg-2 control-label">Họ và tên<span class="require">*</span></label>
                                             <div class="col-lg-8">
-                                                <input type="text" th:field="*{customerName}" id="full-name" class="form-control">
+                                                <input type="text" th:field="*{customerName}" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!--<div class="form-group">
                                             <label class="col-lg-2 control-label" for="email">Email<span class="require">*</span></label>
                                             <div class="col-lg-8">
                                                 <input type="text" id="email" class="form-control">
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="telephone">Số điện thoại<span class="require">*</span></label>
+                                            <label class="col-lg-2 control-label">Số điện thoại<span class="require">*</span></label>
                                             <div class="col-lg-8">
-                                                <input type="text" th:field="*{customerPhone}" id="telephone" class="form-control">
+                                                <input type="text" th:field="*{customerPhone}"  class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="address">Địa chỉ<span class="require">*</span></label>
+                                            <label class="col-lg-2 control-label">Địa chỉ<span class="require">*</span></label>
                                             <div class="col-lg-8">
-                                                <input type="text" th:field="*{customerAddress}" id="address" class="form-control">
+                                                <input type="text" th:field="*{customerAddress}" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!--<div class="form-group">
                                             <label class="col-lg-2 control-label" for="">Ghi chú</label>
                                             <div class="col-lg-8">
                                                 <textarea class="form-control" rows="6"></textarea>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="row">
                                             <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
                                                 <button class="btn btn-primary" type="submit">Tiếp tục</button>

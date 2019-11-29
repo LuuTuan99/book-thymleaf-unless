@@ -58,16 +58,13 @@ public class OrderController {
         Page<OrderBook> orderBookPage = orderServiceImplement.findAllActive(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("orderBooks", orderBookPage.getContent());
         double total =SumPrice();
-        double total1 =getUnitPriceOnWeek();
-        model.addAttribute("list2",orderDetailsService.fillAll());
+       /* double total1 =getUnitPriceOnWeek();*/
+        /*model.addAttribute("list2",orderDetailsService.fillAll());*/
 
         // model.addAttribute("list",orderService.findAll());
         model.addAttribute("order",new OrderBook());
         model.addAttribute("total",total);
-
-        model.addAttribute("total1",total1);
-
-
+        model.addAttribute("listStatus", OrderBook.Status.values());
         model.addAttribute("currentPage", orderBookPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", orderBookPage.getPageable().getPageSize());
         model.addAttribute("totalPage", orderBookPage.getTotalPages());
@@ -99,7 +96,7 @@ public class OrderController {
     }
 
     public double SumPrice(){
-        List<OrderBook> orderBookListSuccess =orderService.findByStatus(0);
+        List<OrderBook> orderBookListSuccess =orderService.findByStatus(1);
         double totalPrice =0;
         for (int i=0;i<orderBookListSuccess.size();i++){
             totalPrice+=orderBookListSuccess.get(i).getUnitPrice();
@@ -107,7 +104,7 @@ public class OrderController {
         return totalPrice;
     }
 
-    public double getUnitPriceOnWeek(){
+   /* public double getUnitPriceOnWeek(){
         List<OrderBook> orderBookListSuccess =orderService.findByStatus(0);
         LocalDate currentTime = Instant.ofEpochMilli(System.currentTimeMillis()).atZone(ZoneId.systemDefault()).toLocalDate();
         double total=0;
@@ -118,6 +115,6 @@ public class OrderController {
             }
         }
         return total;
-    }
+    }*/
 
 }

@@ -18,8 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/members")
@@ -88,8 +90,12 @@ public class MemberController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
-    public String stores(@Valid Member member, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    public String stores(@Valid Member member, BindingResult bindingResult, HttpServletRequest request,Model model) {
+
+        String usernameInput = request.getParameter("username");
+        Member existMember = memberService.getByUsername(usernameInput);
+        model.addAttribute("existMember",existMember);
+        if (bindingResult.hasErrors() || existMember!=null ) {
             return "client/login-register/page-register";
         }
         memberService.register(member);
