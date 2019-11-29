@@ -20,6 +20,8 @@
                             <form th:action="@{/admin/orders}" method="get">
                                 <div class="row">
                                     <div class="col-sm-6">
+                                        <p th:text="'Tổng doanh thu: '+${total}"></p>
+                                        <p th:text="'Tổng doanh thu tuần vừa qua: '+${total1}"></p>
                                     </div>
                                     <div class="col-sm-3">
                                     </div>
@@ -40,8 +42,6 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
-
-                                    <th><input type="checkbox" id="select_all"></th>
                                     <th>Nguoi dat</th>
                                     <th>SDT</th>
                                     <th>DIA CHI</th>
@@ -50,10 +50,7 @@
                                     <th>ORDER DETAILS</th>
                                     </thead>
                                     <tbody>
-<!--                                    code data-->
                                     <tr th:each="o :${orderBooks}">
-                                        <td><input type="checkbox" name="select[]"></td>
-
                                         <td th:text="${o.customerName}"></td>
                                         <td th:text="${o.customerPhone}"></td>
                                         <td th:text="${o.customerAddress}"></td>
@@ -83,10 +80,10 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                          <td colspan="6" th:text="'Tổng doanh thu: '+${total}"></td>
+                                        <td colspan="1" th:text="'Tổng doanh thu: '+${total}"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" th:text="'Tổng doanh thu tuần vừa qua: '+${total1}"></td>
+                                        <td colspan="1" th:text="'Tổng doanh thu tuần vừa qua: '+${total1}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
