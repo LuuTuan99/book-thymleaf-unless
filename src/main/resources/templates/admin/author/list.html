@@ -67,24 +67,24 @@
                             <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
                                 <ul class="pagination float-right">
                                     <li class="page-item"><a class="page-link"
-                                                             th:href="@{/admin/authors(page=${1}, limit=${limit})}">First</a>
+                                                             th:href="@{/admin/authors(page=${1}, limit=${limit}, keyword=${keyword})}">First</a>
                                     </li>
                                     <li th:if="${currentPage > 1}" class="page-item"><a class="page-link"
-                                                                                        th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit})}">Previous</a>
+                                                                                        th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit}, keyword=${keyword})}">Previous</a>
                                     </li>
                                     <li th:if="${currentPage > 1}" class="page-item"><a class="page-link"
-                                                                                        th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit})}">[[${currentPage
+                                                                                        th:href="@{/admin/authors(page=${currentPage - 1}, limit=${limit}, keyword=${keyword})}">[[${currentPage
                                         - 1}]]</a></li>
                                     <li class="page-item active"><a class="page-link" href="#">[[${currentPage}]]</a>
                                     </li>
                                     <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link"
-                                                                                                th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit})}">[[${currentPage
+                                                                                                th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit}, keyword=${keyword})}">[[${currentPage
                                         + 1}]]</a></li>
                                     <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link"
-                                                                                                th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit})}">Next</a>
+                                                                                                th:href="@{/admin/authors(page=${currentPage + 1}, limit=${limit}, keyword=${keyword})}">Next</a>
                                     </li>
                                     <li class="page-item"><a class="page-link"
-                                                             th:href="@{/admin/authors(page=${totalPage}, limit=${limit})}">Last</a>
+                                                             th:href="@{/admin/authors(page=${totalPage}, limit=${limit}, keyword=${keyword})}">Last</a>
                                     </li>
                                 </ul>
                             </nav>
