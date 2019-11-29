@@ -101,8 +101,6 @@ public class ShoppingCartController {
     @PostMapping(value = "/checkout")
     public String checkOut(Authentication authentication, HttpSession session,OrderBook order){
         // add new orders;
-
-
         if(authentication ==null){
             return "redirect:/members/login";
         }else {

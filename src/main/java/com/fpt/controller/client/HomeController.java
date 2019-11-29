@@ -54,7 +54,7 @@ public class HomeController {
         model.addAttribute("bookList", books);
 
         List<Book> fourBooks = new ArrayList<>();
-        for (int i= 0; i < 5;i++){
+        for (int i= 0; i < 10;i++){
             Book book = books.get(i);
             fourBooks.add(book);
         }
