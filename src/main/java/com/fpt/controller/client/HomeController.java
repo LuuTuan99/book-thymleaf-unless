@@ -99,7 +99,7 @@ public class HomeController {
     }
 
     // sách mới nhất
-    @RequestMapping(method = RequestMethod.GET, value = "/book_updates")
+    @RequestMapping(method = RequestMethod.GET, value = "/shop-product-new-release")
     public String book_update(
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
@@ -131,14 +131,9 @@ public class HomeController {
         model.addAttribute("limit", bookPage.getPageable().getPageSize());
         model.addAttribute("totalPage", bookPage.getTotalPages());
         model.addAttribute("auth",authentication);
-        return "client/";
-    }
-
-    // shop list item page
-    @GetMapping(value = "/shop-product-new-release")
-    public String shop_product_new_release() {
         return "/client/shop-product-new-release";
     }
+
 
     @GetMapping(value = "/shop-product-best-selling")
     public String shop_product_best_selling() {

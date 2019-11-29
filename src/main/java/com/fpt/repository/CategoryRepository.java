@@ -29,4 +29,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long>, JpaSp
     void resetIncrement();
 
     List<Category> findByName(String name);
+
 }
