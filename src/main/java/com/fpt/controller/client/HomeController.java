@@ -99,9 +99,14 @@ public class HomeController {
     }
 
     // shop list item page
-    @GetMapping(value = "/shop-search-result")
-    public String shop_search_result() {
-        return "client/shop-search-result";
+    @GetMapping(value = "/shop-product-new-release")
+    public String shop_product_new_release() {
+        return "/client/shop-product-new-release";
+    }
+
+    @GetMapping(value = "/shop-product-best-selling")
+    public String shop_product_best_selling() {
+        return "/client/shop-product-best-selling";
     }
 
     // shop shopping cart page
