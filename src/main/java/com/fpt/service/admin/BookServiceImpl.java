@@ -9,20 +9,13 @@ import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
     BookRepository bookRepository;
-
-    @Override
-    public List<Book> findAll() {
-        return bookRepository.findAll();
-    }
 
     public Page<Book> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable);
@@ -34,11 +27,6 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(specification, pageable);
     }
 
-    public Page<Book> findAllActiveDESC(Specification specification, Pageable pageable, Sort updatedAtMLS) {
-        specification = specification
-                .and(new BookSpecification(new SearchCriteria("status", "!=", Book.Status.DELETED.getValue())));
-        return bookRepository.findAll(specification, pageable);
-    }
 
 
     @Override
@@ -87,4 +75,7 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(existBook);
         return true;
     }
+
+
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface BookService {
 
-    List<Book> findAll();
 
     List<Book> search(String name);
 
@@ -17,4 +16,6 @@ public interface BookService {
     Book update(long id, Book updateBook);
 
     boolean delete(long id);
+
+
 }

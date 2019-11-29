@@ -98,6 +98,7 @@ public class HomeController {
         return "client/shop-product-list";
     }
 
+
     // sách mới nhất
     @RequestMapping(method = RequestMethod.GET, value = "/shop-product-new-release")
     public String book_update(
@@ -120,7 +121,8 @@ public class HomeController {
                     .and(new BookSpecification(new SearchCriteria("keyword", "join", keyword)));
             model.addAttribute("keyword", keyword);
         }
-        Page<Book> bookPage = bookService.findAllActiveDESC(specification, PageRequest.of(page - 1, limit), Sort.by(Sort.Direction.DESC, "updatedAtMLS"));
+
+        Page<Book> bookPage = bookService.findAllActive(specification, PageRequest.of(page - 1, limit, Sort.by("updatedAtMLS").descending()));
 
         model.addAttribute("books", bookPage.getContent());
 
