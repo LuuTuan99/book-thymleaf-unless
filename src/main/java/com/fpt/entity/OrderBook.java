@@ -13,6 +13,7 @@ public class OrderBook {
     private String customerAddress;
     private String customerPhone;
     private long createdAt;
+    private long updatedAt;
     private int status;
     private double unitPrice;
     @ManyToOne
@@ -22,7 +23,7 @@ public class OrderBook {
     private Set<OrderDetails> orderDetails =new HashSet<>();
 
     public enum Status {
-        ACTIVE(1), DEACTIVE(0),DELETED(-1);
+        DONE(1), PROCESSING(0),DELETED(-1);
 
         private int value;
 
@@ -117,5 +118,13 @@ public class OrderBook {
 
     public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

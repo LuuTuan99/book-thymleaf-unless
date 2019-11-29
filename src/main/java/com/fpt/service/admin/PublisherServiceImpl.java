@@ -60,7 +60,7 @@ public class PublisherServiceImpl implements PublisherService {
         existPublisher.setName(updatePublisher.getName());
         existPublisher.setAvatar(updatePublisher.getAvatar());
         existPublisher.setDescription(updatePublisher.getDescription());
-        return publisherRepository.save(updatePublisher);
+        return publisherRepository.save(existPublisher);
     }
 
     @Override
