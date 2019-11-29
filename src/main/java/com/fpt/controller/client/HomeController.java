@@ -98,6 +98,42 @@ public class HomeController {
         return "client/shop-product-list";
     }
 
+    // sách mới nhất
+    @RequestMapping(method = RequestMethod.GET, value = "/book_updates")
+    public String book_update(
+            @RequestParam(name = "categoryId", required = false) Long categoryId,
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "8") int limit,
+            Authentication authentication,
+            Model model) {
+        Specification specification = Specification.where(null);
+
+        if (categoryId != null && categoryId > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("categoryId", "joinCategory", categoryId)));
+            model.addAttribute("categoryId", categoryId);
+        }
+
+        if (keyword != null && keyword.length() > 0) {
+            specification = specification
+                    .and(new BookSpecification(new SearchCriteria("keyword", "join", keyword)));
+            model.addAttribute("keyword", keyword);
+        }
+        Page<Book> bookPage = bookService.findAllActiveDESC(specification, PageRequest.of(page - 1, limit), Sort.by(Sort.Direction.DESC, "updatedAtMLS"));
+
+        model.addAttribute("books", bookPage.getContent());
+
+        model.addAttribute("authors", authorService.findAll());
+        model.addAttribute("publishers", publisherService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("currentPage", bookPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", bookPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", bookPage.getTotalPages());
+        model.addAttribute("auth",authentication);
+        return "client/";
+    }
+
     // shop list item page
     @GetMapping(value = "/shop-search-result")
     public String shop_search_result() {

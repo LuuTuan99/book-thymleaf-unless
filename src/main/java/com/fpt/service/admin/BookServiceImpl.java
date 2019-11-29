@@ -34,6 +34,12 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(specification, pageable);
     }
 
+    public Page<Book> findAllActiveDESC(Specification specification, Pageable pageable, Sort updatedAtMLS) {
+        specification = specification
+                .and(new BookSpecification(new SearchCriteria("status", "!=", Book.Status.DELETED.getValue())));
+        return bookRepository.findAll(specification, pageable);
+    }
+
 
     @Override
     public List<Book> search(String name) {
