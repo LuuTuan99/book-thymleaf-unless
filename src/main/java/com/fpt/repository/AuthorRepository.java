@@ -36,4 +36,6 @@ public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecif
     List<Author> findByName(String name);
 
     List<Author> findAllByStatusIsNot(int status);
+
+
 }
