@@ -60,6 +60,7 @@ public class OrderController {
         double total =SumPrice();
         double total1 =getUnitPriceOnWeek();
         model.addAttribute("list2",orderDetailsService.fillAll());
+
         // model.addAttribute("list",orderService.findAll());
         model.addAttribute("order",new OrderBook());
         model.addAttribute("total",total);
@@ -71,7 +72,6 @@ public class OrderController {
         model.addAttribute("limit", orderBookPage.getPageable().getPageSize());
         model.addAttribute("totalPage", orderBookPage.getTotalPages());
 
-
         return "admin/order/list";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
@@ -81,6 +81,7 @@ public class OrderController {
             return "error/404";
         }
         model.addAttribute("order", order);
+
         return "/admin/order/detail";
     }
 

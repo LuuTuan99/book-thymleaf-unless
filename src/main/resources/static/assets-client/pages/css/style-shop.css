@@ -413,6 +413,12 @@ Header and header elements
 	float: left;
 	padding-top: 1px;
 }
+.pi-price-sale {
+	color: #bbb;
+	font: 18px 'PT Sans Narrow', sans-serif;
+	float: left;
+	padding-top: 1px;
+}
 .product-item .add2cart {
 	float: right;
 	color: #a8aeb3;

@@ -14,41 +14,26 @@
 <div class="main">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a th:href="@{/}">Home</a></li>
-      <li><a href="">Store</a></li>
+      <li><a th:href="@{/}">Trang chủ</a></li>
+      <li><a href="/shop-product-list">Sách</a></li>
       <li class="active" th:text="${book.name}"></li>
     </ul>
     <!-- BEGIN SIDEBAR & CONTENT -->
     <div class="row margin-bottom-40">
       <!-- BEGIN SIDEBAR -->
-      <div class="sidebar col-md-3 col-sm-5">
-        <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            bán chạy</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            mới phát hành</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            sắp phát hành</a></li>
-          <li class="list-group-item clearfix dropdown active">
-            <a href="javascript:void(0);" class="collapsed">
+      <form th:action="@{/shop-product-list}" method="get">
+        <div class="sidebar col-md-3 col-sm-5">
+          <ul class="list-group margin-bottom-25 sidebar-menu">
+            <li class="list-group-item clearfix" th:each="category : ${categories}">
               <i class="fa fa-angle-right"></i>
-              Sách văn học
-            </a>
-            <ul class="dropdown-menu" style="display:block;">
-              <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học nước ngoài</a></li>
-              <li><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách văn học trong nước</a></li>
-            </ul>
-          </li>
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            kinh tế</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            giáo khoa</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            tạp chí</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            thiếu nhi</a></li>
-        </ul>
-      </div>
+              <a th:href="'?categoryId=' + ${category.id}"
+                 th:text="${category.name}"
+                 th:value="${category.id}">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </form>
       <!-- END SIDEBAR -->
 
       <!-- BEGIN CONTENT -->
@@ -61,19 +46,18 @@
               </div>
               <div class="product-other-images">
                 <a th:href="@{${book.photos}}" class="fancybox-button" rel="photos-lib"><img alt="image book" th:src="@{${book.photos}}"></a>
-                <a href="/assets-client/pages/img/products/book2.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="/assets-client/pages/img/products/book3.jpg"></a>
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <h1 th:text="${book.name}"></h1>
               <div class="price-availability-block clearfix">
                 <div class="price">
-                  <strong th:text="${book.price + 'đ'}"><span>$</span></strong>
-<!--                  <em>$<span>62.00</span></em>-->
+                  <strong th:text="${book.price + 'đ'}"></strong>
+                  <em><span th:text="${book.price*1.5 + 'đ'}"></span></em>
                 </div>
                 <div class="availability">
-                  <th:block th:if="${book.quantity>0}">Availability: <strong>Còn hàng</strong></th:block>
-                  <th:block th:unless="${book.quantity>0}"><span>No Available</span></th:block>
+                  <th:block th:if="${book.quantity>0}">Trạng thái: <strong>Còn hàng</strong></th:block>
+                  <th:block th:unless="${book.quantity>0}"><span>Hết hàng</span></th:block>
                 </div>
               </div>
               <div th:if="${success}"
@@ -86,9 +70,9 @@
               </div>
               <div class="description">
                 <th:block th:each="category :${book.categories}">
-                  <span>Category: </span><a href=""><span th:text="${category.name}"></span></a>
+                  <span>Thể loại: </span><a href=""><span th:text="${category.name}"></span></a>
                 </th:block>
-                <p><span>Description: </span><span th:text="${book.description}"></span></p>
+                <p><span>Mô tả: </span><span th:text="${book.description}"></span></p>
               </div>
               <th:block th:if="${book.quantity>0}">
                 <div class="product-page-cart">
@@ -98,7 +82,7 @@
                       <input name="quantity" type="number" th:value="1" class="form-control input-sm">
                     </div>
                     <!--end so luong order ban dau-->
-                    <button class="btn btn-default" type="submit">ADD-CART</button>
+                    <button class="btn btn-primary" type="submit">Thêm vào giỏ</button>
                   </form>
                 </div>
               </th:block>

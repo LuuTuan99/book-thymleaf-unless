@@ -27,7 +27,7 @@
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a th:href="@{/shop-account}">My Account</a></li>
-                    <li><a th:href="@{/shop-checkout}">Check out</a></li>
+                    <li><a th:href="@{/cart/checkout}">Check out</a></li>
                     <li class="dropdown">
                         <th:block th:if="${auth != null}">
                             <a class="dropbtn" th:text="${auth.getName()}"></a>
@@ -49,55 +49,55 @@
 <div class="header">
     <div class="container">
         <a class="site-logo" th:href="@{/}"><img src="/assets-client/corporate/img/logos/logo-shop-red.png"
-                                                 alt="Metronic Shop UI"></a>
+                                                 alt=""></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
         <!-- BEGIN CART -->
         <div class="top-cart-block">
             <div class="top-cart-info">
-                <a class="top-cart-info-count">items</a>
-                <a class="top-cart-info-value"></a>
+                <a th:href="@{/cart/listCard}" class="top-cart-info-count">Giỏ hàng</a>
+<!--                <a class="top-cart-info-value"></a>-->
             </div>
             <a th:href="@{/cart/listCard}" class="fa fa-shopping-cart"></a>
 
-            <div class="top-cart-content-wrapper">
-                <div class="top-cart-content">
-                    <ul class="scroller" style="height: 250px;">
-                        <li>
-                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"
-                                                           alt="Rolex Classic Watch" width="37"
-                                                           height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"
-                                                           alt="Rolex Classic Watch" width="37"
-                                                           height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                        <li>
-                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"
-                                                           alt="Rolex Classic Watch" width="37"
-                                                           height="34"></a>
-                            <span class="cart-content-count">x 1</span>
-                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>
-                            <em>$1230</em>
-                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                        </li>
-                    </ul>
-                    <div class="text-right">
-                        <a th:href="@{shop-shopping-cart}" class="btn btn-default">View Cart</a>
-                        <a th:href="@{shop-checkout}" class="btn btn-primary">Checkout</a>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="top-cart-content-wrapper">-->
+<!--                <div class="top-cart-content">-->
+<!--                    <ul class="scroller" style="height: 250px;">-->
+<!--                        <li>-->
+<!--                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"-->
+<!--                                                           alt="Rolex Classic Watch" width="37"-->
+<!--                                                           height="34"></a>-->
+<!--                            <span class="cart-content-count">x 1</span>-->
+<!--                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>-->
+<!--                            <em>$1230</em>-->
+<!--                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"-->
+<!--                                                           alt="Rolex Classic Watch" width="37"-->
+<!--                                                           height="34"></a>-->
+<!--                            <span class="cart-content-count">x 1</span>-->
+<!--                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>-->
+<!--                            <em>$1230</em>-->
+<!--                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a th:href="@{shop-item}"><img src="/assets-client/pages/img/cart-img.jpg"-->
+<!--                                                           alt="Rolex Classic Watch" width="37"-->
+<!--                                                           height="34"></a>-->
+<!--                            <span class="cart-content-count">x 1</span>-->
+<!--                            <strong><a th:href="@{shop-item}">Rolex Classic Watch</a></strong>-->
+<!--                            <em>$1230</em>-->
+<!--                            <a href="javascript:void(0);" class="del-goods">&nbsp;</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                    <div class="text-right">-->
+<!--                        <a th:href="@{shop-shopping-cart}" class="btn btn-default">View Cart</a>-->
+<!--                        <a th:href="@{/cart/checkout}" class="btn btn-primary">Checkout</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <!--END CART -->
 
@@ -109,7 +109,6 @@
                 <!-- BEGIN TOP SEARCH -->
                 <li class="menu-search">
                     <span class="sep"></span>
-                    <i class="fa fa-search search-btn"></i>
                     <div class="search-box">
                         <form action="#">
                             <div class="input-group">

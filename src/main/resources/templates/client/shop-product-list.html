@@ -78,15 +78,15 @@
                     <div class="col-md-3 col-sm-6 col-xs-12" th:each="book: ${books}">
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img th:src="${book.getPhotos()}" class="img-responsive" alt="image book" style="object-fit: cover;">
+                                <img th:src="${book.getPhotos()}" class="img-responsive" alt="image book" style="height: 100%">
                                 <div>
                                     <a th:href="${book.getPhotos()}" class="btn btn-default fancybox-button">Zoom</a>
                                     <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:text="${book.name}"></a></h3>
-                            <div th:text="${book.price}" class="pi-price"></div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            <div class="pi-price-sale"th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>
+                            <div th:text="${book.price + 'đ'}" class="pi-price"></div>
                         </div>
                     </div>
                     <!-- PRODUCT ITEM END -->
