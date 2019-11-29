@@ -9,7 +9,6 @@ import com.fpt.service.admin.AuthorServiceImpl;
 import com.fpt.service.admin.BookServiceImpl;
 import com.fpt.service.admin.CategoryServiceImpl;
 import com.fpt.service.admin.PublisherServiceImpl;
-import com.fpt.specification.AuthorSpecification;
 import com.fpt.specification.BookSpecification;
 import com.fpt.specification.SearchCriteria;
 import com.google.gson.Gson;
@@ -23,8 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
