@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:javascript="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- Head BEGIN -->
 <title>Home | Book Store</title>
 <th:block th:include="fragments/client/head"></th:block>
@@ -18,42 +18,16 @@
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar col-md-3 col-sm-4">
         <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            bán chạy</a></li>
-          <li class="list-group-item clearfix dropdown">
-            <a th:href="@{/}">
-              <i class="fa fa-angle-right"></i>Sách mới phát hành
-            </a>
-            <ul class="dropdown-menu">
-              <li class="active"><a th:href="@{/}">Home Default</a></li>
-              <li><a th:href="@{shop-product-list}">Product List</a></li>
-              <li><a th:href="@{shop-search-result}">Search Result</a></li>
-              <li><a th:href="@{shop-item}">Product Page</a></li>
-              <li><a th:href="@{shop-shopping-cart-null}">Shopping Cart (Null Cart)</a></li>
-              <li><a th:href="@{shop-shopping-cart}">Shopping Cart</a></li>
-            </ul>
-          </li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            sắp phát hành</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            văn học</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            ngoại văn</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            kinh tế</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            giáo khoa</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            tạp chí</a></li>
-          <li class="list-group-item clearfix"><a th:href="@{shop-product-list}"><i class="fa fa-angle-right"></i> Sách
-            thiếu nhi</a></li>
-        </ul>
+        <li class="list-group-item clearfix"><a th:href="@{/shop-product-best-selling}"><i class="fa fa-angle-right"></i> Sách bán chạy</a></li>
+        <li class="list-group-item clearfix"><a th:href="@{/shop-product-new-release}"><i class="fa fa-angle-right"></i>Sách mới phát hành</a></li>
+        <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách</a></li>
+      </ul>
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN CONTENT -->
       <div class="col-md-9 col-sm-8">
-        <h4>Xu hướng tìm kiếm: lịch sử, đam mĩ, cho mẹ, nhà giả, tiếng việt, giáo trình ngữ, hán, toán, vật lý, học
-          nhật</h4>
+<!--        <h4>Xu hướng tìm kiếm: lịch sử, cho mẹ, nhà giả, tiếng việt, giáo trình ngữ, hán, toán, vật lý, học-->
+<!--          nhật</h4>-->
         <!-- BEGIN PROMO -->
         <div class="shop-index-carousel">
           <div class="content-slider">
@@ -66,13 +40,13 @@
               </ol>
               <div class="carousel-inner">
                 <div class="item active">
-                  <img src="/assets-client/pages/img/shop-slider/slide1/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
-                </div>
-                <div class="item">
                   <img src="/assets-client/pages/img/shop-slider/slide2/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
                 </div>
                 <div class="item">
                   <img src="/assets-client/pages/img/shop-slider/slide3/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
+                </div>
+                <div class="item">
+                  <img src="/assets-client/pages/img/shop-slider/slide4/bg.jpg" class="img-responsive" alt="Berry Lace Dress">
                 </div>
               </div>
             </div>
