@@ -124,7 +124,7 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <img th:src="@{${member.avatar}}" alt=""/>
                     <div class="file btn btn-lg btn-primary">
                       Sửa ảnh
                       <input type="file" name="file"/>
@@ -160,19 +160,19 @@
                           </tr>
                           <tr>
                             <td class="datasheet-features-type">Họ và tên</td>
-                            <td>nguyen van a</td>
+                            <td th:text="${member.username}"></td>
                           </tr>
                           <tr>
                             <td class="datasheet-features-type">Email</td>
-                            <td>a@gmail.com</td>
+                            <td th:text="${member.email}"></td>
                           </tr>
                           <tr>
                             <td class="datasheet-features-type">Số điện thoại</td>
-                            <td>0123456789</td>
+                            <td th:text="${member.phone}"></td>
                           </tr>
                           <tr>
                             <td class="datasheet-features-type">Địa chỉ</td>
-                            <td>Số a, đường a, phố a</td>
+                            <td th:text="${member.address}"></td>
                           </tr>
                         </table>
                       </div>
