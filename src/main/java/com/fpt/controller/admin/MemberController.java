@@ -112,6 +112,16 @@ public class MemberController {
         return "admin/member/detail";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/profile/{id}")
+    public String detailMember(@PathVariable long id, Model model) {
+        Member member = memberService.getById(id);
+        if (member == null) {
+            return "error/404";
+        }
+        model.addAttribute("member", member);
+        return "client/shop-account";
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
     public String updateMember(@PathVariable long id, Model model) {
         Member member = memberService.getById(id);
