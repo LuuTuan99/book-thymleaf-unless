@@ -74,7 +74,7 @@
                 </div>
               </div>
               <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:id="${book.getName()}" th:text="${book.getName()}"></a></h3>
-              <div class="pi-price" th:text="${book.getPrice() + 'đ'}"></div>
+              <div class="pi-price" th:text="${book.getPrice() + 'đ  '}"></div>
               <div class="pi-price-sale" th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>
               <div class="sticker sticker-new"></div>
             </div>
@@ -99,8 +99,7 @@
               </div>
               <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:id="${book.getName()}" th:text="${book.getName()}"></a></h3>
               <!--<div class="pi-price-sale" th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>-->
-              <div class="pi-price">NEW BOOK COMMING SOON</div>
-              <div class="sticker sticker-new"></div>
+              <div  class="pi-price"><a th:href="@{'/shop-item/' + ${book.id}}">Sách sắp phát hành tuần tới</a></div>
             </div>
           </div>
         </div>
