@@ -47,8 +47,9 @@
                   <em><span th:text="${book.price*1.5 + 'đ'}"></span></em>
                 </div>
                 <div class="availability">
-                  <th:block th:if="${book.quantity>0}">Trạng thái: <strong>Còn hàng</strong></th:block>
+                  <th:block th:if="${book.quantity>0 && book.status!=2}">Trạng thái: <strong>Còn hàng</strong></th:block>
                   <th:block th:unless="${book.quantity>0}"><span>Hết hàng</span></th:block>
+                  <th:block th:if="${book.status ==2}">Trạng thái: <strong style="color: orange">Sắp ra mắt</strong></th:block>
                 </div>
               </div>
               <div th:if="${success}"
@@ -57,7 +58,11 @@
                         aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
-                <span th:text="${success}"></span>
+                <span th:text="'Thêm thành công '+${success}+' sản phẩm vào giỏ hàng'"></span>
+                <div>
+                  <a th:href="@{/shop-product-list}" class="btn btn-success">Mua tiếp</a>
+                  <a th:href="@{/cart/listCard}" class="btn btn-warning">Thanh toán</a>
+                </div>
               </div>
               <div class="description">
                 <th:block th:each="category :${book.categories}">
@@ -66,7 +71,7 @@
                 <br/>
                 <p><span>Mô tả: </span><span th:text="${book.description}"></span></p>
               </div>
-              <th:block th:if="${book.quantity>0}">
+              <th:block th:if="${book.quantity>0 && book.status!=2}">
                 <div class="product-page-cart">
                   <!--so luong order ban dau-->
                   <form th:action="@{/cart/buy/{id}(id=*{id})}">
@@ -78,9 +83,9 @@
                   </form>
                 </div>
               </th:block>
-              <th:block th:unless="${book.quantity>0}">
+              <th:block th:unless="${book.quantity>0 && book.status!=2}">
                 <div class="product-page-cart">
-                 <span style="color: white;font-size: larger;background-color: orangered">Tạm thời hết hàng</span>
+                 <span style="color: white;font-size: larger;background-color: orangered">Sách không có sẵn</span>
                 </div>
               </th:block>
               <div class="review">

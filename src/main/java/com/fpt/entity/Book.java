@@ -58,7 +58,7 @@ public class Book {
         return Math.floor(amount*10)/10;
     }
     public enum Status {
-        ACTIVE(1), DEACTIVE(0),DELETED(-1);
+        ACTIVE(1), DEACTIVE(0),DELETED(-1),WAITING(2);
 
         private int value;
 

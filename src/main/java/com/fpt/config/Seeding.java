@@ -9,7 +9,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -19,6 +21,11 @@ import java.util.logging.Logger;
 public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
 
     private static final Logger LOGGER = Logger.getLogger(Seeding.class.getSimpleName());
+
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    OrderDetailsRepository orderDetailsRepository;
 
     @Autowired
     AuthorRepository authorRepository;
@@ -35,6 +42,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     MemberRepository memberRepository;
 
+    private List<OrderBook> orderBookList = new ArrayList<>();
+    private List<OrderDetails> orderDetailsList = new ArrayList<>();
     private List<Category> categoryList = new ArrayList<>();
     private List<Publisher> publisherList = new ArrayList<>();
     private List<Author> authorList = new ArrayList<>();
@@ -51,6 +60,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         seedingPublisher();
         seedingCategory();
         seedingBook();
+        seedingOrder();
         categoryRepository.enableForeignKeyCheck();
         LOGGER.log(Level.INFO, String.format("Seeding success!"));
     }
@@ -63,8 +73,10 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setPhotos("https://www.vinabook.com/images/detailed/349/P90102Enhung_ngay.jpg");
          book.setDescription("Nhà xuất bản: Nxb Lao động - Xã hội,Nhà phát hành: Thái Hà,Mã Sản phẩm: 8935280903890,Khối lượng: 396.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 16 x 23 cm,Ngày phát hành: 09/10/2019,Số trang: 176");
          book.setPrice(89000);
-         book.setQuantity(0);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setCreatedAtMLS(0);
+         book.setQuantity(200);
+         book.setStatus(Book.Status.WAITING.getValue());
+
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -76,7 +88,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Tác giả: Dale Carnegie, Người dịch: Nguyễn Vǎn Phước,Nhà xuất bản: Nxb ,Tổng hợp TP.HCM,Nhà phát hành: Trí Việt,Mã Sản phẩm: 8935086841204,Khối lượng: 484.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa cứng,Kích thước: 14.5 x 20.5 cm,Ngày phát hành: 06/2018,Số trang: 320");
          book.setPrice(78000);
          book.setQuantity(200);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setCreatedAtMLS(0);
+         book.setStatus(Book.Status.WAITING.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -88,7 +101,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Thế giới,Nhà phát hành: AZ books,Mã Sản phẩm: 8936186540806,Khối lượng: 726.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 17 x 24 cm,Ngày phát hành: 02/10/2019,Số trang: 256");
          book.setPrice(179000);
          book.setQuantity(200);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setCreatedAtMLS(0);
+         book.setStatus(Book.Status.WAITING.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -99,8 +113,10 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setPhotos("https://www.vinabook.com/images/detailed/350/P90201Escan0001.jpg");
          book.setDescription("Nhà xuất bản: NXB Phụ Nữ,Nhà phát hành: NXB Phụ Nữ,Mã Sản phẩm: 9786045668283,Khối lượng: 638.00 gam,Ngôn ngữ: Tiếng Anh, Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 19 x 23 cm,Ngày phát hành: 09/2019,Số trang: 212");
          book.setPrice(189000);
-         book.setQuantity(0);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setQuantity(200);
+         book.setCreatedAtMLS(0);
+         book.setStatus(Book.Status.WAITING.getValue());
+
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -112,7 +128,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Thế giới,Nhà phát hành: Alpha books,Mã Sản phẩm: 1130000090193,Khối lượng: 308.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 13 x 20.5 cm,Ngày phát hành: 12/2018,Số trang: 360");
          book.setPrice(129000);
          book.setQuantity(200);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setCreatedAtMLS(0);
+         book.setStatus(Book.Status.WAITING.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -124,7 +141,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: Nxb Lao động - Xã hội,Nhà phát hành: Alpha books,Mã Sản phẩm: 1130000090180,Khối lượng: 264.00 gam,Ngôn ngữ: Tiếng Việt,Định dạng: Bìa mềm,Kích thước: 14 x 20.5 cm,Ngày phát hành: 19/10/2016,Số trang: 256");
          book.setPrice(75000);
          book.setQuantity(200);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setCreatedAtMLS(0);
+         book.setStatus(Book.Status.WAITING.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -136,7 +154,8 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
          book.setDescription("Nhà xuất bản: NXB Dân Trí,Nhà phát hành: Alpha books,Mã Sản phẩm: 1130000090179,Khối lượng: 286.00 gam,Định dạng: Bìa mềm,Kích thước: 13 x 20.5 cm,Ngày phát hành: 03/2014,Số trang: 300");
          book.setPrice(75000);
          book.setQuantity(200);
-         book.setStatus(Book.Status.ACTIVE.getValue());
+         book.setCreatedAtMLS(0);
+         book.setStatus(Book.Status.WAITING.getValue());
          book.addCategory(categoryList.get(new Random().nextInt(categoryList.size())));
          book.setPublisher(publisherList.get(new Random().nextInt(publisherList.size())));
          book.setAuthor(authorList.get(new Random().nextInt(authorList.size())));
@@ -1037,7 +1056,6 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
 
 
 
-
         memberRepository.saveAll(memberList);
     }
 
@@ -1233,4 +1251,53 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         authorRepository.saveAll(authorList);
     }
 
+    void seedingOrder(){
+        orderDetailsRepository.deleteAll();
+        orderRepository.deleteAll();
+        List<String> listName = new ArrayList<>();
+        listName.add("Nguyen Van A");
+        listName.add("Tran Van C");
+        listName.add("Dang Dinh Si");
+        listName.add("Chu Xuan Hai");
+        listName.add("Duong Van Minh");
+        listName.add("Nguyen Van Hai");
+        listName.add("Nguyen Van Huy");
+        listName.add("Le Thanh Tung");
+        listName.add("Doan Manh Cuong");
+        listName.add("Dao Hong Luyen");
+        listName.add("Nguyen Thanh Ngoc");
+        listName.add("Ngo Thi Huong");
+        listName.add("Dang Minh Khang");
+        listName.add("Dang Dinh Dung");
+        List<String> listAddress = new ArrayList<>();
+        listAddress.add("Ha Noi");
+        listAddress.add("Hai Duong");
+        listAddress.add("Hai Phong");
+        listAddress.add("Nghe An");
+        listAddress.add("Thai Binh");
+        listAddress.add("Hung Yen");
+
+
+        for (int i=0;i<3000;i++){
+            OrderBook order = new OrderBook();
+            order.setId(Calendar.getInstance().getTimeInMillis());
+            order.setCreatedBy(memberList.get(new Random().nextInt(memberList.size())));
+            order.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+            order.setNameOrder("Order By: "+memberList.get(new Random().nextInt(memberList.size())).getUsername());
+            order.setCustomerName(listName.get(new Random().nextInt(listName.size())));
+            order.setCustomerAddress(listAddress.get(new Random().nextInt(listAddress.size())));
+            order.setStatus(OrderBook.Status.WAITING.getValue());
+            order.setCustomerPhone(String.valueOf(new Random().nextInt(1898757434)));
+            order.setUnitPrice(Double.parseDouble(String.valueOf(new Random().nextInt(1390000))));
+            OrderDetails orderDetails = new OrderDetails();
+            orderDetails.setId(new OrderDetailsId(order.getId(),bookList.get(new Random().nextInt(bookList.size())).getId()));
+            orderDetails.setBookName(bookList.get(new Random().nextInt(bookList.size())).getName());
+            orderDetails.setPrice(bookList.get(new Random().nextInt(bookList.size())).getPrice());
+            orderDetails.setQuantity(new Random().nextInt(100));
+            orderBookList.add(order);
+            orderDetailsList.add(orderDetails);
+        }
+        orderRepository.saveAll(orderBookList);
+        orderDetailsRepository.saveAll(orderDetailsList);
+    }
 }

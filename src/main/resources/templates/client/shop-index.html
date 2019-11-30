@@ -18,9 +18,9 @@
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar col-md-3 col-sm-4">
         <ul class="list-group margin-bottom-25 sidebar-menu">
-        <li class="list-group-item clearfix"><a th:href="@{/shop-product-best-selling}"><i class="fa fa-angle-right"></i> Sách bán chạy</a></li>
         <li class="list-group-item clearfix"><a th:href="@{/shop-product-new-release}"><i class="fa fa-angle-right"></i>Sách mới phát hành</a></li>
-        <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Sách</a></li>
+          <li class="list-group-item clearfix"><a th:href="@{/shop-product-waiting}"><i class="fa fa-angle-right"></i>Sách sắp phát hành</a></li>
+        <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Danh Mục Sách</a></li>
       </ul>
       </div>
       <!-- END SIDEBAR -->
@@ -62,7 +62,7 @@
     <div class="row margin-bottom-40">
       <!-- BEGIN SALE PRODUCT -->
       <div class="col-md-12 sale-product">
-        <h2>Sách mới phát hành trong tuần</h2>
+        <h2><a th:href="@{/shop-product-new-release}">Sách mới phát hành trong tuần</a></h2>
         <div class="owl-carousel owl-carousel5">
           <div th:each="book, iStat : ${fourBooks}">
             <div class="product-item">
@@ -74,8 +74,32 @@
                 </div>
               </div>
               <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:id="${book.getName()}" th:text="${book.getName()}"></a></h3>
-              <div class="pi-price-sale" th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>
               <div class="pi-price" th:text="${book.getPrice() + 'đ'}"></div>
+              <div class="pi-price-sale" th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>
+              <div class="sticker sticker-new"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END SALE PRODUCT -->
+    </div>
+    <div class="row margin-bottom-40">
+      <!-- BEGIN SALE PRODUCT -->
+      <div class="col-md-12 sale-product">
+        <h2><a th:href="@{/shop-product-waiting}">Sách Sắp Phát Hành Tuần Tới</a></h2>
+        <div class="owl-carousel owl-carousel5">
+          <div th:each="book, iStat : ${bookComingSoon}">
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img th:src="${book.getPhotos()}" class="img-responsive" alt="image book" style="height: 100%">
+                <div>
+                  <a th:href="${book.getPhotos()}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
+              </div>
+              <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:id="${book.getName()}" th:text="${book.getName()}"></a></h3>
+              <!--<div class="pi-price-sale" th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>-->
+              <div class="pi-price">NEW BOOK COMMING SOON</div>
               <div class="sticker sticker-new"></div>
             </div>
           </div>

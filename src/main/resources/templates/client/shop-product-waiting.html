@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Head BEGIN -->
+<title>Home | Book Store</title>
+<th:block th:include="fragments/client/head"></th:block>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+
+<body class="ecommerce">
+<!-- BEGIN HEADER -->
+<th:block th:include="fragments/client/header"></th:block>
+<!-- END HEADER -->
+
+<div class="title-wrapper">
+    <div class="container">
+        <div class="container-inner">
+            <h1><span>Books</span> & nature</h1>
+            <em>belong to the eyes that see them.</em>
+            <!-- <p>Ralph Waldo Emerson</p>    -->
+        </div>
+    </div>
+</div>
+
+<div class="main">
+
+    <div class="container">
+        <!--<form th:action="@{/shop-product-list}" method="get">
+            <ul class="breadcrumb">
+                <li><a th:href="@{/}">Trang chủ</a></li>
+                <li><a href="">Thể loại</a></li>
+                <li class="active" th:text="${categoryId}"></li>
+            </ul>
+        </form>-->
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <div class="sidebar col-md-3 col-sm-5">
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-new-release}"><i class="fa fa-angle-right"></i>Sách mới phát hành</a></li>
+                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-waiting}"><i class="fa fa-angle-right"></i> Sách sắp phát hành</a></li>
+                    <li class="list-group-item clearfix"><a th:href="@{/shop-product-list}"><i class="fa fa-angle-right"></i> Danh Mục Sách</a></li>
+                </ul>
+
+                <div class="sidebar-products clearfix">
+                    <h2>Sách bán chạy</h2>
+                    <div class="item">
+                        <a href="#"><img src="https://www.vinabook.com/images/thumbnails/product/50x/350774_ung-thu-khong-phai-la-benh-ma-la-co-che-chua-lanh.jpg" alt="book image"></a>
+                        <h3><a href="#">Ung Thư Không Phải Là Bệnh, Mà là cơ chế ...</a></h3>
+                        <div class="price">250.000đ</div>
+                    </div>
+                    <div class="item">
+                        <a href="#"><img src="https://www.vinabook.com/images/thumbnails/product/50x/351000_combo-ma-dao-to-su-tap-3-4.jpg" alt="book image"></a>
+                        <h3><a href="#">Ung Thư Không Phải Là Bệnh, Mà là cơ chế ...</a></h3>
+                        <div class="price">250.000đ</div>
+                    </div>
+                    <div class="item">
+                        <a href="#"><img src="https://www.vinabook.com/images/thumbnails/product/240x/350266_p90181mp60658mbiatruoc.jpg" alt="book image"></a>
+                        <h3><a href="#">Ung Thư Không Phải Là Bệnh, Mà là cơ chế ...</a></h3>
+                        <div class="price">250.000đ</div>
+                    </div>
+                </div>
+            </div>
+            <!-- BEGIN SIDEBAR -->
+            <!--<form th:action="@{/shop-product-list}" method="get">
+                <div class="sidebar col-md-3 col-sm-5">
+                    <ul class="list-group margin-bottom-25 sidebar-menu">
+                        <li class="list-group-item clearfix" th:each="category : ${categories}">
+                            <i class="fa fa-angle-right"></i>
+                            <a th:href="'?categoryId=' + ${category.id}"
+                               th:text="${category.name}"
+                               th:value="${category.id}">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </form>-->
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-7">
+
+                <div class="content-search margin-bottom-20">
+                    <form th:action="@{/shop-product-list}" method="get">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Kết quả tìm kiếm cho <em>SÁCH</em></h1>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input th:value="${keyword}" name="keyword" type="text" placeholder="Tìm sách ..." class="form-control">
+                                    <input type="hidden" th:value="${limit}" name="limit">
+                                    <input type="hidden" th:value="${currentPage}" name="page">
+                                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                      </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- BEGIN PRODUCT LIST -->
+                <div class="row product-list">
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-3 col-sm-6 col-xs-12" th:each="book: ${books}">
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img th:src="${book.getPhotos()}" class="img-responsive" alt="image book" style="height: 100%">
+                                <div>
+                                    <a th:href="${book.getPhotos()}" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a th:href="@{'/shop-item/' + ${book.id}}" class="btn btn-default fancybox-fast-view">View</a>
+                                </div>
+                            </div>
+                            <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: auto"><a th:href="@{'/shop-item/' + ${book.id}}" th:text="${book.name}"></a></h3>
+                            <div class="pi-price-sale"th:text="${book.price*1.5 + 'đ'}" style="text-decoration: line-through;"></div>
+                            <div th:text="${book.price + 'đ'}" class="pi-price"></div>
+                        </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                </div>
+
+                <!-- END PRODUCT LIST -->
+                <!-- BEGIN PAGINATOR -->
+                <div class="card-footer text-right">
+                    <nav aria-label="Page navigation example" th:if="${totalPage > 1}">
+                        <ul class="pagination float-right">
+                            <li class="page-item"><a class="page-link" th:href="@{/shop-product-waiting(page=${1}, limit=${limit})}">First</a></li>
+                            <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/shop-product-waiting(page=${currentPage - 1}, limit=${limit})}">Previous</a></li>
+                            <li th:if="${currentPage > 1}" class="page-item"><a class="page-link" th:href="@{/shop-product-waiting(page=${currentPage - 1}, limit=${limit})}">[[${currentPage - 1}]]</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">[[${currentPage}]]</a></li>
+                            <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/shop-product-waiting(page=${currentPage + 1}, limit=${limit})}">[[${currentPage + 1}]]</a></li>
+                            <li th:if="${currentPage < totalPage}" class="page-item"><a class="page-link" th:href="@{/shop-product-waiting(page=${currentPage + 1}, limit=${limit})}">Next</a></li>
+                            <li class="page-item"><a class="page-link" th:href="@{/shop-product-waiting(page=${totalPage}, limit=${limit})}">Last</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- END PAGINATOR -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+<!-- BEGIN STEPS -->
+<div class="steps-block steps-block-red">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-truck"></i>
+                <div>
+                    <h2>Free shipping</h2>
+                    <em>Express delivery withing 3 days</em>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-gift"></i>
+                <div>
+                    <h2>Daily Gifts</h2>
+                    <em>3 Gifts daily for lucky customers</em>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-phone"></i>
+                <div>
+                    <h2>477 505 8877</h2>
+                    <em>24/7 customer care available</em>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END STEPS -->
+
+<!-- BEGIN FOOTER -->
+<th:block th:include="fragments/client/footer"></th:block>
+<!-- END FOOTER -->
+
+<th:block th:include="fragments/client/scripts"></th:block>
+</body>
+<!-- END BODY -->
+
+</html>
+

@@ -23,7 +23,7 @@ public class OrderBook {
     private Set<OrderDetails> orderDetails =new HashSet<>();
 
     public enum Status {
-        DONE(1), PROCESSING(0),DELETED(-1);
+        WAITING(2), CONFIRMED(0),DONE(1),CANCEL(-1);
 
         private int value;
 

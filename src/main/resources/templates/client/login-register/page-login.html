@@ -23,7 +23,7 @@
                     <div th:if="${param.error}" class="error">
                         Invalid username and password.
                     </div>
-                    <form th:action="@{/members/login}" method="post">
+                    <form th:action="@{/members/login}" method="post" authentication-success-handler-ref="myAuthenticationSuccessHandler">
                         <div class="form-group">
                             <label>Your user</label>
                             <input name="username" class="form-control" placeholder="UserName" type="text">

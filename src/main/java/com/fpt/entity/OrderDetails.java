@@ -66,4 +66,5 @@ public class OrderDetails {
     public void setBook(Book book) {
         this.book = book;
     }
+
 }
