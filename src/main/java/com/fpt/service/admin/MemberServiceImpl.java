@@ -75,6 +75,8 @@ public class MemberServiceImpl implements MemberService {
         if (optionalMember.isPresent()) {
             Member existMember = optionalMember.get();
             existMember.setUsername(updateMember.getUsername());
+            existMember.setAvatar(updateMember.getAvatar());
+            existMember.setEmail(updateMember.getEmail());
             existMember.setAddress(updateMember.getAddress());
             existMember.setPhone(updateMember.getPhone());
             existMember.setUpdatedAt(updateMember.getUpdatedAt());

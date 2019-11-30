@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 /*.failureHandler(authenticationFailureHandler())*/
                 /*.failureHandler(authenticationFailureHandler())*/
                 .successHandler(authenticationSuccessHandler())
+
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

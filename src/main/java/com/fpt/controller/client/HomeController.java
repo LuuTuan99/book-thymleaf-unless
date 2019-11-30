@@ -229,11 +229,6 @@ public class HomeController {
         return "client/shop-item";
     }
 
-//    @GetMapping(value = "/shop-item")
-//    public String shop_item() {
-//        return "client/shop-item";
-//    }
-
     //shop account page
     @GetMapping(value = "/shop-checkout")
     public String shop_checkout(){
