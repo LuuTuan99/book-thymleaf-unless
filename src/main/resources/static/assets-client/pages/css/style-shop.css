@@ -416,7 +416,7 @@ Header and header elements
 .pi-price-sale {
 	color: #bbb;
 	font: 18px 'PT Sans Narrow', sans-serif;
-	float: left;
+	float: right;
 	padding-top: 1px;
 }
 .product-item .add2cart {
